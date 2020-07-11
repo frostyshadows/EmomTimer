@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/navigation_workouts">
+
+    <fragment
+        android:id="@+id/navigation_workouts"
+        android:name="com.sherryyuan.emomtimer.workout.WorkoutsFragment"
+        android:label="@string/title_workouts"
+        tools:layout="@layout/fragment_workouts" >
+        <action
+            android:id="@+id/action_workoutsFragment_to_workoutDetailFragment"
+            app:destination="@id/navigation_workout_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_workout_detail"
+        android:name="com.sherryyuan.emomtimer.workout.WorkoutDetailFragment"
+        android:label="DraftDetailFragment">
+        <argument
+            android:name="workout"
+            app:argType="com.sherryyuan.emomtimer.models.Workout" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_timer"
+        android:name="com.sherryyuan.emomtimer.ui.dashboard.DashboardFragment"
+        android:label="@string/title_timer"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="com.sherryyuan.emomtimer.ui.notifications.NotificationsFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>

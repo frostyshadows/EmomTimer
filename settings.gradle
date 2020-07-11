@@ -1,0 +1,2 @@
+rootProject.name='EmomTimer'
+include ':app'

@@ -1,0 +1,52 @@
+package com.sherryyuan.emomtimer.workout
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.sherryyuan.emomtimer.R
+import com.sherryyuan.emomtimer.databinding.FragmentWorkoutsBinding
+
+class WorkoutsFragment : Fragment() {
+
+    private val viewModel: WorkoutsViewModel by viewModels()
+    private val binding: FragmentWorkoutsBinding by lazy {
+        FragmentWorkoutsBinding.inflate(layoutInflater)
+    }
+    private lateinit var viewManager: RecyclerView.LayoutManager
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewModel.workouts.observe(viewLifecycleOwner, Observer { updateWorkouts() })
+        return binding.root.also {
+            setupWorkoutsList()
+        }
+    }
+
+    private fun setupWorkoutsList() {
+        viewManager = LinearLayoutManager(context)
+        viewAdapter = WorkoutsAdapter(viewModel.workouts.value ?: emptyList(), findNavController())
+
+        binding.listWorkouts.apply {
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = viewAdapter
+        }
+    }
+
+    private fun updateWorkouts() {
+
+    }
+}
