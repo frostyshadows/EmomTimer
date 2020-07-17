@@ -18,7 +18,7 @@ class WorkoutsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(ItemWorkoutBinding.inflate(LayoutInflater.from(parent.context)).root)
+        ViewHolder(ItemWorkoutBinding.inflate(LayoutInflater.from(parent.context), parent, false).root)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val workout = workouts[position]

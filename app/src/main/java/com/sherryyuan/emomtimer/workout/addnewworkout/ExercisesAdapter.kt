@@ -13,7 +13,8 @@ class ExercisesAdapter(
 ) : RecyclerView.Adapter<ExercisesAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding : ItemAddExerciseBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(exercise : Exercise){
+
+        fun bind(exercise : Exercise) {
             binding.exercise = exercise
         }
     }
@@ -22,14 +23,6 @@ class ExercisesAdapter(
         ViewHolder(ItemAddExerciseBinding.inflate(LayoutInflater.from(parent.context)))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        val exercise = exercises[position]
-//        if (exercise.name.isNotBlank()) {
-//            holder.binding.apply {
-//                minuteCountText.setText(exercise.numSeconds / SECONDS_PER_MINUTE)
-//                repsCountText.setText(exercise.numReps)
-//                exerciseNameText.setText(exercise.name)
-//            }
-//        }
         holder.bind(exercises[position])
     }
 

@@ -26,7 +26,10 @@ class WorkoutsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel.workouts.observe(viewLifecycleOwner, Observer { updateWorkouts() })
+        viewModel.workouts.observe(
+            viewLifecycleOwner,
+            Observer { viewAdapter.notifyDataSetChanged() }
+        )
         return binding.root.also {
             setupWorkoutsList()
             setupFab()

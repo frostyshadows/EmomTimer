@@ -58,7 +58,7 @@ class AddNewWorkoutFragment : Fragment(), KoinComponent {
     private fun setupAddExerciseButton() {
         binding.floatingActionButton.setOnClickListener {
             exercises.add(Exercise())
-            viewAdapter.notifyItemInserted(exercises.size-1)
+            viewAdapter.notifyDataSetChanged()
         }
     }
 
