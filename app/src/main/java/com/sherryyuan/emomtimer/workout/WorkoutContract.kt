@@ -1,8 +1,7 @@
 package com.sherryyuan.emomtimer.workout
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import com.sherryyuan.emomtimer.models.Workout
-import io.reactivex.Single
 
 interface WorkoutContract {
 
@@ -11,10 +10,10 @@ interface WorkoutContract {
     }
 
     interface ViewModel {
-        var workouts: MutableLiveData<List<Workout>>
+        val workouts: LiveData<List<Workout>>
     }
 
     interface Repository {
-        fun getWorkouts(): Single<List<Workout>>
+        fun getWorkouts(): LiveData<List<Workout>>
     }
 }
