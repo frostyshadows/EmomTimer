@@ -2,7 +2,7 @@ package com.sherryyuan.emomtimer
 
 const val SECONDS_PER_MINUTE = 60
 
-fun secondsToTimeString(seconds: Int): String {
+fun minutesToTimeString(seconds: Int): String {
     val minutes: Int = seconds / SECONDS_PER_MINUTE
     val leftoverSeconds: Int = seconds - minutes * SECONDS_PER_MINUTE
     // Prepend a 0 if there are less than 10 seconds.

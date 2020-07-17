@@ -9,19 +9,26 @@
         android:id="@+id/navigation_workouts"
         android:name="com.sherryyuan.emomtimer.workout.WorkoutsFragment"
         android:label="@string/title_workouts"
-        tools:layout="@layout/fragment_workouts" >
+        tools:layout="@layout/fragment_workouts">
         <action
             android:id="@+id/action_workoutsFragment_to_workoutDetailFragment"
             app:destination="@id/navigation_workout_detail" />
+        <action
+            android:id="@+id/action_workoutsFragment_to_addNewWorkoutFragment"
+            app:destination="@id/navigation_add_new_workout" />
     </fragment>
     <fragment
         android:id="@+id/navigation_workout_detail"
         android:name="com.sherryyuan.emomtimer.workout.WorkoutDetailFragment"
-        android:label="DraftDetailFragment">
+        android:label="WorkoutDetailFragment">
         <argument
             android:name="workout"
             app:argType="com.sherryyuan.emomtimer.models.Workout" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_add_new_workout"
+        android:name="com.sherryyuan.emomtimer.workout.addnewworkout.AddNewWorkoutFragment"
+        android:label="AddNewWorkoutFragment" />
     <fragment
         android:id="@+id/navigation_timer"
         android:name="com.sherryyuan.emomtimer.ui.dashboard.DashboardFragment"

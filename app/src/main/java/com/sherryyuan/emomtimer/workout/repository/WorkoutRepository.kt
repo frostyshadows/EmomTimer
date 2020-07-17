@@ -13,4 +13,6 @@ class WorkoutRepository: WorkoutContract.Repository, KoinComponent {
 
     override fun getWorkouts(): LiveData<List<Workout>> = roomDao.getAll()
 
+    override suspend fun saveWorkout(workout: Workout) = roomDao.insertWorkout(workout)
+
 }

@@ -6,10 +6,13 @@ import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
 data class Exercise(
-    val name: String,
-    val numSeconds: Int,
-    val numReps: Int
+    var name: String = "",
+    var numMinutes: String = "",
+    var numReps: String = ""
 )
+
+fun String.toNonNullDouble(): Double = this.toDoubleOrNull() ?: 0.0
+fun String.toNonNullInt(): Int = this.toIntOrNull() ?: 0
 
 class ExerciseConverters {
     private val gson = Gson()

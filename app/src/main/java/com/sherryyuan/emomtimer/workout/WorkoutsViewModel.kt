@@ -1,18 +1,14 @@
 package com.sherryyuan.emomtimer.workout
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sherryyuan.emomtimer.models.Workout
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class WorkoutsViewModel : ViewModel(), WorkoutContract.ViewModel {
+class WorkoutsViewModel : ViewModel(), WorkoutContract.ViewModel, KoinComponent {
 
-    override val workouts: LiveData<List<Workout>>
-        get() = _workouts
+    private val repository: WorkoutContract.Repository by inject()
 
-    private val _workouts: MutableLiveData<List<Workout>> = MutableLiveData()
-
-    init {
-       _workouts.value = listOf()
-    }
+    override val workouts: LiveData<List<Workout>> = repository.getWorkouts()
 }

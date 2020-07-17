@@ -15,5 +15,6 @@ interface WorkoutContract {
 
     interface Repository {
         fun getWorkouts(): LiveData<List<Workout>>
+        suspend fun saveWorkout(workout: Workout)
     }
 }

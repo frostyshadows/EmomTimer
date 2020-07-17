@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">EmomTimer</string>
     <string name="title_workouts">Workouts</string>
+    <string name="title_workout_title">Title</string>
+    <string name="hint_one_minute">1</string>
+    <string name="minute_of">minute of</string>
+    <string name="hint_ten_reps">10</string>
+    <string name="hint_pushups">push-ups</string>
+    <string name="save">Save</string>
+    <string name="repeat_for">repeat for</string>
+    <string name="hint_three_sets">3</string>
+    <string name="sets">sets</string>
     <string name="title_timer">Timer</string>
     <string name="title_calendar">Calendar</string>
 </resources>
