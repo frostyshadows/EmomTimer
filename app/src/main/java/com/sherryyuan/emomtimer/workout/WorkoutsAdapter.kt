@@ -9,7 +9,7 @@ import com.sherryyuan.emomtimer.databinding.ItemWorkoutBinding
 import com.sherryyuan.emomtimer.models.Workout
 
 class WorkoutsAdapter(
-    private val workouts: List<Workout>,
+    var workouts: List<Workout>,
     private val navController: NavController
 ) : RecyclerView.Adapter<WorkoutsAdapter.ViewHolder>() {
 

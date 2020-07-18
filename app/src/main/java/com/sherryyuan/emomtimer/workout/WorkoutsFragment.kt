@@ -19,7 +19,7 @@ class WorkoutsFragment : Fragment() {
         FragmentWorkoutsBinding.inflate(layoutInflater)
     }
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewAdapter: WorkoutsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +28,10 @@ class WorkoutsFragment : Fragment() {
     ): View? {
         viewModel.workouts.observe(
             viewLifecycleOwner,
-            Observer { viewAdapter.notifyDataSetChanged() }
+            Observer {
+                viewAdapter.workouts = it
+                viewAdapter.notifyDataSetChanged()
+            }
         )
         return binding.root.also {
             setupWorkoutsList()
