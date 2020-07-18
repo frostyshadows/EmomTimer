@@ -7,12 +7,12 @@ import java.lang.reflect.Type
 
 data class Exercise(
     var name: String = "",
-    var numMinutes: String = "",
-    var numReps: String = ""
-)
-
-fun String.toNonNullDouble(): Double = this.toDoubleOrNull() ?: 0.0
-fun String.toNonNullInt(): Int = this.toIntOrNull() ?: 0
+    var numSeconds: Int = 0,
+    var numReps: Int = 0
+) {
+    var numSecondsString = if (numSeconds > 0) numSeconds.toString() else ""
+    var numRepsString = if (numReps > 0) numReps.toString() else ""
+}
 
 class ExerciseConverters {
     private val gson = Gson()

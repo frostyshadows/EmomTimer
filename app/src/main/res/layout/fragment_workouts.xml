@@ -24,6 +24,8 @@
         android:id="@+id/list_workouts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/size_16"
+        android:layout_marginBottom="@dimen/size_16"
         app:layout_constraintBottom_toTopOf="@id/floating_action_button"
         app:layout_constraintTop_toBottomOf="@id/text_title" />
 
@@ -31,6 +33,7 @@
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_16"
         android:src="@drawable/icon_add"
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"

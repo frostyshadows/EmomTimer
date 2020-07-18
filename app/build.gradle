@@ -38,8 +38,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-
 }
 
 dependencies {
@@ -64,7 +62,7 @@ dependencies {
     implementation "com.google.code.gson:gson:2.8.6"
 
     // Room
-    def roomVersion = "2.2.5"
+    def roomVersion = "2.3.0-alpha01"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"

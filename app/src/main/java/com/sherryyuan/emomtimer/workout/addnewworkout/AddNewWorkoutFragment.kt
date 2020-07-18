@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.databinding.FragmentAddNewWorkoutBinding
 import com.sherryyuan.emomtimer.models.Exercise
 import com.sherryyuan.emomtimer.models.Workout
-import com.sherryyuan.emomtimer.models.toNonNullInt
 import com.sherryyuan.emomtimer.workout.WorkoutContract
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +29,7 @@ class AddNewWorkoutFragment : Fragment(), KoinComponent {
     }
 
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var viewAdapter: ExercisesAdapter
+    private lateinit var viewAdapterAddNewWorkout: AddNewWorkoutExercisesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,25 +39,32 @@ class AddNewWorkoutFragment : Fragment(), KoinComponent {
         return binding.root.also {
             setupExercisesList()
             setupAddExerciseButton()
+            setupCloseButton()
             setupSaveButton()
         }
     }
 
     private fun setupExercisesList() {
         viewManager = LinearLayoutManager(context)
-        viewAdapter = ExercisesAdapter(exercises)
+        viewAdapterAddNewWorkout = AddNewWorkoutExercisesAdapter(exercises)
 
         binding.listExercises.apply {
             setHasFixedSize(true)
             layoutManager = viewManager
-            adapter = viewAdapter
+            adapter = viewAdapterAddNewWorkout
         }
     }
 
     private fun setupAddExerciseButton() {
-        binding.floatingActionButton.setOnClickListener {
+        binding.addExerciseButton.setOnClickListener {
             exercises.add(Exercise())
-            viewAdapter.notifyDataSetChanged()
+            viewAdapterAddNewWorkout.notifyDataSetChanged()
+        }
+    }
+
+    private fun setupCloseButton() {
+        binding.closeButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
@@ -67,7 +73,7 @@ class AddNewWorkoutFragment : Fragment(), KoinComponent {
             val title: String? = binding.titleText.text?.toString()
             val numSets: Int = binding.setsCountText.text.toString().toIntOrNull() ?: 0
             val filledExercises =
-                exercises.filter { it.name.isNotEmpty() && it.numMinutes.toNonNullInt() > 0 && it.numReps.toNonNullInt() > 0 }
+                exercises.filter { it.name.isNotEmpty() && it.numSeconds > 0 && it.numReps > 0 }
             if (!title.isNullOrBlank() && filledExercises.isNotEmpty() && numSets > 0) {
                 CoroutineScope(Dispatchers.IO).launch {
                     repository.saveWorkout(Workout(title, numSets, filledExercises))

@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_workout_detail"
-        android:name="com.sherryyuan.emomtimer.workout.WorkoutDetailFragment"
+        android:name="com.sherryyuan.emomtimer.workout.workoutdetail.WorkoutDetailFragment"
         android:label="WorkoutDetailFragment">
         <argument
             android:name="workout"

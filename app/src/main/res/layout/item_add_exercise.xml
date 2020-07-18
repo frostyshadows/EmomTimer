@@ -1,78 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="exercise"
             type="com.sherryyuan.emomtimer.models.Exercise" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:gravity="center">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/minute_count_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/minute_count_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_one_minute">
+            android:hint="@string/hint_one_minute"
+            android:inputType="number"
+            android:minWidth="@dimen/size_16"
+            android:text="@={exercise.numSecondsString}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/minute_count_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:minWidth="@dimen/size_16"
-                android:text="@={exercise.numMinutes}" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/minute_of_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minute_of" />
+            android:text="@string/minute_of"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/minute_count_text"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reps_count_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/reps_count_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_ten_reps">
+            android:hint="@string/hint_ten_reps"
+            android:inputType="number"
+            android:minWidth="@dimen/size_16"
+            android:text="@={exercise.numRepsString}"
+            app:layout_constraintStart_toEndOf="@id/minute_of_text"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/reps_count_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:minWidth="@dimen/size_16"
-                android:text="@={exercise.numReps}" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/exercise_name_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/exercise_name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_pushups">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/exercise_name_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="@dimen/size_16"
-                android:text="@={exercise.name}" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/hint_pushups"
+            android:minWidth="@dimen/size_16"
+            android:text="@={exercise.name}"
+            app:layout_constraintStart_toEndOf="@id/reps_count_text"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/icon_delete" />
+            android:layout_gravity="end"
+            android:background="@drawable/icon_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

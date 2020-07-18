@@ -1,3 +1,5 @@
 <resources>
+    <dimen name="size_8">8dp</dimen>
     <dimen name="size_16">16dp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
 </resources>
