@@ -2,7 +2,6 @@ package com.sherryyuan.emomtimer.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
 import java.io.Serializable
 
 @Entity
