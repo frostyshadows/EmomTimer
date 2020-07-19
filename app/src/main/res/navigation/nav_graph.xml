@@ -14,8 +14,8 @@
             android:id="@+id/action_workoutsFragment_to_workoutDetailFragment"
             app:destination="@id/navigation_workout_detail" />
         <action
-            android:id="@+id/action_workoutsFragment_to_addNewWorkoutFragment"
-            app:destination="@id/navigation_add_new_workout" />
+            android:id="@+id/action_workoutsFragment_to_addOrEditWorkoutFragment"
+            app:destination="@id/navigation_add_or_edit_workout" />
     </fragment>
     <fragment
         android:id="@+id/navigation_workout_detail"
@@ -24,11 +24,25 @@
         <argument
             android:name="workout"
             app:argType="com.sherryyuan.emomtimer.models.Workout" />
+        <action
+            android:id="@+id/action_workoutDetailFragment_to_addOrEditWorkoutFragment"
+            app:destination="@id/navigation_add_or_edit_workout" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_add_new_workout"
-        android:name="com.sherryyuan.emomtimer.workout.addnewworkout.AddNewWorkoutFragment"
-        android:label="AddNewWorkoutFragment" />
+        android:id="@+id/navigation_add_or_edit_workout"
+        android:name="com.sherryyuan.emomtimer.workout.addoreditworkout.AddOrEditWorkoutFragment"
+        android:label="AddNewWorkoutFragment" >
+        <argument
+            android:name="workout"
+            android:defaultValue="@null"
+            app:argType="com.sherryyuan.emomtimer.models.Workout"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_addOrEditWorkoutFragment_back_to_workoutsFragment"
+            app:destination="@id/navigation_workouts"
+            app:popUpTo="@id/navigation_workouts"
+            app:popUpToInclusive="true"/>
+    </fragment>
     <fragment
         android:id="@+id/navigation_timer"
         android:name="com.sherryyuan.emomtimer.ui.dashboard.DashboardFragment"

@@ -1,4 +1,4 @@
-package com.sherryyuan.emomtimer.workout.addnewworkout
+package com.sherryyuan.emomtimer.workout.addoreditworkout
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,9 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.ItemAddExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
 
-class AddNewWorkoutExercisesAdapter(
+class AddOrEditWorkoutExercisesAdapter(
     private val exercises: List<Exercise>
-) : RecyclerView.Adapter<AddNewWorkoutExercisesAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<AddOrEditWorkoutExercisesAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemAddExerciseBinding) :
         RecyclerView.ViewHolder(binding.root) {

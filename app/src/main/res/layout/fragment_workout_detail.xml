@@ -24,31 +24,31 @@
         app:layout_constraintTop_toBottomOf="@id/workout_name"
         tools:text="20 minutes" />
 
-    <ImageView
-        android:id="@+id/edit_icon"
+    <ImageButton
+        android:id="@+id/edit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_edit_pencil"
-        app:layout_constraintEnd_toStartOf="@id/play_icon"
+        app:layout_constraintEnd_toStartOf="@id/play_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/workout_length" />
 
-    <ImageView
-        android:id="@+id/play_icon"
+    <ImageButton
+        android:id="@+id/play_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_play_circle"
-        app:layout_constraintEnd_toStartOf="@id/delete_icon"
-        app:layout_constraintStart_toEndOf="@id/edit_icon"
+        app:layout_constraintEnd_toStartOf="@id/delete_button"
+        app:layout_constraintStart_toEndOf="@id/edit_button"
         app:layout_constraintTop_toBottomOf="@id/workout_length" />
 
-    <ImageView
-        android:id="@+id/delete_icon"
+    <ImageButton
+        android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/play_icon"
+        app:layout_constraintStart_toEndOf="@id/play_button"
         app:layout_constraintTop_toBottomOf="@id/workout_length" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"
-        app:layout_constraintTop_toBottomOf="@id/play_icon" />
+        app:layout_constraintTop_toBottomOf="@id/play_button" />
 
     <TextView
         android:id="@+id/repeat_for"

@@ -21,10 +21,9 @@
             android:hint="@string/hint_one_minute"
             android:inputType="number"
             android:minWidth="@dimen/size_16"
-            android:text="@={exercise.numSecondsString}"
+            android:text="@={`` + exercise.numSeconds / 60}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/minute_of_text"
@@ -42,7 +41,7 @@
             android:hint="@string/hint_ten_reps"
             android:inputType="number"
             android:minWidth="@dimen/size_16"
-            android:text="@={exercise.numRepsString}"
+            android:text="@={`` + exercise.numReps}"
             app:layout_constraintStart_toEndOf="@id/minute_of_text"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -6,7 +6,6 @@ import androidx.room.TypeConverters
 import java.io.Serializable
 
 @Entity
-@TypeConverters(ExerciseConverters::class)
 data class Workout(
     val name: String,
     val numSets: Int,

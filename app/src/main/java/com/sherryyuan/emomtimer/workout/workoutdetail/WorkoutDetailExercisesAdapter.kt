@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.databinding.ItemDetailExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
+import com.sherryyuan.emomtimer.models.Workout
 
 class WorkoutDetailExercisesAdapter(
     private val exercises: List<Exercise>

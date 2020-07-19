@@ -1,10 +1,8 @@
 package com.sherryyuan.emomtimer.workout.repository
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import com.sherryyuan.emomtimer.models.Exercise
 import com.sherryyuan.emomtimer.models.Workout
 
 @Dao
@@ -15,4 +13,10 @@ interface WorkoutDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWorkout(workout: Workout)
+
+    @Query(value = "UPDATE Workout SET name= :name, numSets= :numSets, exercises = :exercises WHERE id = :id")
+    suspend fun updateWorkout(name: String, numSets: Int, exercises: List<Exercise>, id: Int)
+
+    @Delete
+    suspend fun deleteWorkout(workout: Workout)
 }

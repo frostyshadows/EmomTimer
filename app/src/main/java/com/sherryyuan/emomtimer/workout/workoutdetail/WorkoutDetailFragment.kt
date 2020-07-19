@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutDetailBinding
-import kotlinx.android.synthetic.main.fragment_workout_detail.*
-import kotlinx.android.synthetic.main.item_detail_exercise.*
+import com.sherryyuan.emomtimer.workout.WorkoutsViewModel
 
 class WorkoutDetailFragment : Fragment() {
 
+    private val viewModel: WorkoutsViewModel by viewModels()
     private val args: WorkoutDetailFragmentArgs by navArgs()
 
     private val binding: FragmentWorkoutDetailBinding by lazy {
@@ -31,6 +34,8 @@ class WorkoutDetailFragment : Fragment() {
     ): View? {
         return binding.root.also {
             setupExercisesList()
+            setupEditButton()
+            setupDeleteButton()
         }
     }
 
@@ -52,6 +57,36 @@ class WorkoutDetailFragment : Fragment() {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = workoutDetailAdapter
+        }
+    }
+
+    private fun setupEditButton() {
+        binding.editButton.setOnClickListener {
+            findNavController().navigate(
+                WorkoutDetailFragmentDirections.actionWorkoutDetailFragmentToAddOrEditWorkoutFragment(
+                    args.workout
+                )
+            )
+        }
+    }
+
+    // Display an AlertDialog confirming whether user wants to delete the workout, and delete the
+    // workout if they select yes.
+    private fun setupDeleteButton() {
+        binding.deleteButton.setOnClickListener {
+            context?.let {
+                AlertDialog.Builder(it)
+                    .setMessage(R.string.alert_delete_workout)
+                    .setPositiveButton(R.string.yes) { _, _ ->
+                        viewModel.deleteWorkout(args.workout)
+                        findNavController().popBackStack()
+                    }
+                    .setNegativeButton(R.string.cancel) { dialog, _ ->
+                        dialog.cancel()
+                    }
+                    .create()
+                    .show()
+            }
         }
     }
 }
