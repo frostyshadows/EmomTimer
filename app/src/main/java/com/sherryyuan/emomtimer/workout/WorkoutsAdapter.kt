@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
+import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.ItemWorkoutBinding
 import com.sherryyuan.emomtimer.models.Workout
 
@@ -18,7 +19,13 @@ class WorkoutsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(ItemWorkoutBinding.inflate(LayoutInflater.from(parent.context), parent, false).root)
+        ViewHolder(
+            ItemWorkoutBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ).root
+        )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val workout = workouts[position]
@@ -31,7 +38,8 @@ class WorkoutsAdapter(
                 )
             }
             titleText.text = workout.name
-            timeText.text = workout.getFormattedTime()
+            timeText.text =
+                timeText.context.getString(R.string.x_minutes_total, workout.getTotalMinutes())
         }
     }
 

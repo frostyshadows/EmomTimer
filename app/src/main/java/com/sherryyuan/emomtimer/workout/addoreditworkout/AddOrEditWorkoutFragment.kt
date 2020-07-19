@@ -43,7 +43,6 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
             args.workout?.let { setupWorkoutDetails(it) }
             setupExercisesList()
             setupAddExerciseButton()
-            setupCloseButton()
             setupSaveButton()
         }
     }
@@ -70,12 +69,6 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
         binding.addExerciseButton.setOnClickListener {
             exercises.add(Exercise())
             viewAdapterAddOrEditWorkout.notifyDataSetChanged()
-        }
-    }
-
-    private fun setupCloseButton() {
-        binding.closeButton.setOnClickListener {
-            findNavController().popBackStack()
         }
     }
 

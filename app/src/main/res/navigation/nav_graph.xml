@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/navigation_workout_detail"
         android:name="com.sherryyuan.emomtimer.workout.workoutdetail.WorkoutDetailFragment"
-        android:label="WorkoutDetailFragment">
+        android:label="Workouts">
         <argument
             android:name="workout"
             app:argType="com.sherryyuan.emomtimer.models.Workout" />
@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/navigation_add_or_edit_workout"
         android:name="com.sherryyuan.emomtimer.workout.addoreditworkout.AddOrEditWorkoutFragment"
-        android:label="New Workout" >
+        android:label="Edit Workout" >
         <argument
             android:name="workout"
             android:defaultValue="@null"

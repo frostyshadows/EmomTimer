@@ -57,8 +57,4 @@ class WorkoutsFragment : Fragment() {
             )
         }
     }
-
-    private fun updateWorkouts() {
-
-    }
 }

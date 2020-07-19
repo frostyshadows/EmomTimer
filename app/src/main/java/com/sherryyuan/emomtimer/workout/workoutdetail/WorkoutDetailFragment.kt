@@ -15,6 +15,7 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutDetailBinding
 import com.sherryyuan.emomtimer.workout.WorkoutsViewModel
 
+
 class WorkoutDetailFragment : Fragment() {
 
     private val viewModel: WorkoutsViewModel by viewModels()
@@ -43,7 +44,7 @@ class WorkoutDetailFragment : Fragment() {
         binding.apply {
             workoutName.text = args.workout.name
             workoutLength.text =
-                view.context.getString(R.string.x_minutes_total, args.workout.getFormattedTime())
+                view.context.getString(R.string.x_minutes_total, args.workout.getTotalMinutes())
             repeatFor.text =
                 view.context.getString(R.string.repeat_for_x_sets, args.workout.numSets)
         }

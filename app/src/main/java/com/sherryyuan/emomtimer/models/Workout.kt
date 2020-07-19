@@ -2,6 +2,7 @@ package com.sherryyuan.emomtimer.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
 import java.io.Serializable
 
 @Entity
@@ -14,5 +15,5 @@ data class Workout(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
-    fun getFormattedTime(): String = exercises.sumBy { it.numSeconds }.toString()
+    fun getTotalMinutes(): Int = exercises.sumBy { it.numSeconds } / SECONDS_PER_MINUTE
 }
