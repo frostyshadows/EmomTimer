@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/size_16">
+
+    <TextView
+        android:id="@+id/workout_name"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="20 Jumping jacks" />
+
+    <TextView
+        android:id="@+id/current_set_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/workout_name"
+        tools:text="Set 1 of 4" />
+
+    <ProgressBar
+        android:id="@+id/timer_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:indeterminate="false"
+        android:layoutDirection="rtl"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_set_text"
+        tools:max="48"
+        tools:progress="45" />
+
+    <TextView
+        android:id="@+id/remaining_seconds_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/timer_controller_button"
+        app:layout_constraintEnd_toEndOf="@id/timer_progress_bar"
+        app:layout_constraintStart_toStartOf="@id/timer_progress_bar"
+        app:layout_constraintTop_toTopOf="@id/timer_progress_bar"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="0:59" />
+
+    <ImageButton
+        android:id="@+id/timer_controller_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/timer_progress_bar"
+        app:layout_constraintEnd_toEndOf="@id/timer_progress_bar"
+        app:layout_constraintStart_toStartOf="@id/timer_progress_bar"
+        app:layout_constraintTop_toBottomOf="@id/remaining_seconds_text" />
+
+    <TextView
+        android:id="@+id/next_set_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Next: 20 crunches" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
