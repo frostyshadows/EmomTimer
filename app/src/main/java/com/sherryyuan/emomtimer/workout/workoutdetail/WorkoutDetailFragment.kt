@@ -61,6 +61,14 @@ class WorkoutDetailFragment : Fragment() {
         }
     }
 
+    private fun setupPlayButton() {
+        binding.playButton.setOnClickListener {
+            findNavController().navigate(
+                WorkoutDetailFragmentDirections.actionWorkoutDetailFragmentToTimerCountdownFragment()
+            )
+        }
+    }
+
     private fun setupEditButton() {
         binding.editButton.setOnClickListener {
             findNavController().navigate(

@@ -1,10 +1,10 @@
-package com.sherryyuan.emomtimer.timer
+package com.sherryyuan.emomtimer.timer.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sherryyuan.emomtimer.models.Exercise
-import com.sherryyuan.emomtimer.models.TimerData
 import com.sherryyuan.emomtimer.models.Workout
+import com.sherryyuan.emomtimer.timer.TimerViewData
 
 class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
 
@@ -18,12 +18,12 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
 //    override val nextExerciseName: LiveData<String?>?
 //        get() = _nextExerciseName
 
-    override val timerData: LiveData<TimerData>
-        get() = _timerData
+    override val timerViewData: LiveData<TimerViewData>
+        get() = _timerViewData
 
-    private val _timerData: MutableLiveData<TimerData> =
+    private val _timerViewData: MutableLiveData<TimerViewData> =
         MutableLiveData(
-            TimerData(
+            TimerViewData(
                 timerName = workout.name,
                 totalSecondsInSet = workout.exercises[0].numSeconds,
                 secondsRemainingInSet = workout.exercises[0].numSeconds,
@@ -64,20 +64,21 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
 //        MutableLiveData(workout.exercises.getOrNull(1)?.name)
 
     override fun startNextSet() {
-        val currentSet: Int = _timerData.value?.currentSet ?: 0
+        val currentSet: Int = _timerViewData.value?.currentSet ?: 0
         if (currentSet >= workout.exercises.size - 1) {
-            _timerState.value = TimerState.FINISHED
+            _timerViewState.value = TimerViewState.FINISHED
             return
         }
         val currentExercise: Exercise = workout.exercises[currentSet + 1]
-        _timerData.value = TimerData(
-            timerName = workout.name,
-            totalSecondsInSet = currentExercise.numSeconds,
-            secondsRemainingInSet = currentExercise.numSeconds,
-            currentSet = currentSet + 1,
-            currentExerciseName = currentExercise.name,
-            currentExerciseReps = currentExercise.numReps,
-            nextExerciseName = workout.exercises.getOrNull(currentSet + 2)?.name
-        )
+        _timerViewData.value =
+            TimerViewData(
+                timerName = workout.name,
+                totalSecondsInSet = currentExercise.numSeconds,
+                secondsRemainingInSet = currentExercise.numSeconds,
+                currentSet = currentSet + 1,
+                currentExerciseName = currentExercise.name,
+                currentExerciseReps = currentExercise.numReps,
+                nextExerciseName = workout.exercises.getOrNull(currentSet + 2)?.name
+            )
     }
 }

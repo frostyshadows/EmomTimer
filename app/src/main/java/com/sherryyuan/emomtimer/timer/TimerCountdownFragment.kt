@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.sherryyuan.emomtimer.databinding.FragmentTimerCountdownBinding
-import com.sherryyuan.emomtimer.models.TimerData
+import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModel
+import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelFactory
 
 class TimerCountdownFragment : Fragment() {
 
-    private val viewModel: TimerViewModel by viewModels()
+    private val viewModel: TimerViewModel by viewModels {
+        TimerViewModelFactory()
+    }
 
     private val binding: FragmentTimerCountdownBinding by lazy {
         FragmentTimerCountdownBinding.inflate(layoutInflater)
@@ -24,13 +27,20 @@ class TimerCountdownFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         with(viewModel) {
-            timerData.observe(requireActivity(), Observer { updateViews(it) })
+            timerViewData.observe(requireActivity(), Observer { updateViews(it) })
         }
-        return binding.root.also {}
+        return binding.root
     }
 
-    private fun updateViews(timerData: TimerData) {
-        binding.remainingSecondsText.text = timerData.secondsRemainingInSet.toString()
-        // TODO format the time correctly and also update progressbar
+    private fun updateViews(timerViewData: TimerViewData) {
+        binding.apply {
+            workoutName.text = timerViewData.timerName
+            remainingSecondsText.text = timerViewData.secondsRemainingInSet.toString()
+            // TODO format the time correctly and also update progressbar
+            timerProgressBar.max = timerViewData.totalSecondsInSet
+            timerProgressBar.progress = timerViewData.secondsRemainingInSet
+            currentSetText.text = timerViewData.currentExerciseName
+            nextSetText.text = timerViewData.nextExerciseName
+        }
     }
 }

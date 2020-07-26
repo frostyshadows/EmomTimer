@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_workoutDetailFragment_to_addOrEditWorkoutFragment"
             app:destination="@id/navigation_add_or_edit_workout" />
+        <action
+            android:id="@+id/action_workoutDetailFragment_to_timerCountdownFragment"
+            app:destination="@id/navigation_timer" />
     </fragment>
     <fragment
         android:id="@+id/navigation_add_or_edit_workout"
@@ -45,9 +48,8 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_timer"
-        android:name="com.sherryyuan.emomtimer.ui.dashboard.DashboardFragment"
-        android:label="@string/title_timer"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.sherryyuan.emomtimer.timer.TimerCountdownFragment"
+        android:label="@string/title_timer" />
 
     <fragment
         android:id="@+id/navigation_calendar"

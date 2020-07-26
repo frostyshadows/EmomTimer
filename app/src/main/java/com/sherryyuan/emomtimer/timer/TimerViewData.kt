@@ -1,6 +1,6 @@
-package com.sherryyuan.emomtimer.models
+package com.sherryyuan.emomtimer.timer
 
-class TimerData(
+class TimerViewData(
     val timerName: String?,
     val totalSecondsInSet: Int,
     val secondsRemainingInSet: Int,
