@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.ItemWorkoutBinding
 import com.sherryyuan.emomtimer.models.Workout
+import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.WorkoutTimerViewModelType
 
 class WorkoutsAdapter(
     var workouts: List<Workout>,
@@ -40,6 +41,13 @@ class WorkoutsAdapter(
             titleText.text = workout.name
             timeText.text =
                 timeText.context.getString(R.string.x_minutes_total, workout.getTotalMinutes())
+            playButton.setOnClickListener {
+                navController.navigate(
+                    WorkoutsFragmentDirections.actionWorkoutsFragmentToTimerCountdownFragment(
+                        WorkoutTimerViewModelType(workout)
+                    )
+                )
+            }
         }
     }
 

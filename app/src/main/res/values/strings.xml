@@ -19,5 +19,10 @@
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="title_timer">Timer</string>
+    <string name="every">Every</string>
+    <string name="minute">minute</string>
+    <string name="hint_twenty_sets">20</string>
+    <string name="start">Start</string>
+    <string name="minutes">minutes</string>
     <string name="title_calendar">Calendar</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.sherryyuan.emomtimer
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_workouts, R.id.navigation_timer, R.id.navigation_calendar
+                R.id.navigation_workouts, R.id.navigation_timer_countdown, R.id.navigation_calendar
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

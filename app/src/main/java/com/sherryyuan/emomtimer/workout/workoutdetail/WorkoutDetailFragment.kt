@@ -13,13 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutDetailBinding
+import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.WorkoutTimerViewModelType
 import com.sherryyuan.emomtimer.workout.WorkoutsViewModel
 
 
 class WorkoutDetailFragment : Fragment() {
 
+    private val navArgs: WorkoutDetailFragmentArgs by navArgs()
     private val viewModel: WorkoutsViewModel by viewModels()
-    private val args: WorkoutDetailFragmentArgs by navArgs()
 
     private val binding: FragmentWorkoutDetailBinding by lazy {
         FragmentWorkoutDetailBinding.inflate(layoutInflater)
@@ -33,26 +34,25 @@ class WorkoutDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return binding.root.also {
-            setupExercisesList()
-            setupEditButton()
-            setupDeleteButton()
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.apply {
-            workoutName.text = args.workout.name
-            workoutLength.text =
-                view.context.getString(R.string.x_minutes_total, args.workout.getTotalMinutes())
+            workoutName.text = navArgs.workout.name
+            workoutLength.text = binding.root.context.getString(
+                R.string.x_minutes_total,
+                navArgs.workout.getTotalMinutes()
+            )
             repeatFor.text =
-                view.context.getString(R.string.repeat_for_x_sets, args.workout.numSets)
+                binding.root.context.getString(R.string.repeat_for_x_sets, navArgs.workout.numSets)
         }
+        setupExercisesList()
+        setupEditButton()
+        setupPlayButton()
+        setupDeleteButton()
+        return binding.root
     }
 
     private fun setupExercisesList() {
         viewManager = LinearLayoutManager(context)
-        workoutDetailAdapter = WorkoutDetailExercisesAdapter(args.workout.exercises)
+        workoutDetailAdapter = WorkoutDetailExercisesAdapter(navArgs.workout.exercises)
 
         binding.listExercises.apply {
             setHasFixedSize(true)
@@ -64,7 +64,9 @@ class WorkoutDetailFragment : Fragment() {
     private fun setupPlayButton() {
         binding.playButton.setOnClickListener {
             findNavController().navigate(
-                WorkoutDetailFragmentDirections.actionWorkoutDetailFragmentToTimerCountdownFragment()
+                WorkoutDetailFragmentDirections.actionWorkoutDetailFragmentToTimerCountdownFragment(
+                    WorkoutTimerViewModelType(navArgs.workout)
+                )
             )
         }
     }
@@ -73,7 +75,7 @@ class WorkoutDetailFragment : Fragment() {
         binding.editButton.setOnClickListener {
             findNavController().navigate(
                 WorkoutDetailFragmentDirections.actionWorkoutDetailFragmentToAddOrEditWorkoutFragment(
-                    args.workout
+                    navArgs.workout
                 )
             )
         }
@@ -87,7 +89,7 @@ class WorkoutDetailFragment : Fragment() {
                 AlertDialog.Builder(it)
                     .setMessage(R.string.alert_delete_workout)
                     .setPositiveButton(R.string.yes) { _, _ ->
-                        viewModel.deleteWorkout(args.workout)
+                        viewModel.deleteWorkout(navArgs.workout)
                         findNavController().popBackStack()
                     }
                     .setNegativeButton(R.string.cancel) { dialog, _ ->

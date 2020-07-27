@@ -1,6 +1,9 @@
 package com.sherryyuan.emomtimer.timer
 
-class TimerViewData(
+/**
+ * Class containing all the information we need to display on the timer countdown UI.
+ */
+data class TimerViewData(
     val timerName: String?,
     val totalSecondsInSet: Int,
     val secondsRemainingInSet: Int,

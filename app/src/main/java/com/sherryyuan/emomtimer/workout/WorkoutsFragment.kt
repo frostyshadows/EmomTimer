@@ -33,10 +33,13 @@ class WorkoutsFragment : Fragment() {
                 viewAdapter.notifyDataSetChanged()
             }
         )
-        return binding.root.also {
-            setupWorkoutsList()
-            setupFab()
-        }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupWorkoutsList()
+        setupFab()
     }
 
     private fun setupWorkoutsList() {

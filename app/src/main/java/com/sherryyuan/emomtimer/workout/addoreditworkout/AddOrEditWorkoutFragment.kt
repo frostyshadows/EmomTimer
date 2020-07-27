@@ -20,11 +20,11 @@ import org.koin.core.KoinComponent
 
 class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
 
+    private val navArgs: AddOrEditWorkoutFragmentArgs by navArgs()
     private val viewModel: WorkoutsViewModel by viewModels()
-    private val args: AddOrEditWorkoutFragmentArgs by navArgs()
 
     private val exercises: MutableList<Exercise> by lazy {
-        args.workout?.exercises?.toMutableList() ?: mutableListOf()
+        navArgs.workout?.exercises?.toMutableList() ?: mutableListOf()
     }
 
     private val binding: FragmentAddOrEditWorkoutBinding by lazy {
@@ -39,12 +39,11 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return binding.root.also {
-            args.workout?.let { setupWorkoutDetails(it) }
-            setupExercisesList()
-            setupAddExerciseButton()
-            setupSaveButton()
-        }
+        navArgs.workout?.let { setupWorkoutDetails(it) }
+        setupExercisesList()
+        setupAddExerciseButton()
+        setupSaveButton()
+        return binding.root
     }
 
     private fun setupWorkoutDetails(workout: Workout) {
@@ -91,7 +90,7 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
             exercises.filter { it.name.isNotEmpty() && it.numSeconds > 0 && it.numReps > 0 }
         if (!title.isNullOrBlank() && filledExercises.isNotEmpty() && numSets > 0) {
             val workout = Workout(title, numSets, filledExercises)
-            viewModel.saveWorkout(newWorkout = workout, prevWorkout = args.workout)
+            viewModel.saveWorkout(newWorkout = workout, prevWorkout = navArgs.workout)
         }
     }
 

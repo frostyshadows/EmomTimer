@@ -7,14 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.sherryyuan.emomtimer.databinding.FragmentTimerCountdownBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModel
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelFactory
 
 class TimerCountdownFragment : Fragment() {
 
+    private val navArgs: TimerCountdownFragmentArgs by navArgs()
     private val viewModel: TimerViewModel by viewModels {
-        TimerViewModelFactory()
+        TimerViewModelFactory(navArgs.type)
     }
 
     private val binding: FragmentTimerCountdownBinding by lazy {
@@ -26,9 +28,7 @@ class TimerCountdownFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        with(viewModel) {
-            timerViewData.observe(requireActivity(), Observer { updateViews(it) })
-        }
+        viewModel.timerViewData.observe(requireActivity(), Observer { updateViews(it) })
         return binding.root
     }
 
