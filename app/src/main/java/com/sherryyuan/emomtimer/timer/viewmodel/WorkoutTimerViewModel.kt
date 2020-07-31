@@ -8,10 +8,7 @@ import com.sherryyuan.emomtimer.timer.TimerViewData
 
 class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
 
-    override val timerViewData: LiveData<TimerViewData>
-        get() = _timerViewData
-
-    private val _timerViewData: MutableLiveData<TimerViewData> =
+    override val _timerViewData: MutableLiveData<TimerViewData> =
         MutableLiveData(
             TimerViewData(
                 timerName = workout.name,
@@ -20,7 +17,8 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
                 currentSet = 1,
                 currentExerciseName = workout.exercises[0].name,
                 currentExerciseReps = workout.exercises[0].numReps,
-                nextExerciseName = workout.exercises.getOrNull(1)?.name
+                nextExerciseName = workout.exercises.getOrNull(1)?.name,
+                nextExerciseReps = workout.exercises.getOrNull(1)?.numReps
             )
         )
 
@@ -39,7 +37,9 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
                 currentSet = currentSet + 1,
                 currentExerciseName = currentExercise.name,
                 currentExerciseReps = currentExercise.numReps,
-                nextExerciseName = workout.exercises.getOrNull(currentSet + 2)?.name
+                nextExerciseName = workout.exercises.getOrNull(currentSet + 2)?.name,
+                nextExerciseReps = workout.exercises.getOrNull(1)?.numReps
             )
+        super.startNextSet()
     }
 }

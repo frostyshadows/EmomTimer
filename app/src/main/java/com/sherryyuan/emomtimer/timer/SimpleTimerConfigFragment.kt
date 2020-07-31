@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.databinding.FragmentSimpleTimerConfigBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.SimpleTimerViewModelType
 
@@ -31,7 +32,7 @@ class SimpleTimerConfigFragment : Fragment() {
                 binding.numSetsText.text.toString().toIntOrNull() ?: 20
             findNavController().navigate(
                 SimpleTimerConfigFragmentDirections.actionTimerConfigFragmentToTimerCountdownFragment(
-                    SimpleTimerViewModelType(numMinutes, numSets)
+                    SimpleTimerViewModelType(numMinutes * SECONDS_PER_MINUTE, numSets)
                 )
             )
         }

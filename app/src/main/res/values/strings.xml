@@ -24,5 +24,7 @@
     <string name="hint_twenty_sets">20</string>
     <string name="start">Start</string>
     <string name="minutes">minutes</string>
+    <string name="current_exercise_text">%1$d %2$s</string>
+    <string name="next_exercise_text">Next: %1$d %2$s</string>
     <string name="title_calendar">Calendar</string>
 </resources>

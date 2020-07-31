@@ -1,42 +1,69 @@
 package com.sherryyuan.emomtimer.timer.viewmodel
 
+import android.os.CountDownTimer
+import androidx.annotation.CallSuper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sherryyuan.emomtimer.MILLIS_PER_SECOND
 import com.sherryyuan.emomtimer.timer.TimerViewData
 import kotlinx.coroutines.channels.ticker
 
 abstract class TimerViewModel : ViewModel() {
 
-    abstract val timerViewData: LiveData<TimerViewData>
+    val timerViewData: LiveData<TimerViewData>
+        get() = _timerViewData
+    val timerViewState: LiveData<TimerViewState>
+        get() = _timerViewState
+    protected abstract val _timerViewData: MutableLiveData<TimerViewData>
     protected var _timerViewState: MutableLiveData<TimerViewState> = MutableLiveData(
         TimerViewState.NOT_STARTED
     )
 
-    private val tickerChannel = ticker(delayMillis = 1_000, initialDelayMillis = 0)
+    private var timer: CountDownTimer? = null
 
-    abstract fun startNextSet()
+    /**
+     * Subclasses should update the view model data then call this at the end of the function once
+     * view model reflects the next set.
+     */
+    @CallSuper
+    open fun startNextSet() {
+        setupTimer(_timerViewData.value?.getRemainingMillis() ?: 0L)
+        timer?.start()
+    }
 
     fun start() {
+        setupTimer(_timerViewData.value?.getRemainingMillis() ?: 0L)
+        timer?.start()
         _timerViewState.value =
             TimerViewState.RUNNING
     }
 
     fun pause() {
+        timer?.cancel()
         _timerViewState.value =
             TimerViewState.PAUSED
     }
 
     fun resume() {
+        setupTimer(_timerViewData.value?.getRemainingMillis() ?: 0L)
+        timer?.start()
         _timerViewState.value =
             TimerViewState.RUNNING
     }
 
-    suspend fun countDownRemainingSeconds(numSeconds: Int) {
-        repeat(numSeconds) {
-            tickerChannel.receive()
-            val currentTime: Long = System.currentTimeMillis()
-            println(currentTime)
+    private fun setupTimer(millisRemaining: Long) {
+        timer = object : CountDownTimer(millisRemaining, MILLIS_PER_SECOND.toLong()) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                _timerViewData.value = _timerViewData.value?.copy(
+                    secondsRemainingInSet = millisUntilFinished.toInt() / MILLIS_PER_SECOND
+                )
+            }
+
+            override fun onFinish() {
+                startNextSet()
+            }
         }
     }
 }
