@@ -15,7 +15,6 @@ import com.sherryyuan.emomtimer.databinding.FragmentTimerCountdownBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModel
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelFactory
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewState
-import kotlinx.android.synthetic.main.item_workout.*
 
 class TimerCountdownFragment : Fragment() {
 
@@ -36,7 +35,8 @@ class TimerCountdownFragment : Fragment() {
         viewModel.timerViewData.observe(requireActivity(), Observer { updateViews(it) })
         viewModel.timerViewState.observe(
             requireActivity(),
-            Observer { updateTimerControllerButton(it) })
+            Observer { updateTimerControllerButton(it) }
+        )
         binding.timerControllerButton.setOnClickListener {
             when (viewModel.timerViewState.value) {
                 TimerViewState.NOT_STARTED -> viewModel.start()
