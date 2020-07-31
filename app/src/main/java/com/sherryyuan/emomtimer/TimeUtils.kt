@@ -1,5 +1,6 @@
 package com.sherryyuan.emomtimer
 
+const val MILLIS_PER_SECOND = 1000
 const val SECONDS_PER_MINUTE = 60
 
 fun minutesToTimeString(seconds: Int): String {

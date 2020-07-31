@@ -1,6 +1,5 @@
 package com.sherryyuan.emomtimer.timer.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sherryyuan.emomtimer.timer.TimerViewData
 
@@ -8,25 +7,19 @@ class SimpleTimerViewModel(
     private val numSecondsPerSet: Int, private val numSets: Int
 ) : TimerViewModel() {
 
-    override val timerViewData: LiveData<TimerViewData>
-        get() = _timerViewData
-
-    private val _timerViewData: MutableLiveData<TimerViewData> =
+    override val _timerViewData: MutableLiveData<TimerViewData> =
         MutableLiveData(
             TimerViewData(
                 timerName = null,
                 totalSecondsInSet = numSecondsPerSet,
                 secondsRemainingInSet = numSecondsPerSet,
-                currentSet = 1,
-                currentExerciseName = null,
-                currentExerciseReps = null,
-                nextExerciseName = null
+                currentSet = 0
             )
         )
 
-    override fun startNextSet() {
+    override fun startNextExercise() {
         val currentSet: Int = _timerViewData.value?.currentSet ?: 0
-        if (currentSet >= numSets) {
+        if (currentSet >= numSets - 1) {
             _timerViewState.value =
                 TimerViewState.FINISHED
             return
@@ -36,10 +29,8 @@ class SimpleTimerViewModel(
                 timerName = null,
                 totalSecondsInSet = numSecondsPerSet,
                 secondsRemainingInSet = numSecondsPerSet,
-                currentSet = currentSet,
-                currentExerciseName = null,
-                currentExerciseReps = null,
-                nextExerciseName = null
+                currentSet = currentSet + 1
             )
+        super.startNextExercise()
     }
 }

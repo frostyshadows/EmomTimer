@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentTimerCountdownBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModel
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelFactory
+import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewState
 
 class TimerCountdownFragment : Fragment() {
 
@@ -29,6 +33,18 @@ class TimerCountdownFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel.timerViewData.observe(requireActivity(), Observer { updateViews(it) })
+        viewModel.timerViewState.observe(
+            requireActivity(),
+            Observer { updateTimerControllerButton(it) }
+        )
+        binding.timerControllerButton.setOnClickListener {
+            when (viewModel.timerViewState.value) {
+                TimerViewState.NOT_STARTED -> viewModel.start()
+                TimerViewState.RUNNING -> viewModel.pause()
+                TimerViewState.PAUSED -> viewModel.resume()
+                else -> Unit
+            }
+        }
         return binding.root
     }
 
@@ -39,8 +55,32 @@ class TimerCountdownFragment : Fragment() {
             // TODO format the time correctly and also update progressbar
             timerProgressBar.max = timerViewData.totalSecondsInSet
             timerProgressBar.progress = timerViewData.secondsRemainingInSet
-            currentSetText.text = timerViewData.currentExerciseName
-            nextSetText.text = timerViewData.nextExerciseName
+            if (!timerViewData.currentExerciseName.isNullOrBlank()) {
+                currentSetText.text = currentSetText.resources.getString(
+                    R.string.current_exercise_text,
+                    timerViewData.currentExerciseReps,
+                    timerViewData.currentExerciseName
+                )
+            }
+            if (!timerViewData.nextExerciseName.isNullOrBlank()) {
+                nextSetText.text = currentSetText.resources.getString(
+                    R.string.next_exercise_text,
+                    timerViewData.nextExerciseReps,
+                    timerViewData.nextExerciseName
+                )
+            }
         }
+    }
+
+    private fun updateTimerControllerButton(timerViewState: TimerViewState) {
+        @DrawableRes val buttonDrawable: Int = when (timerViewState) {
+            TimerViewState.NOT_STARTED -> R.drawable.icon_play_arrow
+            TimerViewState.RUNNING -> R.drawable.ic_pause_black_24dp
+            TimerViewState.PAUSED -> R.drawable.icon_play_arrow
+            else -> R.drawable.icon_play_arrow
+        }
+        binding.timerControllerButton.setImageDrawable(
+            ContextCompat.getDrawable(binding.timerControllerButton.context, buttonDrawable)
+        )
     }
 }
