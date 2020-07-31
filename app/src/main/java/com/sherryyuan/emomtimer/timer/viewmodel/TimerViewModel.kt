@@ -2,12 +2,9 @@ package com.sherryyuan.emomtimer.timer.viewmodel
 
 import android.os.CountDownTimer
 import androidx.annotation.CallSuper
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.sherryyuan.emomtimer.MILLIS_PER_SECOND
 import com.sherryyuan.emomtimer.timer.TimerViewData
-import kotlinx.coroutines.channels.ticker
 
 abstract class TimerViewModel : ViewModel() {
 
@@ -27,7 +24,7 @@ abstract class TimerViewModel : ViewModel() {
      * view model reflects the next set.
      */
     @CallSuper
-    open fun startNextSet() {
+    open fun startNextExercise() {
         setupTimer(_timerViewData.value?.getRemainingMillis() ?: 0L)
         timer?.start()
     }
@@ -35,21 +32,22 @@ abstract class TimerViewModel : ViewModel() {
     fun start() {
         setupTimer(_timerViewData.value?.getRemainingMillis() ?: 0L)
         timer?.start()
-        _timerViewState.value =
-            TimerViewState.RUNNING
+        _timerViewState.value = TimerViewState.RUNNING
     }
 
+    /**
+     * Make sure timer also gets cancelled when user navigates away from the countdown fragment.
+     */
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun pause() {
         timer?.cancel()
-        _timerViewState.value =
-            TimerViewState.PAUSED
+        _timerViewState.value = TimerViewState.PAUSED
     }
 
     fun resume() {
         setupTimer(_timerViewData.value?.getRemainingMillis() ?: 0L)
         timer?.start()
-        _timerViewState.value =
-            TimerViewState.RUNNING
+        _timerViewState.value = TimerViewState.RUNNING
     }
 
     private fun setupTimer(millisRemaining: Long) {
@@ -62,7 +60,7 @@ abstract class TimerViewModel : ViewModel() {
             }
 
             override fun onFinish() {
-                startNextSet()
+                startNextExercise()
             }
         }
     }
