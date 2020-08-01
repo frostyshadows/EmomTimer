@@ -29,18 +29,20 @@ class WorkoutDetailFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var workoutDetailAdapter: WorkoutDetailExercisesAdapter
 
+    private val navController by lazy { findNavController() }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding.apply {
-            workoutName.text = navArgs.workout.name
-            workoutLength.text = binding.root.context.getString(
+            workoutNameText.text = navArgs.workout.name
+            workoutLengthText.text = binding.root.context.getString(
                 R.string.x_minutes_total,
                 navArgs.workout.getTotalMinutes()
             )
-            repeatFor.text =
+            repeatForText.text =
                 binding.root.context.getString(R.string.repeat_for_x_sets, navArgs.workout.numSets)
         }
         setupExercisesList()
@@ -63,8 +65,8 @@ class WorkoutDetailFragment : Fragment() {
 
     private fun setupPlayButton() {
         binding.playButton.setOnClickListener {
-            findNavController().navigate(
-                WorkoutDetailFragmentDirections.actionWorkoutDetailFragmentToTimerCountdownFragment(
+            navController.navigate(
+                WorkoutDetailFragmentDirections.actionWorkoutDetailToTimerCountdown(
                     WorkoutTimerViewModelType(navArgs.workout)
                 )
             )
@@ -73,8 +75,8 @@ class WorkoutDetailFragment : Fragment() {
 
     private fun setupEditButton() {
         binding.editButton.setOnClickListener {
-            findNavController().navigate(
-                WorkoutDetailFragmentDirections.actionWorkoutDetailFragmentToAddOrEditWorkoutFragment(
+            navController.navigate(
+                WorkoutDetailFragmentDirections.actionWorkoutDetailToAddOrEditWorkout(
                     navArgs.workout
                 )
             )
@@ -90,7 +92,7 @@ class WorkoutDetailFragment : Fragment() {
                     .setMessage(R.string.alert_delete_workout)
                     .setPositiveButton(R.string.yes) { _, _ ->
                         viewModel.deleteWorkout(navArgs.workout)
-                        findNavController().popBackStack()
+                        navController.popBackStack()
                     }
                     .setNegativeButton(R.string.cancel) { dialog, _ ->
                         dialog.cancel()

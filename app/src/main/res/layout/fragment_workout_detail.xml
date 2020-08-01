@@ -7,7 +7,7 @@
     android:padding="@dimen/size_16">
 
     <TextView
-        android:id="@+id/workout_name"
+        android:id="@+id/workout_name_text"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,12 +17,12 @@
         tools:text="Cardio" />
 
     <TextView
-        android:id="@+id/workout_length"
+        android:id="@+id/workout_length_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workout_name"
+        app:layout_constraintTop_toBottomOf="@id/workout_name_text"
         tools:text="20 minutes" />
 
     <ImageButton
@@ -32,7 +32,7 @@
         android:src="@drawable/icon_edit_pencil"
         app:layout_constraintEnd_toStartOf="@id/play_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workout_length" />
+        app:layout_constraintTop_toBottomOf="@id/workout_length_text" />
 
     <ImageButton
         android:id="@+id/play_button"
@@ -41,7 +41,7 @@
         android:src="@drawable/icon_play_circle"
         app:layout_constraintEnd_toStartOf="@id/delete_button"
         app:layout_constraintStart_toEndOf="@id/edit_button"
-        app:layout_constraintTop_toBottomOf="@id/workout_length" />
+        app:layout_constraintTop_toBottomOf="@id/workout_length_text" />
 
     <ImageButton
         android:id="@+id/delete_button"
@@ -50,7 +50,7 @@
         android:src="@drawable/icon_delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/play_button"
-        app:layout_constraintTop_toBottomOf="@id/workout_length" />
+        app:layout_constraintTop_toBottomOf="@id/workout_length_text" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_exercises"
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@id/play_button" />
 
     <TextView
-        android:id="@+id/repeat_for"
+        android:id="@+id/repeat_for_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"

@@ -11,13 +11,13 @@
         android:label="@string/title_workouts"
         tools:layout="@layout/fragment_workouts">
         <action
-            android:id="@+id/action_workoutsFragment_to_workoutDetailFragment"
+            android:id="@+id/action_workouts_to_workoutDetail"
             app:destination="@id/navigation_workout_detail" />
         <action
-            android:id="@+id/action_workoutsFragment_to_addOrEditWorkoutFragment"
+            android:id="@+id/action_workouts_to_addOrEditWorkout"
             app:destination="@id/navigation_add_or_edit_workout" />
         <action
-            android:id="@+id/action_workoutsFragment_to_timerCountdownFragment"
+            android:id="@+id/action_workouts_to_timerCountdown"
             app:destination="@id/navigation_timer_countdown" />
     </fragment>
     <fragment
@@ -28,10 +28,10 @@
             android:name="workout"
             app:argType="com.sherryyuan.emomtimer.models.Workout" />
         <action
-            android:id="@+id/action_workoutDetailFragment_to_addOrEditWorkoutFragment"
+            android:id="@+id/action_workoutDetail_to_addOrEditWorkout"
             app:destination="@id/navigation_add_or_edit_workout" />
         <action
-            android:id="@+id/action_workoutDetailFragment_to_timerCountdownFragment"
+            android:id="@+id/action_workoutDetail_to_timerCountdown"
             app:destination="@id/navigation_timer_countdown" />
     </fragment>
     <fragment
@@ -44,7 +44,7 @@
             app:argType="com.sherryyuan.emomtimer.models.Workout"
             app:nullable="true" />
         <action
-            android:id="@+id/action_addOrEditWorkoutFragment_back_to_workoutsFragment"
+            android:id="@+id/action_addOrEditWorkout_back_to_workouts"
             app:destination="@id/navigation_workouts"
             app:popUpTo="@id/navigation_workouts"
             app:popUpToInclusive="true" />
@@ -54,7 +54,7 @@
         android:name="com.sherryyuan.emomtimer.timer.SimpleTimerConfigFragment"
         android:label="@string/title_timer">
         <action
-            android:id="@+id/action_timerConfigFragment_to_timerCountdownFragment"
+            android:id="@+id/action_timerConfig_to_timerCountdown"
             app:destination="@id/navigation_timer_countdown" />
     </fragment>
     <fragment
@@ -64,6 +64,19 @@
         <argument
             android:name="type"
             app:argType="com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType" />
+        <action
+            android:id="@+id/action_timerCountdown_to_workoutComplete"
+            app:destination="@id/navigation_workout_complete" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_workout_complete"
+        android:name="com.sherryyuan.emomtimer.WorkoutCompleteFragment"
+        android:label="@string/title_timer">
+        <action
+            android:id="@+id/action_workoutComplete_back_to_workouts"
+            app:destination="@id/navigation_workouts"
+            app:popUpTo="@id/navigation_workouts"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/navigation_calendar"

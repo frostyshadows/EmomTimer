@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentTimerCountdownBinding
@@ -32,10 +34,15 @@ class TimerCountdownFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Make sure screen stays on.
+        activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         viewModel.timerViewData.observe(requireActivity(), Observer { updateViews(it) })
         viewModel.timerViewState.observe(
             requireActivity(),
-            Observer { updateTimerControllerButton(it) }
+            Observer {
+                updateTimerControllerButton(it)
+                checkIfComplete(it)
+            }
         )
         binding.timerControllerButton.setOnClickListener {
             when (viewModel.timerViewState.value) {
@@ -48,9 +55,14 @@ class TimerCountdownFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    }
+
     private fun updateViews(timerViewData: TimerViewData) {
         binding.apply {
-            workoutName.text = timerViewData.timerName
+            workoutNameText.text = timerViewData.timerName
             remainingSecondsText.text = timerViewData.secondsRemainingInSet.toString()
             // TODO format the time correctly and also update progressbar
             timerProgressBar.max = timerViewData.totalSecondsInSet
@@ -82,5 +94,13 @@ class TimerCountdownFragment : Fragment() {
         binding.timerControllerButton.setImageDrawable(
             ContextCompat.getDrawable(binding.timerControllerButton.context, buttonDrawable)
         )
+    }
+
+    private fun checkIfComplete(timerViewState: TimerViewState) {
+        if (timerViewState == TimerViewState.FINISHED) {
+            findNavController().navigate(
+                TimerCountdownFragmentDirections.actionTimerCountdownToWorkoutComplete()
+            )
+        }
     }
 }

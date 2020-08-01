@@ -42,7 +42,7 @@
             app:strokeWidth="2dp" />
 
         <TextView
-            android:id="@+id/repeat_for"
+            android:id="@+id/repeat_for_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_16"
@@ -59,20 +59,20 @@
             android:hint="@string/hint_three_sets"
             android:inputType="number"
             android:minWidth="@dimen/size_16"
-            app:layout_constraintBottom_toBottomOf="@id/repeat_for"
-            app:layout_constraintEnd_toStartOf="@id/sets"
-            app:layout_constraintStart_toEndOf="@id/repeat_for"
-            app:layout_constraintTop_toTopOf="@id/repeat_for" />
+            app:layout_constraintBottom_toBottomOf="@id/repeat_for_text"
+            app:layout_constraintEnd_toStartOf="@id/sets_text"
+            app:layout_constraintStart_toEndOf="@id/repeat_for_text"
+            app:layout_constraintTop_toTopOf="@id/repeat_for_text" />
 
         <TextView
-            android:id="@+id/sets"
+            android:id="@+id/sets_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sets"
-            app:layout_constraintBottom_toBottomOf="@id/repeat_for"
+            app:layout_constraintBottom_toBottomOf="@id/repeat_for_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sets_count_text"
-            app:layout_constraintTop_toTopOf="@id/repeat_for" />
+            app:layout_constraintTop_toTopOf="@id/repeat_for_text" />
 
         <Button
             android:id="@+id/save_button"
