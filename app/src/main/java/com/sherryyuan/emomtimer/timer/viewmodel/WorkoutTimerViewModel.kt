@@ -34,6 +34,8 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
                 currentExerciseIndex = 0
                 currentSet++
             }
+        } else {
+            currentExerciseIndex++
         }
         val currentExercise: Exercise = workout.exercises[currentExerciseIndex]
         _timerViewData.value =
@@ -41,7 +43,7 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
                 timerName = workout.name,
                 totalSecondsInSet = currentExercise.numSeconds,
                 secondsRemainingInSet = currentExercise.numSeconds,
-                currentSet = currentSet + 1,
+                currentSet = currentSet,
                 totalSets = workout.numSets,
                 currentExercise = currentExerciseIndex,
                 currentExerciseName = currentExercise.name,
@@ -52,7 +54,21 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
         super.startNextExercise()
     }
 
-    override fun getTotalRemainingMillis(): Long {
-        TODO("Not yet implemented")
+    override fun getTotalRemainingSeconds(): Int {
+        _timerViewData.value?.let { timerViewData ->
+            val remainingSecondsInExercise = timerViewData.secondsRemainingInSet
+
+            // Sum up the seconds in the exercises remaining in the set.
+            val remainingSecondsInSet = workout.exercises
+                .filterIndexed { index, _ -> index > timerViewData.currentExercise ?: 0 }
+                .sumBy { it.numSeconds }
+
+            // Subtracting 1 because currentSet is 0-indexed.
+            val remainingSets = timerViewData.totalSets - timerViewData.currentSet - 1
+            val remainingSecondsInOtherSets =
+                remainingSets * workout.exercises.sumBy { it.numSeconds }
+            return remainingSecondsInExercise + remainingSecondsInSet + remainingSecondsInOtherSets
+        }
+        return 0
     }
 }

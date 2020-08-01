@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentTimerCountdownBinding
-import com.sherryyuan.emomtimer.millisToMinuteString
+import com.sherryyuan.emomtimer.secondsToMinuteString
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModel
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelFactory
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewState
@@ -80,6 +80,8 @@ class TimerCountdownFragment : Fragment() {
                     timerViewData.currentExerciseReps,
                     timerViewData.currentExerciseName
                 )
+            } else {
+                currentExerciseText.text = null
             }
             if (!timerViewData.nextExerciseName.isNullOrBlank()) {
                 nextExerciseText.text = nextExerciseText.resources.getString(
@@ -87,10 +89,12 @@ class TimerCountdownFragment : Fragment() {
                     timerViewData.nextExerciseReps,
                     timerViewData.nextExerciseName
                 )
+            } else {
+                nextExerciseText.text = null
             }
             totalMinsRemainingText.text = totalMinsRemainingText.resources.getString(
                 R.string.total_mins_remaining_text,
-                millisToMinuteString(viewModel.getTotalRemainingMillis())
+                secondsToMinuteString(viewModel.getTotalRemainingSeconds())
             )
         }
     }
