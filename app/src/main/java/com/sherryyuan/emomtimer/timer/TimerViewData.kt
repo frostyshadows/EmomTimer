@@ -10,11 +10,12 @@ data class TimerViewData(
     val totalSecondsInSet: Int,
     val secondsRemainingInSet: Int,
     val currentSet: Int,
+    val totalSets: Int,
     val currentExercise: Int? = null,
     val currentExerciseName: String? = null,
     val currentExerciseReps: Int? = null,
     val nextExerciseName: String? = null,
     val nextExerciseReps: Int? = null
 ) {
-    fun getRemainingMillis(): Long = (secondsRemainingInSet * MILLIS_PER_SECOND).toLong()
+    fun getRemainingMillisInSet(): Long = (secondsRemainingInSet * MILLIS_PER_SECOND).toLong()
 }

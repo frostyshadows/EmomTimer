@@ -24,8 +24,10 @@
     <string name="hint_twenty_sets">20</string>
     <string name="start">Start</string>
     <string name="minutes">minutes</string>
+    <string name="current_set_text">Set %1$d of %2$d</string>
     <string name="current_exercise_text">%1$d %2$s</string>
     <string name="next_exercise_text">Next: %1$d %2$s</string>
+    <string name="total_mins_remaining_text">%1$s minutes left in workout</string>
     <string name="workout_complete">Workout complete!</string>
     <string name="done">Done</string>
     <string name="title_calendar">Calendar</string>

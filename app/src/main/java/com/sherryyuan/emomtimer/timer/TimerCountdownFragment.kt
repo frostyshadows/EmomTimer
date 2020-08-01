@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentTimerCountdownBinding
+import com.sherryyuan.emomtimer.millisToMinuteString
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModel
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelFactory
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewState
@@ -63,24 +64,34 @@ class TimerCountdownFragment : Fragment() {
     private fun updateViews(timerViewData: TimerViewData) {
         binding.apply {
             workoutNameText.text = timerViewData.timerName
+            currentSetText.text = currentExerciseText.resources.getString(
+                R.string.current_set_text,
+                // Adding 1 because currentSet is 0-indexed.
+                timerViewData.currentSet + 1,
+                timerViewData.totalSets
+            )
             remainingSecondsText.text = timerViewData.secondsRemainingInSet.toString()
             // TODO format the time correctly and also update progressbar
             timerProgressBar.max = timerViewData.totalSecondsInSet
             timerProgressBar.progress = timerViewData.secondsRemainingInSet
             if (!timerViewData.currentExerciseName.isNullOrBlank()) {
-                currentSetText.text = currentSetText.resources.getString(
+                currentExerciseText.text = currentExerciseText.resources.getString(
                     R.string.current_exercise_text,
                     timerViewData.currentExerciseReps,
                     timerViewData.currentExerciseName
                 )
             }
             if (!timerViewData.nextExerciseName.isNullOrBlank()) {
-                nextSetText.text = currentSetText.resources.getString(
+                nextExerciseText.text = nextExerciseText.resources.getString(
                     R.string.next_exercise_text,
                     timerViewData.nextExerciseReps,
                     timerViewData.nextExerciseName
                 )
             }
+            totalMinsRemainingText.text = totalMinsRemainingText.resources.getString(
+                R.string.total_mins_remaining_text,
+                millisToMinuteString(viewModel.getTotalRemainingMillis())
+            )
         }
     }
 

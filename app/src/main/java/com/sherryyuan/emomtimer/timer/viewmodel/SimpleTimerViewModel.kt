@@ -1,10 +1,12 @@
 package com.sherryyuan.emomtimer.timer.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.sherryyuan.emomtimer.MILLIS_PER_SECOND
 import com.sherryyuan.emomtimer.timer.TimerViewData
 
 class SimpleTimerViewModel(
-    private val numSecondsPerSet: Int, private val numSets: Int
+    private val numSecondsPerSet: Int,
+    private val numSets: Int
 ) : TimerViewModel() {
 
     override val _timerViewData: MutableLiveData<TimerViewData> =
@@ -13,7 +15,8 @@ class SimpleTimerViewModel(
                 timerName = null,
                 totalSecondsInSet = numSecondsPerSet,
                 secondsRemainingInSet = numSecondsPerSet,
-                currentSet = 0
+                currentSet = 0,
+                totalSets = numSets
             )
         )
 
@@ -29,8 +32,22 @@ class SimpleTimerViewModel(
                 timerName = null,
                 totalSecondsInSet = numSecondsPerSet,
                 secondsRemainingInSet = numSecondsPerSet,
-                currentSet = currentSet + 1
+                currentSet = currentSet + 1,
+                totalSets = numSets
             )
         super.startNextExercise()
+    }
+
+    override fun getTotalRemainingMillis(): Long {
+        _timerViewData.value?.let { timerViewData ->
+            val remainingMillisInSet = timerViewData.getRemainingMillisInSet()
+
+            // Subtracting 1 because currentSet is 0-indexed
+            val remainingSets = timerViewData.totalSets - timerViewData.currentSet - 1
+            val remainingMillisInOtherSets =
+                remainingSets * timerViewData.totalSecondsInSet * MILLIS_PER_SECOND
+            return remainingMillisInSet + remainingMillisInOtherSets
+        }
+        return 0
     }
 }
