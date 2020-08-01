@@ -38,15 +38,14 @@ class SimpleTimerViewModel(
         super.startNextExercise()
     }
 
-    override fun getTotalRemainingMillis(): Long {
+    override fun getTotalRemainingSeconds(): Int {
         _timerViewData.value?.let { timerViewData ->
-            val remainingMillisInSet = timerViewData.getRemainingMillisInSet()
+            val remainingMillisInSet = timerViewData.secondsRemainingInSet
 
-            // Subtracting 1 because currentSet is 0-indexed
+            // Subtracting 1 because currentSet is 0-indexed.
             val remainingSets = timerViewData.totalSets - timerViewData.currentSet - 1
-            val remainingMillisInOtherSets =
-                remainingSets * timerViewData.totalSecondsInSet * MILLIS_PER_SECOND
-            return remainingMillisInSet + remainingMillisInOtherSets
+            val remainingSecondsInOtherSets = remainingSets * timerViewData.totalSecondsInSet
+            return remainingMillisInSet + remainingSecondsInOtherSets
         }
         return 0
     }

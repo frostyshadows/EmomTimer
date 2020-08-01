@@ -35,7 +35,7 @@ abstract class TimerViewModel : ViewModel() {
         _timerViewState.value = TimerViewState.RUNNING
     }
 
-    abstract fun getTotalRemainingMillis(): Long
+    abstract fun getTotalRemainingSeconds(): Int
 
     /**
      * Make sure timer also gets cancelled when user navigates away from the countdown fragment.
