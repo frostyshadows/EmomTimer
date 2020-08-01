@@ -31,7 +31,7 @@ class SimpleTimerConfigFragment : Fragment() {
             val numSets: Int =
                 binding.numSetsText.text.toString().toIntOrNull() ?: 20
             findNavController().navigate(
-                SimpleTimerConfigFragmentDirections.actionTimerConfigFragmentToTimerCountdownFragment(
+                SimpleTimerConfigFragmentDirections.actionTimerConfigToTimerCountdown(
                     SimpleTimerViewModelType(numMinutes * SECONDS_PER_MINUTE, numSets)
                 )
             )

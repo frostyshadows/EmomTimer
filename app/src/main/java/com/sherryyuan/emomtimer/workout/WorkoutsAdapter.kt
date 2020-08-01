@@ -33,9 +33,7 @@ class WorkoutsAdapter(
         holder.binding.apply {
             root.setOnClickListener {
                 navController.navigate(
-                    WorkoutsFragmentDirections.actionWorkoutsFragmentToWorkoutDetailFragment(
-                        workout
-                    )
+                    WorkoutsFragmentDirections.actionWorkoutsToWorkoutDetail(workout)
                 )
             }
             titleText.text = workout.name
@@ -43,7 +41,7 @@ class WorkoutsAdapter(
                 timeText.context.getString(R.string.x_minutes_total, workout.getTotalMinutes())
             playButton.setOnClickListener {
                 navController.navigate(
-                    WorkoutsFragmentDirections.actionWorkoutsFragmentToTimerCountdownFragment(
+                    WorkoutsFragmentDirections.actionWorkoutsToTimerCountdown(
                         WorkoutTimerViewModelType(workout)
                     )
                 )

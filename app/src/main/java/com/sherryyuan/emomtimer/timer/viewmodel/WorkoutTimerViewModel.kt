@@ -14,6 +14,7 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
                 totalSecondsInSet = workout.exercises[0].numSeconds,
                 secondsRemainingInSet = workout.exercises[0].numSeconds,
                 currentSet = 0,
+                totalSets = workout.numSets,
                 currentExercise = 0,
                 currentExerciseName = workout.exercises[0].name,
                 currentExerciseReps = workout.exercises[0].numReps,
@@ -41,6 +42,7 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
                 totalSecondsInSet = currentExercise.numSeconds,
                 secondsRemainingInSet = currentExercise.numSeconds,
                 currentSet = currentSet + 1,
+                totalSets = workout.numSets,
                 currentExercise = currentExerciseIndex,
                 currentExerciseName = currentExercise.name,
                 currentExerciseReps = currentExercise.numReps,
@@ -48,5 +50,9 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
                 nextExerciseReps = workout.exercises.getOrNull(currentExerciseIndex + 1)?.numReps
             )
         super.startNextExercise()
+    }
+
+    override fun getTotalRemainingMillis(): Long {
+        TODO("Not yet implemented")
     }
 }

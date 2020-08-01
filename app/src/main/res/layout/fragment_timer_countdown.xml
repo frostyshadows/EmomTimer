@@ -7,36 +7,51 @@
     android:padding="@dimen/size_16">
 
     <TextView
-        android:id="@+id/workout_name"
+        android:id="@+id/workout_name_text"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="20 Jumping jacks" />
+        tools:text="Cardio" />
+
+    <TextView
+        android:id="@+id/current_exercise_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        app:layout_constraintBottom_toTopOf="@id/current_set_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintTop_toBottomOf="@id/workout_name_text"
+        tools:text="10 push ups" />
 
     <TextView
         android:id="@+id/current_set_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
+        app:layout_constraintBottom_toTopOf="@id/timer_progress_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workout_name"
+        app:layout_constraintTop_toBottomOf="@id/current_exercise_text"
         tools:text="Set 1 of 4" />
 
     <ProgressBar
         android:id="@+id/timer_progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_centerInParent="true"
         android:indeterminate="false"
         android:layoutDirection="rtl"
         android:progressDrawable="@drawable/circular_progress_bar"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/next_exercise_text"
         app:layout_constraintTop_toBottomOf="@id/current_set_text"
         tools:max="48"
         tools:progress="45" />
@@ -62,12 +77,23 @@
         app:layout_constraintTop_toBottomOf="@id/remaining_seconds_text" />
 
     <TextView
-        android:id="@+id/next_set_text"
+        android:id="@+id/next_exercise_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/total_mins_remaining_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timer_progress_bar"
+        tools:text="Next: 20 crunches" />
+
+    <TextView
+        android:id="@+id/total_mins_remaining_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Next: 20 crunches" />
+        app:layout_constraintTop_toBottomOf="@id/next_exercise_text"
+        tools:text="19:00 minutes left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

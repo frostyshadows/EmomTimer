@@ -76,9 +76,7 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
             saveWorkout()
             hideSoftKeyboard()
             findNavController().navigate(
-                AddOrEditWorkoutFragmentDirections
-                    .actionAddOrEditWorkoutFragmentBackToWorkoutsFragment()
-            )
+                AddOrEditWorkoutFragmentDirections.actionAddOrEditWorkoutBackToWorkouts())
         }
     }
 

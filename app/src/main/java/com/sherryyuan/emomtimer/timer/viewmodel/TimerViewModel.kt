@@ -25,15 +25,17 @@ abstract class TimerViewModel : ViewModel() {
      */
     @CallSuper
     open fun startNextExercise() {
-        setupTimer(_timerViewData.value?.getRemainingMillis() ?: 0L)
+        setupTimer(_timerViewData.value?.getRemainingMillisInSet() ?: 0L)
         timer?.start()
     }
 
     fun start() {
-        setupTimer(_timerViewData.value?.getRemainingMillis() ?: 0L)
+        setupTimer(_timerViewData.value?.getRemainingMillisInSet() ?: 0L)
         timer?.start()
         _timerViewState.value = TimerViewState.RUNNING
     }
+
+    abstract fun getTotalRemainingMillis(): Long
 
     /**
      * Make sure timer also gets cancelled when user navigates away from the countdown fragment.
@@ -45,7 +47,7 @@ abstract class TimerViewModel : ViewModel() {
     }
 
     fun resume() {
-        setupTimer(_timerViewData.value?.getRemainingMillis() ?: 0L)
+        setupTimer(_timerViewData.value?.getRemainingMillisInSet() ?: 0L)
         timer?.start()
         _timerViewState.value = TimerViewState.RUNNING
     }

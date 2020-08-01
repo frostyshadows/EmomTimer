@@ -14,7 +14,6 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/num_minutes_text"
-        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/hint_one_minute"
@@ -40,7 +39,6 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/num_sets_text"
-        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/hint_twenty_sets"

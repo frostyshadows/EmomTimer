@@ -55,8 +55,8 @@ class WorkoutsFragment : Fragment() {
 
     private fun setupFab() {
         binding.floatingActionButton.setOnClickListener {
-            parentFragment?.findNavController()?.navigate(
-                WorkoutsFragmentDirections.actionWorkoutsFragmentToAddOrEditWorkoutFragment()
+            findNavController().navigate(
+                WorkoutsFragmentDirections.actionWorkoutsToAddOrEditWorkout()
             )
         }
     }
