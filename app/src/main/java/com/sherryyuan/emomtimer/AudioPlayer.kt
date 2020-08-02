@@ -6,6 +6,9 @@ import android.media.ToneGenerator
 import android.speech.tts.TextToSpeech
 import java.util.*
 
+/**
+ * Class for handling TextToSpeech and generating beep tones.
+ */
 class AudioPlayer(context: Context) {
 
     private val tts: TextToSpeech =
