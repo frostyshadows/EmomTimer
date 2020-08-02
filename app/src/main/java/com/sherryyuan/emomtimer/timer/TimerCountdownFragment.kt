@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -31,6 +33,29 @@ class TimerCountdownFragment : Fragment() {
         FragmentTimerCountdownBinding.inflate(layoutInflater)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.let { activity ->
+            activity.onBackPressedDispatcher.addCallback(
+                this,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        AlertDialog.Builder(activity)
+                            .setMessage(R.string.alert_quit_workout)
+                            .setPositiveButton(R.string.yes) { _, _ ->
+                                isEnabled = false
+                                activity.onBackPressed()
+                            }
+                            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                                dialog.cancel()
+                            }
+                            .create()
+                            .show()
+                    }
+                })
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,9 +73,9 @@ class TimerCountdownFragment : Fragment() {
         )
         binding.timerControllerButton.setOnClickListener {
             when (viewModel.timerViewState.value) {
-                TimerViewState.NOT_STARTED -> viewModel.startWorkout()
+                TimerViewState.NOT_STARTED -> viewModel.start()
                 TimerViewState.RUNNING -> viewModel.pause()
-                TimerViewState.PAUSED -> viewModel.resumeTimer()
+                TimerViewState.PAUSED -> viewModel.resume()
                 else -> Unit
             }
         }

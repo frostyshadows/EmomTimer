@@ -29,6 +29,9 @@
     <string name="next_exercise_text">Next: %1$d %2$s</string>
     <string name="total_mins_remaining_text">%1$s minutes left in workout</string>
     <string name="simple_timer_next_exercise">You are starting set %1$d of %2$d.</string>
+    <string name="workout_timer_next_exercise">Next, you have %1$d seconds to do %2$d reps of %3$s.</string>
+    <string name="workout_timer_set_info">You are on set %1$d of %2$d.</string>
+    <string name="alert_quit_workout">Are you sure you want to quit this workout?</string>
     <string name="workout_complete">Workout complete!</string>
     <string name="done">Done</string>
     <string name="title_calendar">Calendar</string>
