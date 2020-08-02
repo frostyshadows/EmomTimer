@@ -37,9 +37,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
     private var timer: CountDownTimer? = null
 
     override fun onCleared() {
-        timer?.cancel()
-        timer = null
-        audioPlayer.shutdown()
+        clear()
     }
 
     /**
