@@ -1,7 +1,7 @@
 package com.sherryyuan.emomtimer.timer.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.sherryyuan.emomtimer.MILLIS_PER_SECOND
+import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.timer.TimerViewData
 
 class SimpleTimerViewModel(
@@ -48,5 +48,19 @@ class SimpleTimerViewModel(
             return remainingMillisInSet + remainingSecondsInOtherSets
         }
         return 0
+    }
+
+    override fun sayNextExercise() {
+        _timerViewData.value?.let { timerViewData ->
+            if (timerViewData.currentSet + 1 < timerViewData.totalSets) {
+                audioPlayer.speak(
+                    resourcesProvider.getString(
+                        R.string.simple_timer_next_exercise,
+                        timerViewData.currentSet + 2,
+                        timerViewData.totalSets
+                    )
+                )
+            }
+        }
     }
 }

@@ -24,6 +24,7 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
         )
 
     override fun startNextExercise() {
+        audioPlayer.playBeep()
         var currentExerciseIndex: Int = _timerViewData.value?.currentExercise ?: 0
         var currentSet: Int = _timerViewData.value?.currentSet ?: 0
         if (currentExerciseIndex >= workout.exercises.size - 1) {
@@ -70,5 +71,9 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
             return remainingSecondsInExercise + remainingSecondsInSet + remainingSecondsInOtherSets
         }
         return 0
+    }
+
+    override fun sayNextExercise() {
+        // TODO("Not yet implemented")
     }
 }
