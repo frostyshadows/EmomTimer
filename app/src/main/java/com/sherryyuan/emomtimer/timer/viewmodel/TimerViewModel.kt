@@ -51,6 +51,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
     }
 
     fun startWorkout() {
+        _timerViewState.value = TimerViewState.STARTING
         playCountdownToStart()
     }
 
@@ -63,14 +64,14 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
      */
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun pause() {
-        timer?.cancel()
         _timerViewState.value = TimerViewState.PAUSED
+        timer?.cancel()
     }
 
     fun resumeTimer() {
+        _timerViewState.value = TimerViewState.RUNNING
         setupTimer(_timerViewData.value?.getRemainingMillisInSet() ?: 0L)
         timer?.start()
-        _timerViewState.value = TimerViewState.RUNNING
     }
 
     private fun setupTimer(millisRemaining: Long) {
