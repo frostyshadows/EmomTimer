@@ -16,4 +16,8 @@ val applicationModule = module {
             "applicationDatabase"
         ).build()
     }
+
+    factory<AudioPlayer> { AudioPlayer(androidContext()) }
+
+    single<ResourcesProvider> { ResourcesProvider(androidContext()) }
 }

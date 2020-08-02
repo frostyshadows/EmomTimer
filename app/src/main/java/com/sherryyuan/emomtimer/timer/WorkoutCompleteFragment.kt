@@ -1,10 +1,9 @@
-package com.sherryyuan.emomtimer
+package com.sherryyuan.emomtimer.timer
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutCompleteBinding

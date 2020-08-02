@@ -47,9 +47,9 @@ class TimerCountdownFragment : Fragment() {
         )
         binding.timerControllerButton.setOnClickListener {
             when (viewModel.timerViewState.value) {
-                TimerViewState.NOT_STARTED -> viewModel.start()
+                TimerViewState.NOT_STARTED -> viewModel.startWorkout()
                 TimerViewState.RUNNING -> viewModel.pause()
-                TimerViewState.PAUSED -> viewModel.resume()
+                TimerViewState.PAUSED -> viewModel.resumeTimer()
                 else -> Unit
             }
         }

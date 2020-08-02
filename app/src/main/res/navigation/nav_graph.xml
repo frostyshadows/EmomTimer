@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_workout_complete"
-        android:name="com.sherryyuan.emomtimer.WorkoutCompleteFragment"
+        android:name="com.sherryyuan.emomtimer.timer.WorkoutCompleteFragment"
         android:label="@string/title_timer">
         <action
             android:id="@+id/action_workoutComplete_back_to_workouts"
