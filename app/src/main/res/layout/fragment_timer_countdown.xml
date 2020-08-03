@@ -69,12 +69,16 @@
 
     <ImageButton
         android:id="@+id/timer_controller_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/size_120"
+        android:layout_height="@dimen/size_120"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@id/timer_progress_bar"
         app:layout_constraintEnd_toEndOf="@id/timer_progress_bar"
         app:layout_constraintStart_toStartOf="@id/timer_progress_bar"
-        app:layout_constraintTop_toBottomOf="@id/remaining_seconds_text" />
+        app:layout_constraintTop_toBottomOf="@id/remaining_seconds_text"
+        tools:src="@drawable/icon_play_arrow"
+        android:background="@color/white"
+        app:tint="@color/colorPrimary"/>
 
     <TextView
         android:id="@+id/next_exercise_text"

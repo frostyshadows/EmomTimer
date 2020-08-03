@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textViewStyle">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
         <item name="android:textColor">@color/colorText</item>
     </style>
 

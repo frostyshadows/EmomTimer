@@ -32,13 +32,14 @@
 
         <ImageButton
             android:id="@+id/play_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:src="@drawable/icon_play_circle"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_32"
+            android:background="@drawable/rectangle_background"
+            android:src="@drawable/icon_play_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

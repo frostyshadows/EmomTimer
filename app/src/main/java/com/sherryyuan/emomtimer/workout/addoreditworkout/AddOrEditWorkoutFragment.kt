@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentAddOrEditWorkoutBinding
 import com.sherryyuan.emomtimer.models.Exercise
 import com.sherryyuan.emomtimer.models.Workout
@@ -73,22 +75,37 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
 
     private fun setupSaveButton() {
         binding.saveButton.setOnClickListener {
-            saveWorkout()
-            hideSoftKeyboard()
-            findNavController().navigate(
-                AddOrEditWorkoutFragmentDirections.actionAddOrEditWorkoutBackToWorkouts())
+            val title: String? = binding.titleText.text?.toString()
+            val numSets: Int = binding.setsCountText.text.toString().toIntOrNull() ?: 0
+            val filledExercises =
+                exercises.filter { it.name.isNotEmpty() && it.numSeconds > 0 && it.numReps > 0 }
+            if (!title.isNullOrBlank() && numSets > 0 && filledExercises.isNotEmpty()) {
+                saveWorkout(title, numSets, filledExercises)
+            } else {
+                showMissingFieldsDialog()
+            }
         }
     }
 
     // If all the workout details are filled, save the workout in the repository.
-    private fun saveWorkout() {
-        val title: String? = binding.titleText.text?.toString()
-        val numSets: Int = binding.setsCountText.text.toString().toIntOrNull() ?: 0
-        val filledExercises =
-            exercises.filter { it.name.isNotEmpty() && it.numSeconds > 0 && it.numReps > 0 }
-        if (!title.isNullOrBlank() && filledExercises.isNotEmpty() && numSets > 0) {
-            val workout = Workout(title, numSets, filledExercises)
-            viewModel.saveWorkout(newWorkout = workout, prevWorkout = navArgs.workout)
+    private fun saveWorkout(title: String, numSets: Int, filledExercises: List<Exercise>) {
+        val workout = Workout(title, numSets, filledExercises)
+        viewModel.saveWorkout(newWorkout = workout, prevWorkout = navArgs.workout)
+        hideSoftKeyboard()
+        findNavController().navigate(
+            AddOrEditWorkoutFragmentDirections.actionAddOrEditWorkoutBackToWorkouts()
+        )
+    }
+
+    private fun showMissingFieldsDialog() {
+        activity?.let {
+            AlertDialog.Builder(it)
+                .setMessage(R.string.alert_fill_out_fields)
+                .setPositiveButton(R.string.ok) { dialog, _ ->
+                    dialog.cancel()
+                }
+                .create()
+                .show()
         }
     }
 
