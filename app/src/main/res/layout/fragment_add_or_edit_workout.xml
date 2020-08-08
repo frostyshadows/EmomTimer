@@ -14,7 +14,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/title_text"
-            style="@style/TextAppearance.AppCompat.Title"
+            style="@style/Header1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/title_workout_name"
@@ -79,7 +79,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
+            android:padding="@dimen/size_8"
             android:text="@string/save"
+            android:layout_marginBottom="@dimen/size_16"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

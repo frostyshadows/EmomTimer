@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/size_16">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/workout_name_text"
-        style="@style/TextAppearance.AppCompat.Title"
+        style="@style/Header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,39 +25,70 @@
         app:layout_constraintTop_toBottomOf="@id/workout_name_text"
         tools:text="20 minutes" />
 
-    <ImageButton
-        android:id="@+id/edit_button"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/control_buttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_edit_pencil"
-        app:layout_constraintEnd_toStartOf="@id/play_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workout_length_text" />
+        android:padding="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_16"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/workout_length_text">
 
-    <ImageButton
-        android:id="@+id/play_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_play_circle"
-        app:layout_constraintEnd_toStartOf="@id/delete_button"
-        app:layout_constraintStart_toEndOf="@id/edit_button"
-        app:layout_constraintTop_toBottomOf="@id/workout_length_text" />
+        <ImageButton
+            android:id="@+id/edit_button"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:background="@color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_edit_pencil"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/play_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/play_button"
-        app:layout_constraintTop_toBottomOf="@id/workout_length_text" />
+        <ImageButton
+            android:id="@+id/play_button"
+            android:layout_width="@dimen/size_80"
+            android:layout_height="@dimen/size_80"
+            android:background="@color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_play_circle"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toStartOf="@id/delete_button"
+            app:layout_constraintStart_toEndOf="@id/edit_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/delete_button"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:background="@color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_delete"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/play_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_exercises"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_16"
-        app:layout_constraintTop_toBottomOf="@id/play_button" />
+        android:layout_margin="@dimen/size_16"
+        app:layout_constraintTop_toBottomOf="@id/control_buttons" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_margin="@dimen/size_16"
+        app:layout_constraintTop_toBottomOf="@id/list_exercises"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_2"
+        android:background="@color/colorPrimary"/>
 
     <TextView
         android:id="@+id/repeat_for_text"
@@ -67,7 +98,7 @@
         android:text="@string/repeat_for_x_sets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/list_exercises"
+        app:layout_constraintTop_toBottomOf="@id/divider"
         tools:text="Repeat for 4 sets" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

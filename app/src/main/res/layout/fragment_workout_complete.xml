@@ -2,11 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/size_16">
 
     <TextView
         android:id="@+id/workout_complete_text"
-        style="@style/TextAppearance.AppCompat.Title"
+        style="@style/Header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/workout_complete"
@@ -14,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread"/>
+        app:layout_constraintVertical_chainStyle="spread" />
 
     <ImageView
         android:id="@+id/celebrate_image"
@@ -22,19 +23,20 @@
         android:layout_height="@dimen/illustration_size_200"
         android:scaleType="centerInside"
         android:src="@drawable/illustration_celebrate"
+        app:layout_constraintBottom_toTopOf="@id/done_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workout_complete_text"
-        app:layout_constraintBottom_toTopOf="@id/done_button"/>
+        app:layout_constraintTop_toBottomOf="@id/workout_complete_text" />
 
     <Button
         android:id="@+id/done_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/size_8"
         android:text="@string/done"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/celebrate_image"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/celebrate_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

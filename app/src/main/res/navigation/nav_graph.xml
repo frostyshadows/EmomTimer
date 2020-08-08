@@ -12,13 +12,17 @@
         tools:layout="@layout/fragment_workouts">
         <action
             android:id="@+id/action_workouts_to_workoutDetail"
-            app:destination="@id/navigation_workout_detail" />
+            app:destination="@id/navigation_workout_detail"
+            app:enterAnim="@anim/fragment_open_enter" />
         <action
             android:id="@+id/action_workouts_to_addOrEditWorkout"
-            app:destination="@id/navigation_add_or_edit_workout" />
+            app:destination="@id/navigation_add_or_edit_workout"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
         <action
             android:id="@+id/action_workouts_to_timerCountdown"
-            app:destination="@id/navigation_timer_countdown" />
+            app:destination="@id/navigation_timer_countdown"
+            app:enterAnim="@anim/fragment_open_enter" />
     </fragment>
     <fragment
         android:id="@+id/navigation_workout_detail"
@@ -29,7 +33,8 @@
             app:argType="com.sherryyuan.emomtimer.models.Workout" />
         <action
             android:id="@+id/action_workoutDetail_to_addOrEditWorkout"
-            app:destination="@id/navigation_add_or_edit_workout" />
+            app:destination="@id/navigation_add_or_edit_workout"
+            app:enterAnim="@anim/fragment_open_enter" />
         <action
             android:id="@+id/action_workoutDetail_to_timerCountdown"
             app:destination="@id/navigation_timer_countdown" />
@@ -46,6 +51,8 @@
         <action
             android:id="@+id/action_addOrEditWorkout_back_to_workouts"
             app:destination="@id/navigation_workouts"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
             app:popUpTo="@id/navigation_workouts"
             app:popUpToInclusive="true" />
     </fragment>
@@ -78,9 +85,4 @@
             app:popUpTo="@id/navigation_workouts"
             app:popUpToInclusive="true" />
     </fragment>
-    <fragment
-        android:id="@+id/navigation_calendar"
-        android:name="com.sherryyuan.emomtimer.ui.notifications.NotificationsFragment"
-        android:label="@string/title_calendar"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>

@@ -96,8 +96,7 @@ class TimerCountdownFragment : Fragment() {
                 timerViewData.currentSet + 1,
                 timerViewData.totalSets
             )
-            remainingSecondsText.text = timerViewData.secondsRemainingInSet.toString()
-            // TODO format the time correctly and also update progressbar
+            remainingSecondsText.text = secondsToMinuteString(timerViewData.secondsRemainingInSet)
             timerProgressBar.max = timerViewData.totalSecondsInSet
             timerProgressBar.progress = timerViewData.secondsRemainingInSet
             if (!timerViewData.currentExerciseName.isNullOrBlank()) {
