@@ -23,8 +23,7 @@ class SimpleTimerViewModel(
     override fun startNextExercise() {
         val currentSet: Int = _timerViewData.value?.currentSet ?: 0
         if (currentSet >= numSets - 1) {
-            _timerViewState.value =
-                TimerViewState.FINISHED
+            finish()
             return
         }
         _timerViewData.value =

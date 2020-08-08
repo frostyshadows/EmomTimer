@@ -39,7 +39,7 @@ class WorkoutDetailFragment : Fragment() {
         binding.apply {
             workoutNameText.text = navArgs.workout.name
             workoutLengthText.text = binding.root.context.getString(
-                R.string.x_minutes_total,
+                R.string.x_minutes,
                 navArgs.workout.getTotalMinutes()
             )
             repeatForText.text =

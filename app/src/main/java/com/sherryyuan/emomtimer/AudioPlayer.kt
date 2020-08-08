@@ -25,7 +25,7 @@ class AudioPlayer(context: Context) {
     fun speak(text: String) {
         // Queue mode where all entries in the playback queue are dropped and replaced by the
         // new entry.
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+        tts.speak(text, TextToSpeech.QUEUE_ADD, null, null)
     }
 
     fun playBeep() {

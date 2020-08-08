@@ -8,9 +8,10 @@
 
     <TextView
         android:id="@+id/workout_name_text"
-        style="@style/TextAppearance.AppCompat.Title"
+        style="@style/Header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_32"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,8 +25,8 @@
         app:layout_constraintBottom_toTopOf="@id/current_set_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_chainStyle="spread"
         app:layout_constraintTop_toBottomOf="@id/workout_name_text"
+        app:layout_constraintVertical_chainStyle="spread"
         tools:text="10 push ups" />
 
     <TextView
@@ -48,18 +49,20 @@
         android:indeterminate="false"
         android:layoutDirection="rtl"
         android:progressDrawable="@drawable/circular_progress_bar"
+        app:layout_constraintBottom_toTopOf="@id/next_exercise_text"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/next_exercise_text"
         app:layout_constraintTop_toBottomOf="@id/current_set_text"
         tools:max="48"
         tools:progress="45" />
 
     <TextView
         android:id="@+id/remaining_seconds_text"
+        style="@style/Header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/font_size_48"
         app:layout_constraintBottom_toTopOf="@id/timer_controller_button"
         app:layout_constraintEnd_toEndOf="@id/timer_progress_bar"
         app:layout_constraintStart_toStartOf="@id/timer_progress_bar"
@@ -69,12 +72,16 @@
 
     <ImageButton
         android:id="@+id/timer_controller_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/size_120"
+        android:layout_height="@dimen/size_120"
+        android:background="@color/white"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@id/timer_progress_bar"
         app:layout_constraintEnd_toEndOf="@id/timer_progress_bar"
         app:layout_constraintStart_toStartOf="@id/timer_progress_bar"
-        app:layout_constraintTop_toBottomOf="@id/remaining_seconds_text" />
+        app:layout_constraintTop_toBottomOf="@id/remaining_seconds_text"
+        app:tint="@color/colorPrimary"
+        tools:src="@drawable/icon_play_arrow" />
 
     <TextView
         android:id="@+id/next_exercise_text"
@@ -93,6 +100,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/size_32"
         app:layout_constraintTop_toBottomOf="@id/next_exercise_text"
         tools:text="19:00 minutes left" />
 

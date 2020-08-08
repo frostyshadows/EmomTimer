@@ -6,7 +6,10 @@ import androidx.lifecycle.*
 import com.sherryyuan.emomtimer.MILLIS_PER_SECOND
 import com.sherryyuan.emomtimer.ResourcesProvider
 import com.sherryyuan.emomtimer.AudioPlayer
+import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.timer.TimerViewData
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.get
 import org.koin.core.inject
@@ -14,7 +17,7 @@ import org.koin.core.inject
 private const val ONE_SECOND = 1000L
 private const val TWO_SECONDS = 2000L
 private const val THREE_SECONDS = 3000L
-private const val FIVE_SECONDS = 5000L
+private const val EIGHT_SECONDS = 8000L
 
 abstract class TimerViewModel : ViewModel(), KoinComponent {
 
@@ -23,7 +26,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
     val timerViewState: LiveData<TimerViewState>
         get() = _timerViewState
     protected abstract val _timerViewData: MutableLiveData<TimerViewData>
-    protected var _timerViewState: MutableLiveData<TimerViewState> = MutableLiveData(
+    private var _timerViewState: MutableLiveData<TimerViewState> = MutableLiveData(
         TimerViewState.NOT_STARTED
     )
 
@@ -50,14 +53,14 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
         timer?.start()
     }
 
-    fun startWorkout() {
-        _timerViewState.value = TimerViewState.STARTING
-        playCountdownToStart()
-    }
-
     abstract fun getTotalRemainingSeconds(): Int
 
     abstract fun sayNextExercise()
+
+    fun start() {
+        _timerViewState.value = TimerViewState.STARTING
+        playCountdownToStart()
+    }
 
     /**
      * Make sure timer also gets cancelled when user navigates away from the countdown fragment.
@@ -68,10 +71,26 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
         timer?.cancel()
     }
 
-    fun resumeTimer() {
+    fun resume() {
         _timerViewState.value = TimerViewState.RUNNING
         setupTimer(_timerViewData.value?.getRemainingMillisInSet() ?: 0L)
         timer?.start()
+    }
+
+    fun finish() {
+        _timerViewState.value = TimerViewState.FINISHED
+        audioPlayer.playBeep()
+        // Add one second delay so that "Workout complete" doesn't overlap with the beep.
+        viewModelScope.launch {
+            delay(ONE_SECOND)
+            audioPlayer.speak(resourcesProvider.getString(R.string.workout_complete))
+        }
+    }
+
+    fun clear() {
+        timer?.cancel()
+        timer = null
+        audioPlayer.shutdown()
     }
 
     private fun setupTimer(millisRemaining: Long) {
@@ -81,7 +100,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
 
             override fun onTick(millisUntilFinished: Long) {
                 // Say the next exercise the first time onTick() is called with < 5 seconds left.
-                if (!hasSaidNextExercise && millisUntilFinished < FIVE_SECONDS) {
+                if (!hasSaidNextExercise && millisUntilFinished < EIGHT_SECONDS) {
                     sayNextExercise()
                     hasSaidNextExercise = true
                 }
@@ -124,7 +143,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
 
                 override fun onFinish() {
                     audioPlayer.playBeep()
-                    resumeTimer()
+                    resume()
                     this.cancel()
                 }
             }

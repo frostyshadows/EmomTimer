@@ -1,6 +1,16 @@
 <resources>
+    <dimen name="size_2">2dp</dimen>
+    <dimen name="size_4">4dp</dimen>
     <dimen name="size_8">8dp</dimen>
     <dimen name="size_16">16dp</dimen>
+    <dimen name="size_32">32dp</dimen>
+    <dimen name="size_40">40dp</dimen>
+    <dimen name="size_80">80dp</dimen>
+    <dimen name="size_120">120dp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
     <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="font_size_32">32sp</dimen>
+    <dimen name="font_size_48">48sp</dimen>
     <dimen name="illustration_size_200">200dp</dimen>
 </resources>
