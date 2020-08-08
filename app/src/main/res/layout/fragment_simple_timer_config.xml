@@ -23,13 +23,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/every"
-            app:layout_constraintEnd_toStartOf="@id/num_minutes_text"
+            app:layout_constraintEnd_toStartOf="@id/num_time_text"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/num_minutes_text"
+            android:id="@+id/num_time_text"
             style="@style/Header1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,18 +37,17 @@
             android:layout_marginEnd="@dimen/size_4"
             android:hint="@string/hint_one_minute"
             android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@id/minute_text"
+            app:layout_constraintEnd_toStartOf="@id/time_unit_spinner"
             app:layout_constraintStart_toEndOf="@id/every_text"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/minute_text"
+        <Spinner
+            android:id="@+id/time_unit_spinner"
             style="@style/Header1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minute"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/num_minutes_text"
+            app:layout_constraintStart_toEndOf="@id/num_time_text"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 

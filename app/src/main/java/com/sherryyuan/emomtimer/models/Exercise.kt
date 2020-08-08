@@ -9,10 +9,7 @@ data class Exercise(
     var name: String = "",
     var numSeconds: Int = 0,
     var numReps: Int = 0
-) {
-    var numSecondsString = if (numSeconds > 0) numSeconds.toString() else ""
-    var numRepsString = if (numReps > 0) numReps.toString() else ""
-}
+)
 
 class ExerciseConverters {
     private val gson = Gson()

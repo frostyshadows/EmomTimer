@@ -3,6 +3,8 @@
     <string name="title_workouts">Workouts</string>
     <string name="title_workout_name">Name Your Workout</string>
     <string name="hint_one_minute">1</string>
+    <string name="hint_ninety_seconds">90</string>
+    <string name="of">of</string>
     <string name="minute_of">minute of</string>
     <string name="minutes_of">minutes of</string>
     <string name="hint_ten_reps">10</string>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -25,13 +26,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/minute_of_text"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/second_count_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minute_of"
+            android:hint="@string/hint_ninety_seconds"
+            android:inputType="number"
+            android:minWidth="@dimen/size_16"
+            android:text="@={`` + exercise.numSeconds}"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="minute_count_text,second_count_text" />
+
+
+        <Spinner
+            android:id="@+id/time_unit_spinner"
+            style="@style/Header1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/minute_count_text"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/of_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/of"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/time_unit_spinner"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputEditText
@@ -42,7 +72,7 @@
             android:inputType="number"
             android:minWidth="@dimen/size_16"
             android:text="@={`` + exercise.numReps}"
-            app:layout_constraintStart_toEndOf="@id/minute_of_text"
+            app:layout_constraintStart_toEndOf="@id/of_text"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputEditText
