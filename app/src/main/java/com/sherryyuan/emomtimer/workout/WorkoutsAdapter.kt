@@ -9,6 +9,7 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.ItemWorkoutBinding
 import com.sherryyuan.emomtimer.models.Workout
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.WorkoutTimerViewModelType
+import com.sherryyuan.emomtimer.toFormattedString
 
 class WorkoutsAdapter(
     var workouts: List<Workout>,
@@ -38,7 +39,10 @@ class WorkoutsAdapter(
             }
             titleText.text = workout.name
             timeText.text =
-                timeText.context.getString(R.string.x_minutes, workout.getTotalMinutes())
+                timeText.context.getString(
+                    R.string.x_minutes,
+                    workout.getTotalMinutes().toFormattedString()
+                )
             playButton.setOnClickListener {
                 navController.navigate(
                     WorkoutsFragmentDirections.actionWorkoutsToTimerCountdown(

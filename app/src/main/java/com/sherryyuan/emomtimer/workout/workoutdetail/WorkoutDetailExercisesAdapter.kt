@@ -8,6 +8,7 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.databinding.ItemDetailExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
+import com.sherryyuan.emomtimer.toFormattedString
 
 class WorkoutDetailExercisesAdapter(
     private val exercises: List<Exercise>
@@ -26,8 +27,8 @@ class WorkoutDetailExercisesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val exercise = exercises[position]
         holder.binding.exerciseDescriptionText.text = holder.binding.root.context.getString(
-            R.string.x_minute_of_y_exercise,
-            exercise.numSeconds.toDouble() / SECONDS_PER_MINUTE,
+            R.string.x_minutes_of_y_exercise,
+            (exercise.numSeconds.toDouble() / SECONDS_PER_MINUTE).toFormattedString(),
             exercise.numReps,
             exercise.name
         )

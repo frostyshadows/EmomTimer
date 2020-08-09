@@ -13,6 +13,7 @@ import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.databinding.ItemAddExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
 
+
 class AddOrEditWorkoutExercisesAdapter(
     private val exercises: MutableList<Exercise>
 ) : RecyclerView.Adapter<AddOrEditWorkoutExercisesAdapter.ViewHolder>() {
@@ -27,6 +28,8 @@ class AddOrEditWorkoutExercisesAdapter(
                     exercises.remove(exercise)
                     notifyDataSetChanged()
                 }
+                secondCountText.addTextChangedListener(NumberTextWatcher(secondCountText))
+                minuteCountText.addTextChangedListener(NumberTextWatcher(minuteCountText))
                 // Make sure editing the seconds text also updates the hidden minutes text.
                 secondCountText.doOnTextChanged { text, _, _, _ ->
                     val minutesText =
