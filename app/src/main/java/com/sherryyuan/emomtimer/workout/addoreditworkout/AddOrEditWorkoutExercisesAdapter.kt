@@ -28,22 +28,20 @@ class AddOrEditWorkoutExercisesAdapter(
                     exercises.remove(exercise)
                     notifyDataSetChanged()
                 }
-                secondCountText.doOnTextChanged { text, start, before, count ->
-                    if (minuteCountText.text.toString() != ((text.toString()
-                            .toIntOrNull() ?: 0) / SECONDS_PER_MINUTE).toString()
-                    ) {
-                        minuteCountText.setText(
-                            ((text.toString().toIntOrNull() ?: 0) / SECONDS_PER_MINUTE).toString()
-                        )
+                // Make sure editing the seconds text also updates the hidden minutes text.
+                secondCountText.doOnTextChanged { text, _, _, _ ->
+                    val minutesText =
+                        ((text.toString().toDoubleOrNull() ?: 0.0) / SECONDS_PER_MINUTE).toString()
+                    if (minuteCountText.text.toString() != minutesText && secondCountText.isVisible) {
+                        minuteCountText.setText(minutesText)
                     }
                 }
-                minuteCountText.doOnTextChanged { text, start, before, count ->
-                    if (secondCountText.text.toString() != ((text.toString()
-                            .toIntOrNull() ?: 0) * SECONDS_PER_MINUTE).toString()
-                    ) {
-                        secondCountText.setText(
-                            ((text.toString().toIntOrNull() ?: 0) * SECONDS_PER_MINUTE).toString()
-                        )
+                // Make sure editing the minutes text also updates the hidden seconds text.
+                minuteCountText.doOnTextChanged { text, _, _, _ ->
+                    val secondsText =
+                        ((text.toString().toDoubleOrNull() ?: 0.0) * SECONDS_PER_MINUTE).toString()
+                    if (secondCountText.text.toString() != secondsText && minuteCountText.isVisible) {
+                        secondCountText.setText(secondsText)
                     }
                 }
             }

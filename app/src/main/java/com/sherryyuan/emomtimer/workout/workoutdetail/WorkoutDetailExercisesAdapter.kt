@@ -27,7 +27,7 @@ class WorkoutDetailExercisesAdapter(
         val exercise = exercises[position]
         holder.binding.exerciseDescriptionText.text = holder.binding.root.context.getString(
             R.string.x_minute_of_y_exercise,
-            exercise.numSeconds / SECONDS_PER_MINUTE,
+            exercise.numSeconds.toDouble() / SECONDS_PER_MINUTE,
             exercise.numReps,
             exercise.name
         )

@@ -22,7 +22,7 @@
             android:hint="@string/hint_one_minute"
             android:inputType="number"
             android:minWidth="@dimen/size_16"
-            android:text="@={`` + exercise.numSeconds / 60}"
+            android:text="@={`` + (double) exercise.numSeconds / 60}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +33,7 @@
             android:hint="@string/hint_ninety_seconds"
             android:inputType="number"
             android:minWidth="@dimen/size_16"
-            android:text="@={`` + exercise.numSeconds}"
+            android:text="@={`` + (double) exercise.numSeconds}"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -77,12 +77,13 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/exercise_name_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/hint_pushups"
             android:minWidth="@dimen/size_16"
             android:text="@={exercise.name}"
             app:layout_constraintStart_toEndOf="@id/reps_count_text"
+            app:layout_constraintEnd_toStartOf="@id/delete_button"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton

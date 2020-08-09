@@ -15,5 +15,6 @@ data class Workout(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
-    fun getTotalMinutes(): Int = exercises.sumBy { it.numSeconds } / SECONDS_PER_MINUTE * numSets
+    fun getTotalMinutes(): Double =
+        exercises.sumBy { it.numSeconds }.toDouble() / SECONDS_PER_MINUTE * numSets
 }
