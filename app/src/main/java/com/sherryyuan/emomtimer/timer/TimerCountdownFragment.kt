@@ -89,7 +89,6 @@ class TimerCountdownFragment : Fragment() {
 
     private fun updateViews(timerViewData: TimerViewData) {
         binding.apply {
-            workoutNameText.text = timerViewData.timerName
             currentSetText.text = currentExerciseText.resources.getString(
                 R.string.current_set_text,
                 // Adding 1 because currentSet is 0-indexed.

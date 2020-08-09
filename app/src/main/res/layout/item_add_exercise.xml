@@ -4,8 +4,6 @@
 
     <data>
 
-        <import type="com.sherryyuan.emomtimer.StringUtils" />
-
         <variable
             name="exercise"
             type="com.sherryyuan.emomtimer.models.Exercise" />

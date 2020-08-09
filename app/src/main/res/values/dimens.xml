@@ -8,8 +8,7 @@
     <dimen name="size_80">80dp</dimen>
     <dimen name="size_120">120dp</dimen>
     <dimen name="font_size_18">18sp</dimen>
-    <dimen name="font_size_20">20sp</dimen>
-    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="font_size_22">22sp</dimen>
     <dimen name="font_size_32">32sp</dimen>
     <dimen name="font_size_48">48sp</dimen>
     <dimen name="illustration_size_200">200dp</dimen>

@@ -7,7 +7,7 @@
     android:padding="@dimen/size_16">
 
     <TextView
-        android:id="@+id/workout_name_text"
+        android:id="@+id/current_exercise_text"
         style="@style/Header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,22 +15,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Cardio" />
-
-    <TextView
-        android:id="@+id/current_exercise_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_8"
-        app:layout_constraintBottom_toTopOf="@id/current_set_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workout_name_text"
-        app:layout_constraintVertical_chainStyle="spread"
         tools:text="10 push ups" />
 
     <TextView
         android:id="@+id/current_set_text"
+        style="@style/Header2.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
@@ -72,6 +61,7 @@
 
     <ImageButton
         android:id="@+id/timer_controller_button"
+        style="@style/Header1"
         android:layout_width="@dimen/size_120"
         android:layout_height="@dimen/size_120"
         android:background="@color/white"
@@ -85,6 +75,7 @@
 
     <TextView
         android:id="@+id/next_exercise_text"
+        style="@style/Header2.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/total_mins_remaining_text"
@@ -95,12 +86,13 @@
 
     <TextView
         android:id="@+id/total_mins_remaining_text"
+        style="@style/Header2.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_32"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="@dimen/size_32"
         app:layout_constraintTop_toBottomOf="@id/next_exercise_text"
         tools:text="19:00 minutes left" />
 
