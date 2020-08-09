@@ -13,7 +13,6 @@ import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.databinding.ItemAddExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
 
-
 class AddOrEditWorkoutExercisesAdapter(
     private val exercises: MutableList<Exercise>
 ) : RecyclerView.Adapter<AddOrEditWorkoutExercisesAdapter.ViewHolder>() {

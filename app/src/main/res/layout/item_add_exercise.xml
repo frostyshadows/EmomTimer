@@ -45,7 +45,6 @@
             app:barrierDirection="end"
             app:constraint_referenced_ids="minute_count_text,second_count_text" />
 
-
         <Spinner
             android:id="@+id/time_unit_spinner"
             style="@style/Header1"
