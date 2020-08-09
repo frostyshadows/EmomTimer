@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".workout.WorkoutsFragment">
 
-    <TextView
-        android:id="@+id/workout_name_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_8"
-        android:layout_marginTop="@dimen/size_8"
-        android:layout_marginEnd="@dimen/size_8"
-        android:text="@string/title_workouts"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_workouts"
         android:layout_width="match_parent"
@@ -27,7 +13,7 @@
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginBottom="@dimen/size_16"
         app:layout_constraintBottom_toTopOf="@id/floating_action_button"
-        app:layout_constraintTop_toBottomOf="@id/workout_name_text" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
