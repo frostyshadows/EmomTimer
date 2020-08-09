@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutDetailBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.WorkoutTimerViewModelType
+import com.sherryyuan.emomtimer.toFormattedString
 import com.sherryyuan.emomtimer.workout.WorkoutsViewModel
 
 
@@ -40,7 +41,7 @@ class WorkoutDetailFragment : Fragment() {
             workoutNameText.text = navArgs.workout.name
             workoutLengthText.text = binding.root.context.getString(
                 R.string.x_minutes,
-                navArgs.workout.getTotalMinutes()
+                navArgs.workout.getTotalMinutes().toFormattedString()
             )
             repeatForText.text =
                 binding.root.context.getString(R.string.repeat_for_x_sets, navArgs.workout.numSets)
