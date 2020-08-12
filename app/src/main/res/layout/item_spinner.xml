@@ -1,7 +1,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@android:id/text1"
-    style="@style/Header1"
+    style="@style/TextAppearance.AppCompat.Title.Header1"
     android:singleLine="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

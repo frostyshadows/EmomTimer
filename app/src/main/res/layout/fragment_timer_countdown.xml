@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/current_exercise_text"
-        style="@style/Header1"
+        style="@style/TextAppearance.AppCompat.Title.Header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_32"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/current_set_text"
-        style="@style/Header2.Light"
+        style="@style/TextAppearance.AppCompat.Title.Header2.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
@@ -29,26 +29,30 @@
         app:layout_constraintTop_toBottomOf="@id/current_exercise_text"
         tools:text="Set 1 of 4" />
 
-    <ProgressBar
+    <pl.pawelkleczkowski.customgauge.CustomGauge
         android:id="@+id/timer_progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_centerInParent="true"
-        android:indeterminate="false"
-        android:layoutDirection="rtl"
-        android:progressDrawable="@drawable/circular_progress_bar"
+        app:gaugePointEndColor="@color/colorAccent"
+        app:gaugePointStartColor="@color/colorPrimary"
+        app:gaugeStartAngle="135"
+        app:gaugeStrokeCap="ROUND"
+        app:gaugeStrokeColor="@color/colorBackground"
+        app:gaugeStrokeWidth="@dimen/size_16"
+        app:gaugeSweepAngle="270"
         app:layout_constraintBottom_toTopOf="@id/next_exercise_text"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/current_set_text"
-        tools:max="48"
-        tools:progress="45" />
+        tools:gaugeEndValue="800"
+        tools:gaugeStartValue="200"
+        tools:gaugeValue="400" />
 
     <TextView
         android:id="@+id/remaining_seconds_text"
-        style="@style/Header1"
+        style="@style/TextAppearance.AppCompat.Title.Header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_size_48"
@@ -61,7 +65,7 @@
 
     <ImageButton
         android:id="@+id/timer_controller_button"
-        style="@style/Header1"
+        style="@style/TextAppearance.AppCompat.Title.Header1"
         android:layout_width="@dimen/size_120"
         android:layout_height="@dimen/size_120"
         android:background="@color/white"
@@ -75,7 +79,7 @@
 
     <TextView
         android:id="@+id/next_exercise_text"
-        style="@style/Header2.Light"
+        style="@style/TextAppearance.AppCompat.Title.Header2.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/total_mins_remaining_text"
@@ -86,7 +90,7 @@
 
     <TextView
         android:id="@+id/total_mins_remaining_text"
-        style="@style/Header2.Light"
+        style="@style/TextAppearance.AppCompat.Title.Header2.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_32"
