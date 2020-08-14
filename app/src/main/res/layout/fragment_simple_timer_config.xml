@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/every_text"
-            style="@style/Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/every"
@@ -30,7 +30,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/num_time_text"
-            style="@style/Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
@@ -43,7 +43,7 @@
 
         <Spinner
             android:id="@+id/time_unit_spinner"
-            style="@style/Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
 
         <TextView
             android:id="@+id/repeat_for_text"
-            style="@style/Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/repeat_for"
@@ -75,7 +75,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/num_sets_text"
-            style="@style/Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
@@ -87,7 +87,7 @@
 
         <TextView
             android:id="@+id/sets_text"
-            style="@style/Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sets"
@@ -95,13 +95,14 @@
             app:layout_constraintStart_toEndOf="@id/num_sets_text" />
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/start_button"
+        style="@style/Widget.MaterialComponents.Button.Rounded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_16"
-        android:padding="@dimen/size_8"
         android:text="@string/start"
+        app:cornerRadius="@dimen/size_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

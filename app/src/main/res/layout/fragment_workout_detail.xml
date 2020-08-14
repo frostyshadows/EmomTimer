@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/workout_name_text"
-        style="@style/Header1"
+        style="@style/TextAppearance.AppCompat.Title.Header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"
@@ -29,10 +30,13 @@
         android:id="@+id/control_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/size_8"
+        android:layout_margin="@dimen/size_16"
         android:layout_marginTop="@dimen/size_16"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/background_card"
+        android:backgroundTint="@color/colorPrimary"
+        android:elevation="@dimen/size_2"
         android:orientation="horizontal"
+        android:padding="@dimen/size_8"
         app:layout_constraintTop_toBottomOf="@id/workout_length_text">
 
         <ImageButton
@@ -84,11 +88,11 @@
 
     <View
         android:id="@+id/divider"
-        android:layout_margin="@dimen/size_16"
-        app:layout_constraintTop_toBottomOf="@id/list_exercises"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_2"
-        android:background="@color/colorPrimary"/>
+        android:layout_margin="@dimen/size_16"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/list_exercises" />
 
     <TextView
         android:id="@+id/repeat_for_text"

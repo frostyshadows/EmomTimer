@@ -10,7 +10,7 @@
         <item name="android:fontFamily">@font/opensans_regular</item>
     </style>
 
-    <style name="Header1" parent="TextAppearance.AppCompat.Title">
+    <style name="TextAppearance.AppCompat.Title.Header1">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/montserrat_semibold</item>
@@ -18,7 +18,7 @@
         <item name="android:textColor">@color/colorText</item>
     </style>
 
-    <style name="Header2" parent="TextAppearance.AppCompat.Title">
+    <style name="TextAppearance.AppCompat.Title.Header2">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/font_size_22</item>
@@ -26,8 +26,25 @@
         <item name="android:textColor">@color/colorText</item>
     </style>
 
-    <style name="Header2.Light" parent="Header2">
+    <style name="TextAppearance.AppCompat.Title.Header2.Light">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.Button.Rounded">
+        <item name="android:padding">@dimen/size_12</item>
+        <item name="cornerRadius">@dimen/size_16</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.Button.OutlinedButton.Rounded">
+        <item name="android:paddingTop">@dimen/size_12</item>
+        <item name="android:paddingBottom">@dimen/size_12</item>
+        <item name="android:paddingStart">@dimen/size_16</item>
+        <item name="android:paddingEnd">@dimen/size_16</item>
+        <item name="cornerRadius">@dimen/size_16</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
     </style>
 
 </resources>

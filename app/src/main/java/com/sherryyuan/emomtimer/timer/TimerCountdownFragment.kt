@@ -96,8 +96,9 @@ class TimerCountdownFragment : Fragment() {
                 timerViewData.totalSets
             )
             remainingSecondsText.text = secondsToMinuteString(timerViewData.secondsRemainingInSet)
-            timerProgressBar.max = timerViewData.totalSecondsInSet
-            timerProgressBar.progress = timerViewData.secondsRemainingInSet
+            timerProgressBar.startValue = 0
+            timerProgressBar.endValue = timerViewData.totalSecondsInSet
+            timerProgressBar.value = timerViewData.secondsRemainingInSet
             if (!timerViewData.currentExerciseName.isNullOrBlank()) {
                 currentExerciseText.text = currentExerciseText.resources.getString(
                     R.string.current_exercise_text,
