@@ -45,6 +45,7 @@
         <item name="cornerRadius">@dimen/size_16</item>
         <item name="android:textSize">@dimen/font_size_18</item>
         <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:backgroundTint">@color/white</item>
     </style>
 
 </resources>
