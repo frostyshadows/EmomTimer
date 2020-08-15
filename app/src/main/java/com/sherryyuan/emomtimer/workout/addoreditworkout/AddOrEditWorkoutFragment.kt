@@ -60,7 +60,6 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
         viewAdapterAddOrEditWorkout = AddOrEditWorkoutExercisesAdapter(exercises)
 
         binding.listExercises.apply {
-            setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapterAddOrEditWorkout
         }
@@ -69,7 +68,8 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
     private fun setupAddExerciseButton() {
         binding.addExerciseButton.setOnClickListener {
             exercises.add(Exercise())
-            viewAdapterAddOrEditWorkout.notifyDataSetChanged()
+            viewAdapterAddOrEditWorkout.notifyItemInserted(exercises.indices.last)
+            binding.listExercises.smoothScrollToPosition(viewAdapterAddOrEditWorkout.itemCount)
         }
     }
 

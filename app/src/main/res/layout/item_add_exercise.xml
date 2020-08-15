@@ -9,92 +9,133 @@
             type="com.sherryyuan.emomtimer.models.Exercise" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginBottom="@dimen/size_8"
+        android:elevation="@dimen/size_4">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/minute_count_text"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_one_minute"
-            android:inputType="numberDecimal"
-            android:minWidth="@dimen/size_16"
-            android:text="@={`` + (double) exercise.numSeconds / 60}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:gravity="center"
+            android:paddingStart="@dimen/size_16"
+            android:paddingTop="@dimen/size_4"
+            android:paddingEnd="@dimen/size_16"
+            android:paddingBottom="@dimen/size_4">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/second_count_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_ninety_seconds"
-            android:inputType="numberDecimal"
-            android:minWidth="@dimen/size_16"
-            android:text="@={`` + (double) exercise.numSeconds}"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/minute_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_4"
+                android:layout_marginEnd="@dimen/size_4"
+                android:gravity="center_horizontal"
+                android:hint="@string/hint_one_minute"
+                android:inputType="numberDecimal"
+                android:minWidth="@dimen/size_16"
+                android:paddingStart="@dimen/size_4"
+                android:paddingEnd="@dimen/size_4"
+                android:text="@={`` + (double) exercise.numSeconds / 60}"
+                app:layout_constraintBottom_toBottomOf="@id/first_row_barrier"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="end"
-            app:constraint_referenced_ids="minute_count_text,second_count_text" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/second_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_4"
+                android:layout_marginEnd="@dimen/size_4"
+                android:gravity="center_horizontal"
+                android:hint="@string/hint_ninety_seconds"
+                android:inputType="numberDecimal"
+                android:minWidth="@dimen/size_16"
+                android:paddingStart="@dimen/size_4"
+                android:paddingEnd="@dimen/size_4"
+                android:text="@={`` + (double) exercise.numSeconds}"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/first_row_barrier"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/time_unit_spinner"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/barrier"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/time_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="minute_count_text,second_count_text" />
 
-        <TextView
-            android:id="@+id/of_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/of"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/time_unit_spinner"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Spinner
+                android:id="@+id/time_unit_spinner"
+                style="@style/TextAppearance.AppCompat.Title.Header1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/first_row_barrier"
+                app:layout_constraintStart_toEndOf="@id/time_barrier"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/reps_count_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_ten_reps"
-            android:inputType="number"
-            android:minWidth="@dimen/size_16"
-            android:text="@={`` + exercise.numReps}"
-            app:layout_constraintStart_toEndOf="@id/of_text"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/of_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/of"
+                app:layout_constraintBottom_toBottomOf="@id/first_row_barrier"
+                app:layout_constraintEnd_toStartOf="@id/delete_button"
+                app:layout_constraintStart_toEndOf="@id/time_unit_spinner"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/exercise_name_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_pushups"
-            android:minWidth="@dimen/size_16"
-            android:text="@={exercise.name}"
-            app:layout_constraintEnd_toStartOf="@id/delete_button"
-            app:layout_constraintStart_toEndOf="@id/reps_count_text"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/first_row_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="minute_count_text,second_count_text,time_unit_spinner,of_text" />
 
-        <ImageButton
-            android:id="@+id/delete_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:background="@color/transparent"
-            android:src="@drawable/icon_delete"
-            android:tint="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/reps_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_4"
+                android:layout_marginEnd="@dimen/size_4"
+                android:gravity="center_horizontal"
+                android:hint="@string/hint_ten_reps"
+                android:inputType="number"
+                android:minWidth="@dimen/size_16"
+                android:paddingStart="@dimen/size_4"
+                android:paddingEnd="@dimen/size_4"
+                android:text="@={`` + exercise.numReps}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/first_row_barrier" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/exercise_name_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_4"
+                android:layout_marginEnd="@dimen/size_4"
+                android:hint="@string/hint_pushups"
+                android:paddingStart="@dimen/size_4"
+                android:paddingEnd="@dimen/size_4"
+                android:text="@={exercise.name}"
+                app:layout_constraintEnd_toStartOf="@id/delete_button"
+                app:layout_constraintStart_toEndOf="@id/reps_count_text"
+                app:layout_constraintTop_toTopOf="@id/first_row_barrier" />
+
+            <ImageButton
+                android:id="@+id/delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@color/transparent"
+                android:src="@drawable/icon_delete"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

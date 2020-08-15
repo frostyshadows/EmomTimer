@@ -26,7 +26,7 @@ class AddOrEditWorkoutExercisesAdapter(
                 this.exercise = exercise
                 deleteButton.setOnClickListener {
                     exercises.remove(exercise)
-                    notifyDataSetChanged()
+                    notifyItemRemoved(adapterPosition)
                 }
                 secondCountText.addTextChangedListener(NumberTextWatcher(secondCountText))
                 minuteCountText.addTextChangedListener(NumberTextWatcher(minuteCountText))
