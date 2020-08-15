@@ -47,10 +47,27 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
      * view model reflects the next set.
      */
     @CallSuper
-    open fun startNextExercise() {
+    open fun startNextExercise(startTimer: Boolean = true) {
         audioPlayer.playBeep()
         setupTimer(_timerViewData.value?.getRemainingMillisInSet() ?: 0L)
-        timer?.start()
+        if (startTimer) {
+            viewModelScope.launch {
+                delay(ONE_SECOND)
+                timer?.start()
+            }
+        }
+    }
+
+    @CallSuper
+    open fun restartExercise(startTimer: Boolean = true) {
+        audioPlayer.playBeep()
+        setupTimer(_timerViewData.value?.getRemainingMillisInSet() ?: 0L)
+        if (startTimer) {
+            viewModelScope.launch {
+                delay(ONE_SECOND)
+                timer?.start()
+            }
+        }
     }
 
     abstract fun getTotalRemainingSeconds(): Int
@@ -87,13 +104,9 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    fun clear() {
-        timer?.cancel()
-        timer = null
-        audioPlayer.shutdown()
-    }
-
     private fun setupTimer(millisRemaining: Long) {
+        // Cancel any existing timer.
+        timer?.cancel()
         timer = object : CountDownTimer(millisRemaining, MILLIS_PER_SECOND.toLong()) {
 
             var hasSaidNextExercise = false
