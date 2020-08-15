@@ -12,10 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_32"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="10 push ups" />
+        tools:text="10 inch worm to push-ups" />
 
     <TextView
         android:id="@+id/current_set_text"
@@ -64,8 +65,19 @@
         tools:text="0:59" />
 
     <ImageButton
+        android:id="@+id/skip_previous_button"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_80"
+        android:background="@color/white"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_skip_previous"
+        app:layout_constraintBottom_toBottomOf="@id/timer_controller_button"
+        app:layout_constraintEnd_toStartOf="@id/timer_controller_button"
+        app:layout_constraintTop_toTopOf="@id/timer_controller_button"
+        app:tint="@color/colorPrimary" />
+
+    <ImageButton
         android:id="@+id/timer_controller_button"
-        style="@style/TextAppearance.AppCompat.Title.Header1"
         android:layout_width="@dimen/size_120"
         android:layout_height="@dimen/size_120"
         android:background="@color/white"
@@ -76,6 +88,18 @@
         app:layout_constraintTop_toBottomOf="@id/remaining_seconds_text"
         app:tint="@color/colorPrimary"
         tools:src="@drawable/icon_play_arrow" />
+
+    <ImageButton
+        android:id="@+id/skip_next_button"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_80"
+        android:background="@color/white"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_skip_next"
+        app:layout_constraintBottom_toBottomOf="@id/timer_controller_button"
+        app:layout_constraintStart_toEndOf="@id/timer_controller_button"
+        app:layout_constraintTop_toTopOf="@id/timer_controller_button"
+        app:tint="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/next_exercise_text"

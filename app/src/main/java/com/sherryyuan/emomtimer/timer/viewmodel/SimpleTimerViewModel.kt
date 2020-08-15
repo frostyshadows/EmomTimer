@@ -20,7 +20,7 @@ class SimpleTimerViewModel(
             )
         )
 
-    override fun startNextExercise() {
+    override fun startNextExercise(startTimer: Boolean) {
         val currentSet: Int = _timerViewData.value?.currentSet ?: 0
         if (currentSet >= numSets - 1) {
             finish()
@@ -34,7 +34,19 @@ class SimpleTimerViewModel(
                 currentSet = currentSet + 1,
                 totalSets = numSets
             )
-        super.startNextExercise()
+        super.startNextExercise(startTimer)
+    }
+
+    override fun restartExercise(startTimer: Boolean) {
+        _timerViewData.value =
+            TimerViewData(
+                timerName = null,
+                totalSecondsInSet = numSecondsPerSet,
+                secondsRemainingInSet = numSecondsPerSet,
+                currentSet = _timerViewData.value?.currentSet ?: 0,
+                totalSets = numSets
+            )
+        super.restartExercise(startTimer)
     }
 
     override fun getTotalRemainingSeconds(): Int {

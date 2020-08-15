@@ -67,7 +67,7 @@ class TimerCountdownFragment : Fragment() {
         viewModel.timerViewState.observe(
             requireActivity(),
             Observer {
-                updateTimerControllerButton(it)
+                updateButtons(it)
                 checkIfComplete(it)
             }
         )
@@ -78,6 +78,12 @@ class TimerCountdownFragment : Fragment() {
                 TimerViewState.PAUSED -> viewModel.resume()
                 else -> Unit
             }
+        }
+        binding.skipNextButton.setOnClickListener {
+            viewModel.startNextExercise(viewModel.timerViewState.value == TimerViewState.RUNNING)
+        }
+        binding.skipPreviousButton.setOnClickListener {
+            viewModel.restartExercise(viewModel.timerViewState.value == TimerViewState.RUNNING)
         }
         return binding.root
     }
@@ -124,14 +130,18 @@ class TimerCountdownFragment : Fragment() {
         }
     }
 
-    private fun updateTimerControllerButton(timerViewState: TimerViewState) {
+    private fun updateButtons(timerViewState: TimerViewState) {
         @DrawableRes val buttonDrawable: Int = when (timerViewState) {
             TimerViewState.NOT_STARTED -> R.drawable.icon_play_arrow
-            TimerViewState.RUNNING -> R.drawable.ic_pause_black_24dp
+            TimerViewState.RUNNING -> R.drawable.icon_pause
             TimerViewState.PAUSED -> R.drawable.icon_play_arrow
             else -> R.drawable.icon_play_arrow
         }
         binding.timerControllerButton.isVisible = timerViewState != TimerViewState.STARTING
+        binding.skipPreviousButton.isVisible =
+            (timerViewState == TimerViewState.RUNNING || timerViewState == TimerViewState.PAUSED)
+        binding.skipNextButton.isVisible =
+            (timerViewState == TimerViewState.RUNNING || timerViewState == TimerViewState.PAUSED)
         binding.timerControllerButton.setImageDrawable(
             ContextCompat.getDrawable(binding.timerControllerButton.context, buttonDrawable)
         )

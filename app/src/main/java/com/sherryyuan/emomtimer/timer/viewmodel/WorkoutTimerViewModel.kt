@@ -24,8 +24,7 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
             )
         )
 
-    override fun startNextExercise() {
-        audioPlayer.playBeep()
+    override fun startNextExercise(startTimer: Boolean) {
         var currentExerciseIndex: Int = _timerViewData.value?.currentExercise ?: 0
         var currentSet: Int = _timerViewData.value?.currentSet ?: 0
         if (currentExerciseIndex >= workout.exercises.size - 1) {
@@ -53,7 +52,27 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
                 nextExerciseName = workout.exercises.getOrNull(currentExerciseIndex + 1)?.name,
                 nextExerciseReps = workout.exercises.getOrNull(currentExerciseIndex + 1)?.numReps
             )
-        super.startNextExercise()
+        super.startNextExercise(startTimer)
+    }
+
+    override fun restartExercise(startTimer: Boolean) {
+        val currentExerciseIndex: Int = _timerViewData.value?.currentExercise ?: 0
+        val currentSet: Int = _timerViewData.value?.currentSet ?: 0
+        val currentExercise: Exercise = workout.exercises[currentExerciseIndex]
+        _timerViewData.value =
+            TimerViewData(
+                timerName = workout.name,
+                totalSecondsInSet = currentExercise.numSeconds,
+                secondsRemainingInSet = currentExercise.numSeconds,
+                currentSet = currentSet,
+                totalSets = workout.numSets,
+                currentExercise = currentExerciseIndex,
+                currentExerciseName = currentExercise.name,
+                currentExerciseReps = currentExercise.numReps,
+                nextExerciseName = workout.exercises.getOrNull(currentExerciseIndex + 1)?.name,
+                nextExerciseReps = workout.exercises.getOrNull(currentExerciseIndex + 1)?.numReps
+            )
+        super.restartExercise(startTimer)
     }
 
     override fun getTotalRemainingSeconds(): Int {
