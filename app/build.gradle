@@ -90,5 +90,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
 
+    // Custom gauge for displaying timer progress
     implementation "pl.pawelkleczkowski.customgauge:CustomGauge:1.0.4"
+
+    implementation "androidx.preference:preference:1.1.1"
 }

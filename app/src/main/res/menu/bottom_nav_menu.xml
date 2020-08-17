@@ -11,4 +11,9 @@
         android:icon="@drawable/icon_timer"
         android:title="@string/title_timer" />
 
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/icon_settings"
+        android:title="@string/title_settings" />
+
 </menu>

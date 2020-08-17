@@ -1,0 +1,5 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="about"
+        android:layout="@layout/preference_about" />
+</PreferenceScreen>
