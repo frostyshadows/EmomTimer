@@ -17,10 +17,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentTimerCountdownBinding
-import com.sherryyuan.emomtimer.utils.secondsToMinuteString
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModel
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelFactory
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewState
+import com.sherryyuan.emomtimer.utils.toTimeString
 
 class TimerCountdownFragment : Fragment() {
 
@@ -101,10 +101,7 @@ class TimerCountdownFragment : Fragment() {
                 timerViewData.currentSet + 1,
                 timerViewData.totalSets
             )
-            remainingSecondsText.text =
-                secondsToMinuteString(
-                    timerViewData.secondsRemainingInSet
-                )
+            remainingSecondsText.text = timerViewData.secondsRemainingInSet.toTimeString()
             timerProgressBar.startValue = 0
             timerProgressBar.endValue = timerViewData.totalSecondsInSet
             timerProgressBar.value = timerViewData.secondsRemainingInSet
@@ -128,7 +125,7 @@ class TimerCountdownFragment : Fragment() {
             }
             totalMinsRemainingText.text = totalMinsRemainingText.resources.getString(
                 R.string.total_mins_remaining_text,
-                secondsToMinuteString(viewModel.getTotalRemainingSeconds())
+                viewModel.getTotalRemainingSeconds().toTimeString()
             )
         }
     }

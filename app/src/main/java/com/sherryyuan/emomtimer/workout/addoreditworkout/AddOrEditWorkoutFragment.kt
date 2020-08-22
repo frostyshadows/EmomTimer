@@ -17,6 +17,7 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentAddOrEditWorkoutBinding
 import com.sherryyuan.emomtimer.models.Exercise
 import com.sherryyuan.emomtimer.models.Workout
+import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.workout.WorkoutsViewModel
 import org.koin.core.KoinComponent
 
@@ -48,6 +49,11 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        hideSoftKeyboard()
+    }
+
     private fun setupWorkoutDetails(workout: Workout) {
         binding.apply {
             titleText.setText(workout.name)
@@ -67,7 +73,7 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
 
     private fun setupAddExerciseButton() {
         binding.addExerciseButton.setOnClickListener {
-            exercises.add(Exercise())
+            exercises.add(Exercise(numSeconds = SECONDS_PER_MINUTE))
             viewAdapterAddOrEditWorkout.notifyItemInserted(exercises.indices.last)
             binding.listExercises.smoothScrollToPosition(viewAdapterAddOrEditWorkout.itemCount)
         }

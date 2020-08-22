@@ -16,16 +16,13 @@
     <string name="hint_three_sets">3</string>
     <string name="sets">sets</string>
     <string name="x_minutes">%1$s minutes</string>
-    <string name="x_minutes_of_y_exercise">%1$s minutes of %2$d %3$s</string>
     <string name="alert_delete_workout">Are you sure you want to delete this workout?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="title_timer">Timer</string>
     <string name="every">Every</string>
-    <string name="minute">minute</string>
     <string name="hint_twenty_sets">20</string>
     <string name="start">Start</string>
-    <string name="minutes">minutes</string>
     <string name="current_set_text">Set %1$d of %2$d</string>
     <string name="current_exercise_text">%1$d %2$s</string>
     <string name="next_exercise_text">Next: %1$d %2$s</string>

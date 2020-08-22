@@ -26,8 +26,9 @@ class WorkoutDetailExercisesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val exercise = exercises[position]
-        holder.binding.exerciseDescriptionText.text = holder.binding.root.context.getString(
-            R.string.x_minutes_of_y_exercise,
+        holder.binding.exerciseDescriptionText.text = holder.binding.root.context.resources.getQuantityString(
+            R.plurals.x_minutes_of_y_exercise,
+            (exercise.numSeconds.toDouble() / SECONDS_PER_MINUTE).toInt(),
             (exercise.numSeconds.toDouble() / SECONDS_PER_MINUTE).toFormattedString(),
             exercise.numReps,
             exercise.name

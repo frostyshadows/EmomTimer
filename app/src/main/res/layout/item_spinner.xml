@@ -5,6 +5,6 @@
     android:singleLine="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:text="@string/minutes"
+    tools:text="minute(s)"
     android:ellipsize="marquee"
     android:textAlignment="inherit" />
