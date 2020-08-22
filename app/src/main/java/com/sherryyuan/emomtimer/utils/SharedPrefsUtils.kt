@@ -9,21 +9,18 @@ private const val PREFS_NAME = "emom_shared_prefs"
 private const val PREF_VERSION_CODE_KEY = "version_code"
 private const val NOT_FOUND = -1
 
+/**
+ * Code copied from https://stackoverflow.com/questions/7217578/check-if-application-is-on-its-first-run
+ */
 fun isFirstInstall(context: Context): Boolean {
     // Get current version code
     val currentVersionCode: Int = BuildConfig.VERSION_CODE
-
     // Get saved version code
     val sharedPrefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
     val savedVersionCode = sharedPrefs.getInt(PREF_VERSION_CODE_KEY, NOT_FOUND)
-
-    // Check for first run or upgrade
-    when {
-        currentVersionCode == savedVersionCode -> return false  // This is just a normal run
-        savedVersionCode == NOT_FOUND -> return true // This is a new install (or the user cleared the shared preferences)
-        currentVersionCode > savedVersionCode -> return false // This is an upgrade
-        }
     // Update the shared preferences with the current version code
-    sharedPrefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply()
-    return false
+    if (currentVersionCode != savedVersionCode) {
+        sharedPrefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply()
+    }
+    return savedVersionCode == NOT_FOUND
 }
