@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
-import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
+import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.databinding.ItemDetailExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
-import com.sherryyuan.emomtimer.toFormattedString
+import com.sherryyuan.emomtimer.utils.toFormattedString
 
 class WorkoutDetailExercisesAdapter(
     private val exercises: List<Exercise>

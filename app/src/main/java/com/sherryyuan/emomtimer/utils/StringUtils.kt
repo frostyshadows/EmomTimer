@@ -1,4 +1,4 @@
-package com.sherryyuan.emomtimer
+package com.sherryyuan.emomtimer.utils
 
 import java.text.DecimalFormat
 

@@ -1,6 +1,6 @@
 package com.sherryyuan.emomtimer.timer
 
-import com.sherryyuan.emomtimer.MILLIS_PER_SECOND
+import com.sherryyuan.emomtimer.utils.MILLIS_PER_SECOND
 
 /**
  * Class containing all the information we need to display on the timer countdown UI.

@@ -9,7 +9,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
-import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
+import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.databinding.ItemAddExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
 
@@ -21,13 +21,8 @@ class AddOrEditWorkoutExercisesAdapter(
     inner class ViewHolder(private val binding: ItemAddExerciseBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(exercise: Exercise) {
+        fun create() {
             binding.apply {
-                this.exercise = exercise
-                deleteButton.setOnClickListener {
-                    exercises.remove(exercise)
-                    notifyItemRemoved(adapterPosition)
-                }
                 secondCountText.addTextChangedListener(NumberTextWatcher(secondCountText))
                 minuteCountText.addTextChangedListener(NumberTextWatcher(minuteCountText))
                 // Make sure editing the seconds text also updates the hidden minutes text.
@@ -48,6 +43,16 @@ class AddOrEditWorkoutExercisesAdapter(
                 }
             }
             setupSpinner()
+        }
+
+        fun bind(exercise: Exercise) {
+            binding.apply {
+                this.exercise = exercise
+                deleteButton.setOnClickListener {
+                    exercises.remove(exercise)
+                    notifyItemRemoved(adapterPosition)
+                }
+            }
         }
 
         private fun setupSpinner() {
@@ -92,7 +97,9 @@ class AddOrEditWorkoutExercisesAdapter(
                 parent,
                 false
             )
-        )
+        ).apply {
+            create()
+        }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(exercises[position])

@@ -9,7 +9,7 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.ItemWorkoutBinding
 import com.sherryyuan.emomtimer.models.Workout
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.WorkoutTimerViewModelType
-import com.sherryyuan.emomtimer.toFormattedString
+import com.sherryyuan.emomtimer.utils.toFormattedString
 
 class WorkoutsAdapter(
     var workouts: List<Workout>,

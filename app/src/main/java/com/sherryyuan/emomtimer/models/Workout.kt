@@ -2,7 +2,7 @@ package com.sherryyuan.emomtimer.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
+import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
 import java.io.Serializable
 
 @Entity

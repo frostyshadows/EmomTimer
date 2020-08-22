@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_16"
-        android:text="@string/about"
+        android:text="@string/what_is_emom"
         android:textColor="@color/colorText"
         app:layout_constraintStart_toEndOf="@id/help_icon"
         app:layout_constraintTop_toTopOf="parent" />

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutDetailBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.WorkoutTimerViewModelType
-import com.sherryyuan.emomtimer.toFormattedString
+import com.sherryyuan.emomtimer.utils.toFormattedString
 import com.sherryyuan.emomtimer.workout.WorkoutsViewModel
 
 

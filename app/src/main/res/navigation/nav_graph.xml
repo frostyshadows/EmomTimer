@@ -91,10 +91,10 @@
         android:label="@string/title_settings">
         <action
             android:id="@+id/action_settings_to_about"
-            app:destination="@id/navigation_about" />
+            app:destination="@id/navigation_about_emom" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_about"
-        android:name="com.sherryyuan.emomtimer.settings.AboutFragment"
-        android:label="@string/about" />
+        android:id="@+id/navigation_about_emom"
+        android:name="com.sherryyuan.emomtimer.settings.AboutEmomFragment"
+        android:label="@string/title_settings" />
 </navigation>
