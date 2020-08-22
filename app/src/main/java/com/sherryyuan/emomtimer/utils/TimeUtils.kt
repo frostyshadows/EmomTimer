@@ -1,4 +1,4 @@
-package com.sherryyuan.emomtimer
+package com.sherryyuan.emomtimer.utils
 
 
 const val MILLIS_PER_SECOND = 1000

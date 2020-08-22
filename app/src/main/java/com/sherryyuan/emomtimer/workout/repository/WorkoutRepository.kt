@@ -14,6 +14,8 @@ class WorkoutRepository : KoinComponent {
 
     suspend fun addWorkout(workout: Workout) = roomDao.insertWorkout(workout)
 
+    suspend fun addWorkouts(workouts: List<Workout>) = roomDao.insertWorkouts(workouts)
+
     suspend fun updateWorkout(workout: Workout) =
         roomDao.updateWorkout(workout.name, workout.numSets, workout.exercises, workout.id)
 

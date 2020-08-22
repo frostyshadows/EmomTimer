@@ -3,7 +3,7 @@ package com.sherryyuan.emomtimer.timer.viewmodel
 import android.os.CountDownTimer
 import androidx.annotation.CallSuper
 import androidx.lifecycle.*
-import com.sherryyuan.emomtimer.MILLIS_PER_SECOND
+import com.sherryyuan.emomtimer.utils.MILLIS_PER_SECOND
 import com.sherryyuan.emomtimer.ResourcesProvider
 import com.sherryyuan.emomtimer.AudioPlayer
 import com.sherryyuan.emomtimer.R

@@ -84,14 +84,15 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     // ViewModel and LiveData
-    def lifecycleVersion = '2.1.0'
-    def livedataVersion = '2.2.0-rc02'
+    def lifecycleVersion = '2.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
     // Custom gauge for displaying timer progress
     implementation "pl.pawelkleczkowski.customgauge:CustomGauge:1.0.4"
 
+    // Settings screen
     implementation "androidx.preference:preference:1.1.1"
 }

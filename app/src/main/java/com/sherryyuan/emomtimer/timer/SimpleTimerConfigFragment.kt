@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sherryyuan.emomtimer.R
-import com.sherryyuan.emomtimer.SECONDS_PER_MINUTE
+import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.databinding.FragmentSimpleTimerConfigBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.SimpleTimerViewModelType
 
