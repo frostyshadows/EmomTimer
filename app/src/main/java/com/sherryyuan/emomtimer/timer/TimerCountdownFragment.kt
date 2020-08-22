@@ -35,25 +35,7 @@ class TimerCountdownFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity?.let { activity ->
-            activity.onBackPressedDispatcher.addCallback(
-                this,
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        AlertDialog.Builder(activity)
-                            .setMessage(R.string.alert_quit_workout)
-                            .setPositiveButton(R.string.yes) { _, _ ->
-                                isEnabled = false
-                                activity.onBackPressed()
-                            }
-                            .setNegativeButton(R.string.cancel) { dialog, _ ->
-                                dialog.cancel()
-                            }
-                            .create()
-                            .show()
-                    }
-                })
-        }
+        setupOnBackPressed()
     }
 
     override fun onCreateView(
@@ -152,6 +134,35 @@ class TimerCountdownFragment : Fragment() {
             findNavController().navigate(
                 TimerCountdownFragmentDirections.actionTimerCountdownToWorkoutComplete()
             )
+        }
+    }
+
+    // If there's a workout in progress, show a dialog confirming user wants to quit before
+    // navigating back.
+    private fun setupOnBackPressed() {
+        activity?.let { activity ->
+            activity.onBackPressedDispatcher.addCallback(
+                this,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        if (viewModel.timerViewState.value == TimerViewState.NOT_STARTED) {
+                            isEnabled = false
+                            activity.onBackPressed()
+                        } else {
+                            AlertDialog.Builder(activity)
+                                .setMessage(R.string.alert_quit_workout)
+                                .setPositiveButton(R.string.yes) { _, _ ->
+                                    isEnabled = false
+                                    activity.onBackPressed()
+                                }
+                                .setNegativeButton(R.string.cancel) { dialog, _ ->
+                                    dialog.cancel()
+                                }
+                                .create()
+                                .show()
+                        }
+                    }
+                })
         }
     }
 }
