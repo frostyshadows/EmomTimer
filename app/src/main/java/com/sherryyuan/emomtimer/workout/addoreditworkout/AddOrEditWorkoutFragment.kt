@@ -75,7 +75,7 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
         binding.addExerciseButton.setOnClickListener {
             exercises.add(Exercise(numSeconds = SECONDS_PER_MINUTE))
             viewAdapterAddOrEditWorkout.notifyItemInserted(exercises.indices.last)
-            binding.listExercises.smoothScrollToPosition(viewAdapterAddOrEditWorkout.itemCount)
+            binding.listExercises.smoothScrollToPosition(exercises.indices.last)
         }
     }
 

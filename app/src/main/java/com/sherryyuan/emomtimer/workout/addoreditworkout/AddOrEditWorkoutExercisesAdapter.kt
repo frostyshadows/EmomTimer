@@ -9,17 +9,36 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
-import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.databinding.ItemAddExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
+import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
 
 
 class AddOrEditWorkoutExercisesAdapter(
     private val exercises: MutableList<Exercise>
 ) : RecyclerView.Adapter<AddOrEditWorkoutExercisesAdapter.ViewHolder>() {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(
+            ItemAddExerciseBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        ).apply {
+            create()
+        }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(exercises[position])
+    }
+
+    override fun getItemCount() = exercises.size
+
     inner class ViewHolder(private val binding: ItemAddExerciseBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var exercise: Exercise
 
         fun create() {
             binding.apply {
@@ -41,18 +60,17 @@ class AddOrEditWorkoutExercisesAdapter(
                         secondCountText.setText(secondsText)
                     }
                 }
-            }
-            setupSpinner()
-        }
-
-        fun bind(exercise: Exercise) {
-            binding.apply {
-                this.exercise = exercise
                 deleteButton.setOnClickListener {
                     exercises.remove(exercise)
                     notifyItemRemoved(adapterPosition)
                 }
             }
+            setupSpinner()
+        }
+
+        fun bind(exercise: Exercise) {
+            this.exercise = exercise
+            binding.exercise = exercise
         }
 
         private fun setupSpinner() {
@@ -89,21 +107,4 @@ class AddOrEditWorkoutExercisesAdapter(
             }
         }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(
-            ItemAddExerciseBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        ).apply {
-            create()
-        }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(exercises[position])
-    }
-
-    override fun getItemCount() = exercises.size
 }

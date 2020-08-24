@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EmomTimer</string>
+    <string name="app_name">Emom Timer</string>
     <string name="title_workouts">Workouts</string>
     <string name="title_workout_name">Name Your Workout</string>
     <string name="hint_one_minute">1</string>
