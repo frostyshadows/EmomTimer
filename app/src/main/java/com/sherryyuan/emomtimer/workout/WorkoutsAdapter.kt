@@ -1,7 +1,6 @@
 package com.sherryyuan.emomtimer.workout
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +21,7 @@ class WorkoutsAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ).root
+            )
         ).apply {
             create(navController)
         }
@@ -33,10 +32,10 @@ class WorkoutsAdapter(
 
     override fun getItemCount() = workouts.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(private val binding: ItemWorkoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var workout: Workout
-        val binding: ItemWorkoutBinding = ItemWorkoutBinding.bind(view)
 
         fun create(navController: NavController) {
             binding.root.setOnClickListener {
@@ -57,11 +56,10 @@ class WorkoutsAdapter(
             this.workout = workout
             binding.apply {
                 titleText.text = workout.name
-                timeText.text =
-                    timeText.context.getString(
-                        R.string.x_minutes,
-                        workout.getTotalMinutes().toFormattedString()
-                    )
+                timeText.text = timeText.context.getString(
+                    R.string.x_minutes,
+                    workout.getTotalMinutes().toFormattedString()
+                )
             }
         }
     }
