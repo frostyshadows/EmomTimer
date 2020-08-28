@@ -3,6 +3,7 @@ package com.sherryyuan.emomtimer
 import android.content.Context
 import android.media.AudioManager
 import android.media.ToneGenerator
+import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import java.util.*
 
@@ -23,9 +24,10 @@ class AudioPlayer(context: Context) {
     }
 
     fun speak(text: String) {
-        // Queue mode where all entries in the playback queue are dropped and replaced by the
-        // new entry.
-        tts.speak(text, TextToSpeech.QUEUE_ADD, null, null)
+        val bundle = Bundle().apply {
+            putInt(TextToSpeech.Engine.KEY_PARAM_STREAM, AudioManager.STREAM_ALARM)
+        }
+        tts.speak(text, TextToSpeech.QUEUE_ADD, bundle, null)
     }
 
     fun playBeep() {
