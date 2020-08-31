@@ -61,6 +61,18 @@ class SimpleTimerViewModel(
         return 0
     }
 
+    override fun sayFirstExercise() {
+        _timerViewData.value?.let { timerViewData ->
+            audioPlayer.speak(
+                resourcesProvider.getString(
+                    R.string.simple_timer_next_exercise,
+                    timerViewData.currentSet + 1,
+                    timerViewData.totalSets
+                )
+            )
+        }
+    }
+
     override fun sayNextExercise() {
         _timerViewData.value?.let { timerViewData ->
             if (timerViewData.currentSet + 1 < timerViewData.totalSets) {
