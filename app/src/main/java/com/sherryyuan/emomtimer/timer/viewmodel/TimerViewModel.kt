@@ -72,6 +72,8 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
 
     abstract fun getTotalRemainingSeconds(): Int
 
+    abstract fun sayFirstExercise()
+
     abstract fun sayNextExercise()
 
     fun start() {
@@ -112,7 +114,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
             var hasSaidNextExercise = false
 
             override fun onTick(millisUntilFinished: Long) {
-                // Say the next exercise the first time onTick() is called with < 5 seconds left.
+                // Say the next exercise the first time onTick() is called with < 8 seconds left.
                 if (!hasSaidNextExercise && millisUntilFinished < EIGHT_SECONDS) {
                     sayNextExercise()
                     hasSaidNextExercise = true
@@ -133,11 +135,17 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
      */
     private fun playCountdownToStart() {
         val countdownTimerToStart =
-            object : CountDownTimer(THREE_SECONDS, MILLIS_PER_SECOND.toLong()) {
+            object : CountDownTimer(EIGHT_SECONDS, MILLIS_PER_SECOND.toLong()) {
 
+                var hasSaidNextExercise = false
                 var lastCountedSecond = 4
 
                 override fun onTick(millisUntilFinished: Long) {
+                    // Say the next exercise the first time onTick() is called with < 8 seconds left.
+                    if (!hasSaidNextExercise && millisUntilFinished < EIGHT_SECONDS) {
+                        sayFirstExercise()
+                        hasSaidNextExercise = true
+                    }
                     when {
                         (lastCountedSecond > 3 && millisUntilFinished < THREE_SECONDS) -> {
                             audioPlayer.speak("3")

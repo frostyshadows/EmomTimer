@@ -93,6 +93,18 @@ class WorkoutTimerViewModel(private val workout: Workout) : TimerViewModel() {
         return 0
     }
 
+    override fun sayFirstExercise() {
+        val currentExercise: Exercise = workout.exercises[0]
+        audioPlayer.speak(
+            resourcesProvider.getString(
+                R.string.workout_timer_next_exercise,
+                currentExercise.numSeconds,
+                currentExercise.numReps,
+                currentExercise.name
+            )
+        )
+    }
+
     override fun sayNextExercise() {
         _timerViewData.value?.let { timerViewData ->
             if (timerViewData.currentExercise ?: 0 >= workout.exercises.size - 1) {
