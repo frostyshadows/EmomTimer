@@ -92,9 +92,16 @@
         <action
             android:id="@+id/action_settings_to_about"
             app:destination="@id/navigation_about_emom" />
+        <action
+            android:id="@+id/action_settings_to_exercise_names"
+            app:destination="@id/navigation_exercise_names" />
     </fragment>
     <fragment
         android:id="@+id/navigation_about_emom"
         android:name="com.sherryyuan.emomtimer.settings.AboutEmomFragment"
+        android:label="@string/title_settings" />
+    <fragment
+        android:id="@+id/navigation_exercise_names"
+        android:name="com.sherryyuan.emomtimer.settings.ExerciseNamesFragment"
         android:label="@string/title_settings" />
 </navigation>

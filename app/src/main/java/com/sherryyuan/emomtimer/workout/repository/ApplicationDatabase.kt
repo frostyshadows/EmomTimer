@@ -1,4 +1,4 @@
-package com.sherryyuan.emomtimer
+package com.sherryyuan.emomtimer.workout.repository
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

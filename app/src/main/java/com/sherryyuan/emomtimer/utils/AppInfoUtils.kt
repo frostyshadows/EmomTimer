@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.sherryyuan.emomtimer.BuildConfig
+import com.sherryyuan.emomtimer.PREFS_NAME
 
-private const val PREFS_NAME = "emom_shared_prefs"
 private const val PREF_VERSION_CODE_KEY = "version_code"
 private const val NOT_FOUND = -1
 

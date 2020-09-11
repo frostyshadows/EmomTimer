@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutDetailBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.WorkoutTimerViewModelType
@@ -26,9 +25,6 @@ class WorkoutDetailFragment : Fragment() {
     private val binding: FragmentWorkoutDetailBinding by lazy {
         FragmentWorkoutDetailBinding.inflate(layoutInflater)
     }
-
-    private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var workoutDetailAdapter: WorkoutDetailExercisesAdapter
 
     private val navController by lazy { findNavController() }
 
@@ -54,13 +50,10 @@ class WorkoutDetailFragment : Fragment() {
     }
 
     private fun setupExercisesList() {
-        viewManager = LinearLayoutManager(context)
-        workoutDetailAdapter = WorkoutDetailExercisesAdapter(navArgs.workout.exercises)
-
         binding.listExercises.apply {
             setHasFixedSize(true)
-            layoutManager = viewManager
-            adapter = workoutDetailAdapter
+            layoutManager = LinearLayoutManager(context)
+            adapter = WorkoutDetailExercisesAdapter(navArgs.workout.exercises)
         }
     }
 
