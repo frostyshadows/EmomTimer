@@ -18,5 +18,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsToAbout())
             true
         }
+        findPreference<Preference>("saved_exercises")?.setOnPreferenceClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsToExerciseNames())
+            true
+        }
     }
 }

@@ -12,11 +12,16 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.ItemAddExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
 import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
+import com.sherryyuan.emomtimer.workout.repository.ExerciseNamesStorage
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 
 class AddOrEditWorkoutExercisesAdapter(
     private val exercises: MutableList<Exercise>
-) : RecyclerView.Adapter<AddOrEditWorkoutExercisesAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<AddOrEditWorkoutExercisesAdapter.ViewHolder>(), KoinComponent {
+
+    private val exerciseNamesStorage by inject<ExerciseNamesStorage>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -41,6 +46,18 @@ class AddOrEditWorkoutExercisesAdapter(
         private lateinit var exercise: Exercise
 
         fun create() {
+            setupTimeCountText()
+            setupDeleteButton()
+            setupSpinner()
+            setupExerciseAutocomplete()
+        }
+
+        fun bind(exercise: Exercise) {
+            this.exercise = exercise
+            binding.exercise = exercise
+        }
+
+        private fun setupTimeCountText() {
             binding.apply {
                 secondCountText.addTextChangedListener(NumberTextWatcher(secondCountText))
                 minuteCountText.addTextChangedListener(NumberTextWatcher(minuteCountText))
@@ -60,17 +77,14 @@ class AddOrEditWorkoutExercisesAdapter(
                         secondCountText.setText(secondsText)
                     }
                 }
-                deleteButton.setOnClickListener {
-                    exercises.remove(exercise)
-                    notifyItemRemoved(adapterPosition)
-                }
             }
-            setupSpinner()
         }
 
-        fun bind(exercise: Exercise) {
-            this.exercise = exercise
-            binding.exercise = exercise
+        private fun setupDeleteButton() {
+            binding.deleteButton.setOnClickListener {
+                exercises.remove(exercise)
+                notifyItemRemoved(adapterPosition)
+            }
         }
 
         private fun setupSpinner() {
@@ -105,6 +119,15 @@ class AddOrEditWorkoutExercisesAdapter(
                         }
                     }
             }
+        }
+
+        private fun setupExerciseAutocomplete() {
+            val exerciseNameAdapter: ArrayAdapter<String> = ExerciseAutocompleteArrayAdapter(
+                binding.root.context,
+                android.R.layout.simple_spinner_dropdown_item,
+                exerciseNamesStorage.getAllExerciseNames().toList()
+            )
+            binding.exerciseNameText.setAdapter(exerciseNameAdapter)
         }
     }
 }
