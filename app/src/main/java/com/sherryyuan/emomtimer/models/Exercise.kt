@@ -3,13 +3,14 @@ package com.sherryyuan.emomtimer.models
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.io.Serializable
 import java.lang.reflect.Type
 
 data class Exercise(
     var name: String = "",
     var numSeconds: Int = 0,
     var numReps: Int = 0
-)
+) : Serializable
 
 class ExerciseConverters {
     private val gson = Gson()
