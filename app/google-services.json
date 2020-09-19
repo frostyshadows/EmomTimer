@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "93292671231",
+    "firebase_url": "https://emomtimer-b1df3.firebaseio.com",
+    "project_id": "emomtimer-b1df3",
+    "storage_bucket": "emomtimer-b1df3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93292671231:android:310898dfdee7f23b01dcca",
+        "android_client_info": {
+          "package_name": "com.sherryyuan.emomtimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93292671231-v4ru6u4344f5dacesgkig88fjm59uaq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-nSFCg1qKpfgXbvF0vTeL_0MW3Y-4AOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93292671231-v4ru6u4344f5dacesgkig88fjm59uaq3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

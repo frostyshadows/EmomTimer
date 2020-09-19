@@ -3,7 +3,7 @@
         android:key="about"
         android:layout="@layout/preference_about" />
 
-    <Preference
-        android:key="saved_exercises"
-        android:layout="@layout/preference_saved_exercises" />
+<!--    <Preference-->
+<!--        android:key="saved_exercises"-->
+<!--        android:layout="@layout/preference_saved_exercises" />-->
 </PreferenceScreen>
