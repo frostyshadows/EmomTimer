@@ -114,9 +114,8 @@ class TimerCountdownFragment : Fragment() {
 
     private fun updateButtons(timerViewState: TimerViewState) {
         @DrawableRes val buttonDrawable: Int = when (timerViewState) {
-            TimerViewState.NOT_STARTED -> R.drawable.icon_play_arrow
+            TimerViewState.NOT_STARTED, TimerViewState.PAUSED -> R.drawable.icon_play_arrow
             TimerViewState.RUNNING -> R.drawable.icon_pause
-            TimerViewState.PAUSED -> R.drawable.icon_play_arrow
             else -> R.drawable.icon_play_arrow
         }
         binding.timerControllerButton.isVisible = timerViewState != TimerViewState.STARTING
@@ -145,6 +144,7 @@ class TimerCountdownFragment : Fragment() {
                 this,
                 object : OnBackPressedCallback(true) {
                     override fun handleOnBackPressed() {
+                        viewModel.pause()
                         if (viewModel.timerViewState.value == TimerViewState.NOT_STARTED) {
                             isEnabled = false
                             activity.onBackPressed()
@@ -157,6 +157,7 @@ class TimerCountdownFragment : Fragment() {
                                 }
                                 .setNegativeButton(R.string.cancel) { dialog, _ ->
                                     dialog.cancel()
+                                    viewModel.resume()
                                 }
                                 .create()
                                 .show()

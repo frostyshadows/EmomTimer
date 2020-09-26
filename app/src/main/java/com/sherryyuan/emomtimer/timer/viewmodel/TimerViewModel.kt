@@ -34,9 +34,12 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
     protected val audioPlayer: AudioPlayer = get()
     protected val resourcesProvider: ResourcesProvider by inject()
 
+    private val countdownTimerToStart: CountDownTimer = createCountdownTimerToStart()
     private var timer: CountDownTimer? = null
+    private var hasSaidNextExercise = false
 
     override fun onCleared() {
+        countdownTimerToStart.cancel()
         timer?.cancel()
         timer = null
         audioPlayer.shutdown()
@@ -49,6 +52,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
     @CallSuper
     open fun startNextExercise(startTimer: Boolean = true) {
         audioPlayer.playBeep()
+        hasSaidNextExercise = false
         setupTimer(_timerViewData.value?.getRemainingMillisInSet() ?: 0L)
         if (startTimer) {
             viewModelScope.launch {
@@ -78,7 +82,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
 
     fun start() {
         _timerViewState.value = TimerViewState.STARTING
-        playCountdownToStart()
+        countdownTimerToStart.start()
     }
 
     /**
@@ -88,6 +92,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
     fun pause() {
         _timerViewState.value = TimerViewState.PAUSED
         timer?.cancel()
+        countdownTimerToStart.cancel()
     }
 
     fun resume() {
@@ -109,9 +114,8 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
     private fun setupTimer(millisRemaining: Long) {
         // Cancel any existing timer.
         timer?.cancel()
+        countdownTimerToStart.cancel()
         timer = object : CountDownTimer(millisRemaining, MILLIS_PER_SECOND.toLong()) {
-
-            var hasSaidNextExercise = false
 
             override fun onTick(millisUntilFinished: Long) {
                 // Say the next exercise the first time onTick() is called with < 8 seconds left.
@@ -133,41 +137,37 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
     /**
      * Count down for 3 seconds before starting the workout.
      */
-    private fun playCountdownToStart() {
-        val countdownTimerToStart =
-            object : CountDownTimer(EIGHT_SECONDS, MILLIS_PER_SECOND.toLong()) {
+    private fun createCountdownTimerToStart(): CountDownTimer =
+        object : CountDownTimer(EIGHT_SECONDS, MILLIS_PER_SECOND.toLong()) {
+            var hasSaidFirstExercise = false
+            var lastCountedSecond = 4
 
-                var hasSaidNextExercise = false
-                var lastCountedSecond = 4
-
-                override fun onTick(millisUntilFinished: Long) {
-                    // Say the next exercise the first time onTick() is called with < 8 seconds left.
-                    if (!hasSaidNextExercise && millisUntilFinished < EIGHT_SECONDS) {
-                        sayFirstExercise()
-                        hasSaidNextExercise = true
-                    }
-                    when {
-                        (lastCountedSecond > 3 && millisUntilFinished < THREE_SECONDS) -> {
-                            audioPlayer.speak("3")
-                            lastCountedSecond--
-                        }
-                        (lastCountedSecond > 2 && millisUntilFinished < TWO_SECONDS) -> {
-                            audioPlayer.speak("2")
-                            lastCountedSecond--
-                        }
-                        (lastCountedSecond > 1 && millisUntilFinished < ONE_SECOND) -> {
-                            audioPlayer.speak("1")
-                            lastCountedSecond--
-                        }
-                    }
+            override fun onTick(millisUntilFinished: Long) {
+                // Say the next exercise the first time onTick() is called with < 8 seconds left.
+                if (!hasSaidFirstExercise && millisUntilFinished < EIGHT_SECONDS) {
+                    sayFirstExercise()
+                    hasSaidFirstExercise = true
                 }
-
-                override fun onFinish() {
-                    audioPlayer.playBeep()
-                    resume()
-                    this.cancel()
+                when {
+                    (lastCountedSecond > 3 && millisUntilFinished < THREE_SECONDS) -> {
+                        audioPlayer.speak("3")
+                        lastCountedSecond--
+                    }
+                    (lastCountedSecond > 2 && millisUntilFinished < TWO_SECONDS) -> {
+                        audioPlayer.speak("2")
+                        lastCountedSecond--
+                    }
+                    (lastCountedSecond > 1 && millisUntilFinished < ONE_SECOND) -> {
+                        audioPlayer.speak("1")
+                        lastCountedSecond--
+                    }
                 }
             }
-        countdownTimerToStart.start()
-    }
+
+            override fun onFinish() {
+                audioPlayer.playBeep()
+                resume()
+                this.cancel()
+            }
+        }
 }
