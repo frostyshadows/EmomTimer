@@ -34,13 +34,13 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
     protected val audioPlayer: AudioPlayer = get()
     protected val resourcesProvider: ResourcesProvider by inject()
 
+    private val countdownTimerToStart: CountDownTimer = createCountdownTimerToStart()
     private var timer: CountDownTimer? = null
-    private var countdownTimerToStart: CountDownTimer = createCountdownTimerToStart()
     private var hasSaidNextExercise = false
 
     override fun onCleared() {
-        timer?.cancel()
         countdownTimerToStart.cancel()
+        timer?.cancel()
         timer = null
         audioPlayer.shutdown()
     }
