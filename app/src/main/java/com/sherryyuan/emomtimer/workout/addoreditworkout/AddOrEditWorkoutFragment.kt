@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
@@ -35,7 +37,11 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
     }
 
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var viewAdapterAddOrEditWorkout: AddOrEditWorkoutExercisesAdapter
+    private lateinit var viewAdapter: AddOrEditWorkoutExercisesAdapter
+
+    private val itemTouchHelper: ItemTouchHelper by lazy(LazyThreadSafetyMode.NONE) {
+        createSimpleItemTouchHelper()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,18 +69,18 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
 
     private fun setupExercisesList() {
         viewManager = LinearLayoutManager(context)
-        viewAdapterAddOrEditWorkout = AddOrEditWorkoutExercisesAdapter(exercises)
-
+        viewAdapter = AddOrEditWorkoutExercisesAdapter(exercises)
         binding.listExercises.apply {
             layoutManager = viewManager
-            adapter = viewAdapterAddOrEditWorkout
+            adapter = viewAdapter
         }
+        itemTouchHelper.attachToRecyclerView(binding.listExercises)
     }
 
     private fun setupAddExerciseButton() {
         binding.addExerciseButton.setOnClickListener {
             exercises.add(Exercise(numSeconds = SECONDS_PER_MINUTE))
-            viewAdapterAddOrEditWorkout.notifyItemInserted(exercises.indices.last)
+            viewAdapter.notifyItemInserted(exercises.indices.last)
             binding.listExercises.smoothScrollToPosition(exercises.indices.last)
         }
     }
@@ -123,5 +129,34 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
                 imm.hideSoftInputFromWindow(view.windowToken, 0)
             }
         }
+    }
+
+    private fun createSimpleItemTouchHelper(): ItemTouchHelper {
+        val simpleItemTouchCallback =
+            // Specifying START and END allows more organic dragging than just specifying UP and DOWN.
+            object : ItemTouchHelper.SimpleCallback(UP or DOWN or START or END, LEFT) {
+
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    val from = viewHolder.adapterPosition
+                    val to = target.adapterPosition
+                    // 2. Update the backing model. Custom implementation in
+                    //    MainRecyclerViewAdapter. You need to implement
+                    //    reordering of the backing model inside the method.
+                    viewAdapter.moveItem(from, to)
+                    // 3. Tell adapter to render the model update.
+                    viewAdapter.notifyItemMoved(from, to)
+
+                    return true
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    // TODO: Delete on swipe
+                }
+            }
+        return ItemTouchHelper(simpleItemTouchCallback)
     }
 }

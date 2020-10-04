@@ -40,6 +40,11 @@ class AddOrEditWorkoutExercisesAdapter(
 
     override fun getItemCount() = exercises.size
 
+    fun moveItem(from: Int, to: Int) {
+        val movedExercise: Exercise = exercises.removeAt(from)
+        exercises.add(to, movedExercise)
+    }
+
     inner class ViewHolder(private val binding: ItemAddExerciseBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
