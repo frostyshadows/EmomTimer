@@ -12,7 +12,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.*
+import androidx.recyclerview.widget.ItemTouchHelper.DOWN
+import androidx.recyclerview.widget.ItemTouchHelper.END
+import androidx.recyclerview.widget.ItemTouchHelper.LEFT
+import androidx.recyclerview.widget.ItemTouchHelper.START
+import androidx.recyclerview.widget.ItemTouchHelper.UP
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.R
@@ -143,11 +147,7 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
                 ): Boolean {
                     val from = viewHolder.adapterPosition
                     val to = target.adapterPosition
-                    // 2. Update the backing model. Custom implementation in
-                    //    MainRecyclerViewAdapter. You need to implement
-                    //    reordering of the backing model inside the method.
                     viewAdapter.moveItem(from, to)
-                    // 3. Tell adapter to render the model update.
                     viewAdapter.notifyItemMoved(from, to)
 
                     return true
