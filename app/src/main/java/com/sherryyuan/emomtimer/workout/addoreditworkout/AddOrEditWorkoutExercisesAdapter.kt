@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.ItemAddExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
@@ -22,6 +23,8 @@ class AddOrEditWorkoutExercisesAdapter(
 ) : RecyclerView.Adapter<AddOrEditWorkoutExercisesAdapter.ViewHolder>(), KoinComponent {
 
     private val exerciseNamesStorage by inject<ExerciseNamesStorage>()
+    private var lastDeletedExercise: Exercise? = null
+    private var lastDeletedExercisePosition: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -45,6 +48,15 @@ class AddOrEditWorkoutExercisesAdapter(
         exercises.add(to, movedExercise)
     }
 
+    fun delete(view: View?, position: Int) {
+        lastDeletedExercise = exercises[position]
+        lastDeletedExercisePosition = position
+        exercises.removeAt(position)
+        notifyItemRemoved(position)
+        view?.let { showUndoSnackbar(it) }
+    }
+
+
     inner class ViewHolder(private val binding: ItemAddExerciseBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -52,6 +64,7 @@ class AddOrEditWorkoutExercisesAdapter(
 
         fun create() {
             setupTimeCountText()
+            // TODO: replace delete button with movement drawable
             setupDeleteButton()
             setupSpinner()
             setupExerciseAutocomplete()
@@ -134,5 +147,16 @@ class AddOrEditWorkoutExercisesAdapter(
             )
             binding.exerciseNameText.setAdapter(exerciseNameAdapter)
         }
+    }
+
+    private fun showUndoSnackbar(view: View) {
+        Snackbar.make(view, R.string.snackbar_undo_delete_text, Snackbar.LENGTH_LONG)
+            .setAction(R.string.snackbar_undo_delete_button) { undoDelete() }
+            .show()
+    }
+
+    private fun undoDelete() {
+        lastDeletedExercise?.let { exercises.add(lastDeletedExercisePosition, it) }
+        notifyItemInserted(lastDeletedExercisePosition)
     }
 }

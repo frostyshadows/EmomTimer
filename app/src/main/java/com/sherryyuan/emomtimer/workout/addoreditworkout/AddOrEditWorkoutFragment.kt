@@ -2,11 +2,16 @@ package com.sherryyuan.emomtimer.workout.addoreditworkout
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -45,6 +50,11 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
 
     private val itemTouchHelper: ItemTouchHelper by lazy(LazyThreadSafetyMode.NONE) {
         createSimpleItemTouchHelper()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setupOnBackPressed()
     }
 
     override fun onCreateView(
@@ -91,20 +101,55 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
 
     private fun setupSaveButton() {
         binding.saveButton.setOnClickListener {
-            val title: String? = binding.titleText.text?.toString()
-            val numSets: Int = binding.setsCountText.text.toString().toIntOrNull() ?: 0
-            val filledExercises =
-                exercises.filter { it.name.isNotEmpty() && it.numSeconds > 0 && it.numReps > 0 }
-            if (!title.isNullOrBlank() && numSets > 0 && filledExercises.isNotEmpty()) {
-                saveWorkout(title, numSets, filledExercises)
+            val currentWorkout = getCurrentWorkoutOrNull()
+            if (currentWorkout != null) {
+                saveWorkout(currentWorkout)
             } else {
                 showMissingFieldsDialog()
             }
         }
     }
 
-    private fun saveWorkout(title: String, numSets: Int, filledExercises: List<Exercise>) {
-        val workout = Workout(title, numSets, filledExercises)
+    // If the workout has unsaved changes, show a dialog asking user whether or not to save them
+    // before navigating back.
+    private fun setupOnBackPressed() {
+        activity?.let { activity ->
+            activity.onBackPressedDispatcher.addCallback(
+                this,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        isEnabled = false
+                        val currentWorkout = getCurrentWorkoutOrNull()
+                        if (currentWorkout == navArgs.workout || currentWorkout == null) {
+                            activity.onBackPressed()
+                        } else {
+                            AlertDialog.Builder(activity)
+                                .setMessage(R.string.alert_save_workout_changes)
+                                .setPositiveButton(R.string.yes) { _, _ ->
+                                    saveWorkout(currentWorkout)
+                                }
+                                .setNegativeButton(R.string.no) { dialog, _ ->
+                                    dialog.cancel()
+                                    activity.onBackPressed()
+                                }
+                                .create()
+                                .show()
+                        }
+                    }
+                })
+        }
+    }
+
+    private fun getCurrentWorkoutOrNull(): Workout? {
+        val title: String? = binding.titleText.text?.toString()
+        val numSets: Int = binding.setsCountText.text.toString().toIntOrNull() ?: 0
+        val filledExercises =
+            exercises.filter { it.name.isNotEmpty() && it.numSeconds > 0 && it.numReps > 0 }
+        if (title.isNullOrBlank() || numSets <= 0 || filledExercises.isNullOrEmpty()) return null
+        return Workout(title, numSets, filledExercises)
+    }
+
+    private fun saveWorkout(workout: Workout) {
         viewModel.saveWorkout(newWorkout = workout, prevWorkout = navArgs.workout)
         hideSoftKeyboard()
         findNavController().navigate(
@@ -140,6 +185,16 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
             // Specifying START and END allows more organic dragging than just specifying UP and DOWN.
             object : ItemTouchHelper.SimpleCallback(UP or DOWN or START or END, LEFT) {
 
+                val icon = context?.let {
+                    ContextCompat.getDrawable(it, R.drawable.icon_delete)?.apply {
+                        setTint(Color.WHITE)
+                    }
+                }
+
+                // TODO make corner rounded
+                val background = ColorDrawable(Color.RED)
+                val backgroundCornerOffset = 20
+
                 override fun onMove(
                     recyclerView: RecyclerView,
                     viewHolder: RecyclerView.ViewHolder,
@@ -154,7 +209,53 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
                 }
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    // TODO: Delete on swipe
+                    viewAdapter.delete(view, viewHolder.adapterPosition)
+                }
+
+                override fun onChildDraw(
+                    c: Canvas,
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    dX: Float,
+                    dY: Float,
+                    actionState: Int,
+                    isCurrentlyActive: Boolean
+                ) {
+                    super.onChildDraw(
+                        c,
+                        recyclerView,
+                        viewHolder,
+                        dX,
+                        dY,
+                        actionState,
+                        isCurrentlyActive
+                    )
+
+                    if (icon == null) return
+
+                    val itemView = viewHolder.itemView
+                    val iconMargin = (itemView.height - icon.intrinsicHeight) / 2
+                    val iconTop = itemView.top + (itemView.height - icon.intrinsicHeight) / 2
+                    val iconBottom = iconTop + icon.intrinsicHeight
+
+                    when {
+                        dX < 0 && dY == 0f -> { // Swiping to the left.
+                            val iconLeft = itemView.right - iconMargin - icon.intrinsicWidth
+                            val iconRight = itemView.right - iconMargin
+                            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom)
+                            background.setBounds(
+                                itemView.right + dX.toInt() - backgroundCornerOffset,
+                                itemView.top,
+                                itemView.right,
+                                itemView.bottom
+                            )
+                            background.draw(c)
+                            icon.draw(c)
+                        }
+                        else -> { // View is unswiped.
+                            background.setBounds(0, 0, 0, 0)
+                        }
+                    }
                 }
             }
         return ItemTouchHelper(simpleItemTouchCallback)
