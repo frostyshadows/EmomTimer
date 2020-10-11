@@ -13,12 +13,16 @@
     <string name="repeat_for">repeat for</string>
     <string name="repeat_for_x_sets">repeat for %1$d sets</string>
     <string name="save">Save</string>
+    <string name="alert_save_workout_changes">Do you want to save your changes?</string>
+    <string name="snackbar_undo_delete_text">Deleted exercise.</string>
+    <string name="snackbar_undo_delete_button">Undo</string>
     <string name="hint_three_sets">3</string>
     <string name="sets">sets</string>
     <string name="x_minutes">%1$s minutes</string>
     <string name="alert_delete_workout">Are you sure you want to delete this workout?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
+    <string name="no">No</string>
     <string name="title_timer">Timer</string>
     <string name="every">Every</string>
     <string name="hint_twenty_sets">20</string>
