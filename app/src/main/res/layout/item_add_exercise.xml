@@ -130,8 +130,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:background="@color/transparent"
-                android:src="@drawable/icon_delete"
-                android:tint="@color/colorPrimary"
+                android:src="@drawable/icon_reorder"
+                android:tint="@color/colorBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -64,8 +64,6 @@ class AddOrEditWorkoutExercisesAdapter(
 
         fun create() {
             setupTimeCountText()
-            // TODO: replace delete button with movement drawable
-            setupDeleteButton()
             setupSpinner()
             setupExerciseAutocomplete()
         }
@@ -95,13 +93,6 @@ class AddOrEditWorkoutExercisesAdapter(
                         secondCountText.setText(secondsText)
                     }
                 }
-            }
-        }
-
-        private fun setupDeleteButton() {
-            binding.deleteButton.setOnClickListener {
-                exercises.remove(exercise)
-                notifyItemRemoved(adapterPosition)
             }
         }
 

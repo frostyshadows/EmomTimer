@@ -181,19 +181,19 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
     }
 
     private fun createSimpleItemTouchHelper(): ItemTouchHelper {
+        val icon = context?.let {
+            ContextCompat.getDrawable(it, R.drawable.icon_delete)?.apply {
+                setTint(Color.WHITE)
+            }
+        }
+        val background = context?.let {
+            ContextCompat.getDrawable(it, R.drawable.background_rounded_red_rectangle)
+        } ?: ColorDrawable(Color.RED)
+        val backgroundCornerOffset = 20
+
         val simpleItemTouchCallback =
             // Specifying START and END allows more organic dragging than just specifying UP and DOWN.
             object : ItemTouchHelper.SimpleCallback(UP or DOWN or START or END, LEFT) {
-
-                val icon = context?.let {
-                    ContextCompat.getDrawable(it, R.drawable.icon_delete)?.apply {
-                        setTint(Color.WHITE)
-                    }
-                }
-
-                // TODO make corner rounded
-                val background = ColorDrawable(Color.RED)
-                val backgroundCornerOffset = 20
 
                 override fun onMove(
                     recyclerView: RecyclerView,
@@ -204,7 +204,6 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
                     val to = target.adapterPosition
                     viewAdapter.moveItem(from, to)
                     viewAdapter.notifyItemMoved(from, to)
-
                     return true
                 }
 
@@ -234,27 +233,26 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
                     if (icon == null) return
 
                     val itemView = viewHolder.itemView
-                    val iconMargin = (itemView.height - icon.intrinsicHeight) / 2
+                    val iconMargin = resources.getDimension(R.dimen.size_24).toInt()
                     val iconTop = itemView.top + (itemView.height - icon.intrinsicHeight) / 2
                     val iconBottom = iconTop + icon.intrinsicHeight
 
-                    when {
-                        dX < 0 && dY == 0f -> { // Swiping to the left.
-                            val iconLeft = itemView.right - iconMargin - icon.intrinsicWidth
-                            val iconRight = itemView.right - iconMargin
-                            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom)
-                            background.setBounds(
-                                itemView.right + dX.toInt() - backgroundCornerOffset,
-                                itemView.top,
-                                itemView.right,
-                                itemView.bottom
-                            )
-                            background.draw(c)
-                            icon.draw(c)
-                        }
-                        else -> { // View is unswiped.
-                            background.setBounds(0, 0, 0, 0)
-                        }
+                    if (dX < 0 && dY == 0f) {
+                        // Swiping to the left.
+                        val iconLeft = itemView.right - iconMargin - icon.intrinsicWidth
+                        val iconRight = itemView.right - iconMargin
+                        icon.setBounds(iconLeft, iconTop, iconRight, iconBottom)
+                        background.setBounds(
+                            itemView.right + dX.toInt() - backgroundCornerOffset,
+                            itemView.top,
+                            itemView.right,
+                            itemView.bottom
+                        )
+                        background.draw(c)
+                        icon.draw(c)
+                    } else {
+                        // View is unswiped.
+                        background.setBounds(0, 0, 0, 0)
                     }
                 }
             }
