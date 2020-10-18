@@ -8,7 +8,7 @@ import java.io.Serializable
 @Entity
 data class Workout(
     val name: String,
-    val numSets: Int,
+    val numRounds: Int,
     val exercises: List<Exercise>
 ) : Serializable {
 
@@ -16,5 +16,5 @@ data class Workout(
     var id: Int = 0
 
     fun getTotalMinutes(): Double =
-        exercises.sumBy { it.numSeconds }.toDouble() / SECONDS_PER_MINUTE * numSets
+        exercises.sumBy { it.numSeconds }.toDouble() / SECONDS_PER_MINUTE * numRounds
 }

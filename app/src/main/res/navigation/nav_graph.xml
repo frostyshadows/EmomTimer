@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_timer_config"
-        android:name="com.sherryyuan.emomtimer.timer.SimpleTimerConfigFragment"
+        android:name="com.sherryyuan.emomtimer.timer.SimpleEmomTimerConfigFragment"
         android:label="@string/title_timer">
         <action
             android:id="@+id/action_timerConfig_to_timerCountdown"

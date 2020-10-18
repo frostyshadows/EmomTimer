@@ -63,37 +63,37 @@
             android:layout_marginBottom="@dimen/size_8"
             android:text="@string/repeat_for"
             app:layout_constraintBottom_toTopOf="@id/save_button"
-            app:layout_constraintEnd_toStartOf="@id/sets_count_text"
+            app:layout_constraintEnd_toStartOf="@id/rounds_count_text"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/sets_count_text"
+            android:id="@+id/rounds_count_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
             android:layout_marginEnd="@dimen/size_4"
             android:layout_marginBottom="@dimen/size_8"
             android:gravity="center_horizontal"
-            android:hint="@string/hint_three_sets"
+            android:hint="@string/hint_three_rounds"
             android:inputType="number"
             android:minWidth="@dimen/size_20"
             android:paddingStart="@dimen/size_4"
             android:paddingEnd="@dimen/size_4"
             app:layout_constraintBottom_toBottomOf="@id/repeat_for_text"
-            app:layout_constraintEnd_toStartOf="@id/sets_text"
+            app:layout_constraintEnd_toStartOf="@id/rounds_text"
             app:layout_constraintStart_toEndOf="@id/repeat_for_text"
             app:layout_constraintTop_toTopOf="@id/repeat_for_text" />
 
         <TextView
-            android:id="@+id/sets_text"
+            android:id="@+id/rounds_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/size_8"
-            android:text="@string/sets"
+            android:text="@string/rounds"
             app:layout_constraintBottom_toTopOf="@id/save_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/sets_count_text" />
+            app:layout_constraintStart_toEndOf="@id/rounds_count_text" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/save_button"

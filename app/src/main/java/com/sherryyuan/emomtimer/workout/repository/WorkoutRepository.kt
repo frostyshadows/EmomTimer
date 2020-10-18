@@ -24,7 +24,7 @@ class WorkoutRepository : KoinComponent {
     }
 
     suspend fun updateWorkout(workout: Workout) =
-        roomDao.updateWorkout(workout.name, workout.numSets, workout.exercises, workout.id).also {
+        roomDao.updateWorkout(workout.name, workout.numRounds, workout.exercises, workout.id).also {
             exerciseNameStorage.addExerciseNames(workout.exercises.map { it.name })
         }
 
