@@ -40,7 +40,7 @@ class WorkoutDetailFragment : Fragment() {
                 navArgs.workout.getTotalMinutes().toFormattedString()
             )
             repeatForText.text =
-                binding.root.context.getString(R.string.repeat_for_x_sets, navArgs.workout.numSets)
+                binding.root.context.getString(R.string.repeat_for_x_rounds, navArgs.workout.numRounds)
         }
         setupExercisesList()
         setupEditButton()

@@ -8,15 +8,15 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sherryyuan.emomtimer.R
+import com.sherryyuan.emomtimer.databinding.FragmentSimpleEmomTimerConfigBinding
+import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType
 import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
-import com.sherryyuan.emomtimer.databinding.FragmentSimpleTimerConfigBinding
-import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.SimpleTimerViewModelType
 
 
-class SimpleTimerConfigFragment : Fragment() {
+class SimpleEmomTimerConfigFragment : Fragment() {
 
-    private val binding: FragmentSimpleTimerConfigBinding by lazy {
-        FragmentSimpleTimerConfigBinding.inflate(layoutInflater)
+    private val binding: FragmentSimpleEmomTimerConfigBinding by lazy {
+        FragmentSimpleEmomTimerConfigBinding.inflate(layoutInflater)
     }
 
     override fun onCreateView(
@@ -44,7 +44,7 @@ class SimpleTimerConfigFragment : Fragment() {
 
     private fun setupStartButton() {
         binding.startButton.setOnClickListener {
-            val numTime: Int = binding.numTimeText.text.toString().toIntOrNull() ?: 1
+            val numTime: Int = binding.numRoundsText.text.toString().toIntOrNull() ?: 1
             val numSeconds: Int =
                 if (binding.timeUnitSpinner.selectedItem == "minute(s)") {
                     numTime * SECONDS_PER_MINUTE
@@ -52,10 +52,10 @@ class SimpleTimerConfigFragment : Fragment() {
                     numTime
                 }
             val numSets: Int =
-                binding.numSetsText.text.toString().toIntOrNull() ?: 20
+                binding.numRoundsText.text.toString().toIntOrNull() ?: 20
             findNavController().navigate(
-                SimpleTimerConfigFragmentDirections.actionTimerConfigToTimerCountdown(
-                    SimpleTimerViewModelType(numSeconds, numSets)
+                SimpleEmomTimerConfigFragmentDirections.actionTimerConfigToTimerCountdown(
+                    TimerViewModelType.SimpleEmomTimerViewModelType(numSeconds, numSets)
                 )
             )
         }

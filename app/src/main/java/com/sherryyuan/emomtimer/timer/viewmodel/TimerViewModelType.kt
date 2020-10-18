@@ -9,7 +9,15 @@ import java.io.Serializable
 sealed class TimerViewModelType : Serializable {
 
     // Represents a simple EMOM timer.
-    data class SimpleTimerViewModelType(val numSecondsPerSet: Int, val numSets: Int) :
+    data class SimpleEmomTimerViewModelType(val numSecondsPerRound: Int, val numRounds: Int) :
+        TimerViewModelType()
+
+    // Represents a simple Tabata timer.
+    data class SimpleTabataTimerViewModelType(
+        val numWorkSecondsPerRound: Int,
+        val numRestSecondsPerRound: Int,
+        val numRounds: Int
+    ) :
         TimerViewModelType()
 
     // Represents a EMOM timer associated with a specific workout.

@@ -4,35 +4,35 @@ import androidx.lifecycle.MutableLiveData
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.timer.TimerViewData
 
-class SimpleTimerViewModel(
-    private val numSecondsPerSet: Int,
-    private val numSets: Int
+class SimpleEmomTimerViewModel(
+    private val numSecondsPerRound: Int,
+    private val numRounds: Int
 ) : TimerViewModel() {
 
     override val _timerViewData: MutableLiveData<TimerViewData> =
         MutableLiveData(
             TimerViewData(
                 timerName = null,
-                totalSecondsInSet = numSecondsPerSet,
-                secondsRemainingInSet = numSecondsPerSet,
-                currentSet = 0,
-                totalSets = numSets
+                totalSecondsInRound = numSecondsPerRound,
+                secondsRemainingInRound = numSecondsPerRound,
+                currentRound = 0,
+                totalRounds = numRounds
             )
         )
 
     override fun startNextExercise(startTimer: Boolean) {
-        val currentSet: Int = _timerViewData.value?.currentSet ?: 0
-        if (currentSet >= numSets - 1) {
+        val currentSet: Int = _timerViewData.value?.currentRound ?: 0
+        if (currentSet >= numRounds - 1) {
             finish()
             return
         }
         _timerViewData.value =
             TimerViewData(
                 timerName = null,
-                totalSecondsInSet = numSecondsPerSet,
-                secondsRemainingInSet = numSecondsPerSet,
-                currentSet = currentSet + 1,
-                totalSets = numSets
+                totalSecondsInRound = numSecondsPerRound,
+                secondsRemainingInRound = numSecondsPerRound,
+                currentRound = currentSet + 1,
+                totalRounds = numRounds
             )
         super.startNextExercise(startTimer)
     }
@@ -41,22 +41,22 @@ class SimpleTimerViewModel(
         _timerViewData.value =
             TimerViewData(
                 timerName = null,
-                totalSecondsInSet = numSecondsPerSet,
-                secondsRemainingInSet = numSecondsPerSet,
-                currentSet = _timerViewData.value?.currentSet ?: 0,
-                totalSets = numSets
+                totalSecondsInRound = numSecondsPerRound,
+                secondsRemainingInRound = numSecondsPerRound,
+                currentRound = _timerViewData.value?.currentRound ?: 0,
+                totalRounds = numRounds
             )
         super.restartExercise(startTimer)
     }
 
     override fun getTotalRemainingSeconds(): Int {
         _timerViewData.value?.let { timerViewData ->
-            val remainingMillisInSet = timerViewData.secondsRemainingInSet
+            val remainingMillisInRound = timerViewData.secondsRemainingInRound
 
-            // Subtracting 1 because currentSet is 0-indexed.
-            val remainingSets = timerViewData.totalSets - timerViewData.currentSet - 1
-            val remainingSecondsInOtherSets = remainingSets * timerViewData.totalSecondsInSet
-            return remainingMillisInSet + remainingSecondsInOtherSets
+            // Subtracting 1 because currentRound is 0-indexed.
+            val remainingRounds = timerViewData.totalRounds - timerViewData.currentRound - 1
+            val remainingSecondsInOtherRounds = remainingRounds * timerViewData.totalSecondsInRound
+            return remainingMillisInRound + remainingSecondsInOtherRounds
         }
         return 0
     }
@@ -66,8 +66,8 @@ class SimpleTimerViewModel(
             audioPlayer.speak(
                 resourcesProvider.getString(
                     R.string.simple_timer_next_exercise,
-                    timerViewData.currentSet + 1,
-                    timerViewData.totalSets
+                    timerViewData.currentRound + 1,
+                    timerViewData.totalRounds
                 )
             )
         }
@@ -75,12 +75,12 @@ class SimpleTimerViewModel(
 
     override fun sayNextExercise() {
         _timerViewData.value?.let { timerViewData ->
-            if (timerViewData.currentSet + 1 < timerViewData.totalSets) {
+            if (timerViewData.currentRound + 1 < timerViewData.totalRounds) {
                 audioPlayer.speak(
                     resourcesProvider.getString(
                         R.string.simple_timer_next_exercise,
-                        timerViewData.currentSet + 2,
-                        timerViewData.totalSets
+                        timerViewData.currentRound + 2,
+                        timerViewData.totalRounds
                     )
                 )
             }

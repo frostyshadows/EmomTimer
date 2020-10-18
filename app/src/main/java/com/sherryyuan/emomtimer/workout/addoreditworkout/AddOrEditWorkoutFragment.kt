@@ -77,7 +77,7 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
     private fun setupWorkoutDetails(workout: Workout) {
         binding.apply {
             titleText.setText(workout.name)
-            setsCountText.setText(workout.numSets.toString())
+            roundsCountText.setText(workout.numRounds.toString())
         }
     }
 
@@ -142,11 +142,11 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
 
     private fun getCurrentWorkoutOrNull(): Workout? {
         val title: String? = binding.titleText.text?.toString()
-        val numSets: Int = binding.setsCountText.text.toString().toIntOrNull() ?: 0
+        val numRounds: Int = binding.roundsCountText.text.toString().toIntOrNull() ?: 0
         val filledExercises =
             exercises.filter { it.name.isNotEmpty() && it.numSeconds > 0 && it.numReps > 0 }
-        if (title.isNullOrBlank() || numSets <= 0 || filledExercises.isNullOrEmpty()) return null
-        return Workout(title, numSets, filledExercises)
+        if (title.isNullOrBlank() || numRounds <= 0 || filledExercises.isNullOrEmpty()) return null
+        return Workout(title, numRounds, filledExercises)
     }
 
     private fun saveWorkout(workout: Workout) {

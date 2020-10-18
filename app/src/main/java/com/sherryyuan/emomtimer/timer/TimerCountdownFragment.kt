@@ -77,16 +77,16 @@ class TimerCountdownFragment : Fragment() {
 
     private fun updateViews(timerViewData: TimerViewData) {
         binding.apply {
-            currentSetText.text = currentExerciseText.resources.getString(
-                R.string.current_set_text,
-                // Adding 1 because currentSet is 0-indexed.
-                timerViewData.currentSet + 1,
-                timerViewData.totalSets
+            currentRoundText.text = currentExerciseText.resources.getString(
+                R.string.current_round_text,
+                // Adding 1 because currentRound is 0-indexed.
+                timerViewData.currentRound + 1,
+                timerViewData.totalRounds
             )
-            remainingSecondsText.text = timerViewData.secondsRemainingInSet.toTimeString()
+            remainingSecondsText.text = timerViewData.secondsRemainingInRound.toTimeString()
             timerProgressBar.startValue = 0
-            timerProgressBar.endValue = timerViewData.totalSecondsInSet
-            timerProgressBar.value = timerViewData.secondsRemainingInSet
+            timerProgressBar.endValue = timerViewData.totalSecondsInRound
+            timerProgressBar.value = timerViewData.secondsRemainingInRound
             if (!timerViewData.currentExerciseName.isNullOrBlank()) {
                 currentExerciseText.text = currentExerciseText.resources.getString(
                     R.string.current_exercise_text,

@@ -124,7 +124,7 @@ abstract class TimerViewModel : ViewModel(), KoinComponent {
                     hasSaidNextExercise = true
                 }
                 _timerViewData.value = _timerViewData.value?.copy(
-                    secondsRemainingInSet = millisUntilFinished.toInt() / MILLIS_PER_SECOND
+                    secondsRemainingInRound = millisUntilFinished.toInt() / MILLIS_PER_SECOND
                 )
             }
 

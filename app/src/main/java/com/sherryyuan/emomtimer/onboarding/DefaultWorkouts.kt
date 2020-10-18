@@ -5,7 +5,7 @@ import com.sherryyuan.emomtimer.models.Workout
 
 private val DEFAULT_WORKOUT_TRIPLE_SWEAT = Workout(
     name = "Triple Sweat",
-    numSets = 8,
+    numRounds = 8,
     exercises = listOf(
         Exercise(
             name= "Mountain climbers",
@@ -27,7 +27,7 @@ private val DEFAULT_WORKOUT_TRIPLE_SWEAT = Workout(
 
 private val DEFAULT_WORKOUT_FULL_BODY = Workout(
     name = "Full Body Express",
-    numSets = 2,
+    numRounds = 2,
     exercises = listOf(
         Exercise(
             name= "Curtsy Lunges",
@@ -69,7 +69,7 @@ private val DEFAULT_WORKOUT_FULL_BODY = Workout(
 
 private val DEFAULT_WORKOUT_GRIP_THAT_BAR = Workout(
     name = "Grip That Bar",
-    numSets = 4,
+    numRounds = 4,
     exercises = listOf(
         Exercise(
             name= "Pull-Ups",

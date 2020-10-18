@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/size_16">
+
+    <LinearLayout
+        android:id="@+id/time_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_32"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/set_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <TextView
+            android:id="@+id/every_text"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/every"
+            app:layout_constraintEnd_toStartOf="@id/work_time_text"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/work_time_text"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginEnd="@dimen/size_4"
+            android:background="@drawable/background_edittext"
+            android:gravity="center_horizontal"
+            android:hint="@string/hint_one_minute"
+            android:inputType="number"
+            android:minWidth="@dimen/size_40"
+            android:paddingStart="@dimen/size_4"
+            android:paddingEnd="@dimen/size_4"
+            app:layout_constraintEnd_toStartOf="@id/time_unit_spinner"
+            app:layout_constraintStart_toEndOf="@id/every_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/time_unit_spinner"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/work_time_text"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/set_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_80"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/start_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/time_layout">
+
+        <TextView
+            android:id="@+id/repeat_for_text"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/repeat_for"
+            app:layout_constraintBottom_toTopOf="@id/start_button"
+            app:layout_constraintEnd_toStartOf="@id/num_rounds_text"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/num_rounds_text"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginEnd="@dimen/size_4"
+            android:background="@drawable/background_edittext"
+            android:gravity="center_horizontal"
+            android:hint="@string/hint_twenty_rounds"
+            android:inputType="number"
+            android:minWidth="@dimen/size_40"
+            android:paddingStart="@dimen/size_4"
+            android:paddingEnd="@dimen/size_4"
+            app:layout_constraintEnd_toStartOf="@id/rounds_text"
+            app:layout_constraintStart_toEndOf="@id/repeat_for_text" />
+
+        <TextView
+            android:id="@+id/rounds_text"
+            style="@style/TextAppearance.AppCompat.Title.Header1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rounds"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/num_rounds_text" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/start_button"
+        style="@style/Widget.MaterialComponents.Button.Rounded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_16"
+        android:text="@string/start"
+        app:cornerRadius="@dimen/size_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
