@@ -7,8 +7,8 @@ import com.sherryyuan.emomtimer.timer.TimerViewData
 class SimpleTabataTimerViewModel(
     private val numWorkSecondsPerRound: Int,
     private val numRestSecondsPerRound: Int,
-    private val roundType: RoundType,
-    private val numRounds: Int
+    private val numRounds: Int,
+    private var roundType: RoundType
 ) : TimerViewModel() {
 
     override val _timerViewData: MutableLiveData<TimerViewData> =
@@ -28,11 +28,15 @@ class SimpleTabataTimerViewModel(
             finish()
             return
         }
+        roundType = when (roundType) {
+            RoundType.WORK -> RoundType.REST
+            RoundType.REST -> RoundType.WORK
+        }
         _timerViewData.value =
             TimerViewData(
                 timerName = null,
-                totalSecondsInRound = numRestSecondsPerRound,
-                secondsRemainingInRound = numRestSecondsPerRound,
+                totalSecondsInRound = if (roundType == RoundType.WORK) numWorkSecondsPerRound else numRestSecondsPerRound,
+                secondsRemainingInRound = if (roundType == RoundType.WORK) numWorkSecondsPerRound else numRestSecondsPerRound,
                 currentRound = currentSet + 1,
                 totalRounds = numRounds
             )
@@ -57,8 +61,11 @@ class SimpleTabataTimerViewModel(
 
             // Subtracting 1 because currentRound is 0-indexed.
             val remainingRounds = timerViewData.totalRounds - timerViewData.currentRound - 1
-            val remainingSecondsInOtherRounds =
+            var remainingSecondsInOtherRounds =
                 remainingRounds * (numWorkSecondsPerRound + numRestSecondsPerRound)
+            if (roundType == RoundType.WORK) {
+                remainingSecondsInOtherRounds += numRestSecondsPerRound
+            }
             return remainingMillisInRound + remainingSecondsInOtherRounds
         }
         return 0

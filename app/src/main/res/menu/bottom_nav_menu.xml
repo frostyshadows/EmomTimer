@@ -7,7 +7,7 @@
         android:title="@string/title_workouts" />
 
     <item
-        android:id="@+id/navigation_timer_config"
+        android:id="@+id/navigation_timer_selection"
         android:icon="@drawable/icon_timer"
         android:title="@string/title_timer" />
 

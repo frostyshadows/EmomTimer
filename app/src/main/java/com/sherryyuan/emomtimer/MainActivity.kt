@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_workouts,
-                R.id.navigation_timer_config,
+                R.id.navigation_timer_selection,
                 R.id.navigation_settings
             )
         )

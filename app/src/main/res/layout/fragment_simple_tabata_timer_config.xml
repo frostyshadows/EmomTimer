@@ -19,14 +19,14 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/work_time_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
             android:layout_marginEnd="@dimen/size_4"
             android:background="@drawable/background_edittext"
             android:gravity="center_horizontal"
-            android:hint="@string/hint_one_minute"
+            android:hint="@string/hint_forty_five_seconds"
             android:inputType="number"
             android:minWidth="@dimen/size_40"
             android:paddingStart="@dimen/size_4"
@@ -37,7 +37,7 @@
 
         <Spinner
             android:id="@+id/work_time_unit_spinner"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
 
         <TextView
             android:id="@+id/of_work_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/of_work"
@@ -70,14 +70,14 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/rest_time_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
             android:layout_marginEnd="@dimen/size_4"
             android:background="@drawable/background_edittext"
             android:gravity="center_horizontal"
-            android:hint="@string/hint_one_minute"
+            android:hint="@string/hint_fifteen_seconds"
             android:inputType="number"
             android:minWidth="@dimen/size_40"
             android:paddingStart="@dimen/size_4"
@@ -88,7 +88,7 @@
 
         <Spinner
             android:id="@+id/rest_time_unit_spinner"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
 
         <TextView
             android:id="@+id/of_rest_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/of_rest"
@@ -120,7 +120,7 @@
 
         <TextView
             android:id="@+id/repeat_for_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/repeat_for"
@@ -131,7 +131,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/num_rounds_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
@@ -148,7 +148,7 @@
 
         <TextView
             android:id="@+id/rounds_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rounds"
