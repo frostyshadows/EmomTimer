@@ -44,7 +44,7 @@ class SimpleEmomTimerConfigFragment : Fragment() {
 
     private fun setupStartButton() {
         binding.startButton.setOnClickListener {
-            val numTime: Int = binding.numRoundsText.text.toString().toIntOrNull() ?: 1
+            val numTime: Int = binding.workTimeText.text.toString().toIntOrNull() ?: 1
             val numSeconds: Int =
                 if (binding.timeUnitSpinner.selectedItem == "minute(s)") {
                     numTime * SECONDS_PER_MINUTE
@@ -54,7 +54,7 @@ class SimpleEmomTimerConfigFragment : Fragment() {
             val numSets: Int =
                 binding.numRoundsText.text.toString().toIntOrNull() ?: 20
             findNavController().navigate(
-                SimpleEmomTimerConfigFragmentDirections.actionTimerConfigToTimerCountdown(
+                SimpleEmomTimerConfigFragmentDirections.actionEmomTimerConfigToTimerCountdown(
                     TimerViewModelType.SimpleEmomTimerViewModelType(numSeconds, numSets)
                 )
             )

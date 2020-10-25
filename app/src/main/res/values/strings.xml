@@ -18,6 +18,8 @@
     <string name="title_timer">Timer</string>
     <string name="every">Every</string>
     <string name="start">Start</string>
+    <string name="emom">EMOM</string>
+    <string name="tabata">Tabata</string>
 
     <!-- region countdown timer -->
     <string name="current_round_text">Round %1$d of %2$d</string>
@@ -34,6 +36,8 @@
     <!-- region hints -->
     <string name="hint_one_minute">1</string>
     <string name="hint_ninety_seconds">90</string>
+    <string name="hint_forty_five_seconds">45</string>
+    <string name="hint_fifteen_seconds">15</string>
     <string name="hint_ten_reps">10</string>
     <string name="hint_three_rounds">3</string>
     <string name="hint_twenty_rounds">20</string>

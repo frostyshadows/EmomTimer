@@ -16,8 +16,8 @@ class TimerViewModelFactory(private val type: TimerViewModelType) :
                 SimpleTabataTimerViewModel(
                     type.numWorkSecondsPerRound,
                     type.numRestSecondsPerRound,
-                    RoundType.WORK,
-                    type.numRounds
+                    type.numRounds,
+                    RoundType.WORK
                 )
             is WorkoutTimerViewModelType ->
                 WorkoutTimerViewModel(type.workout)
