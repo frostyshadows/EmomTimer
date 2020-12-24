@@ -26,22 +26,27 @@
     <string name="current_exercise_text">%1$d %2$s</string>
     <string name="next_exercise_text">Next: %1$d %2$s</string>
     <string name="total_mins_remaining_text">%1$s minutes left in workout</string>
-    <string name="simple_timer_next_exercise">You are starting round %1$d of %2$d.</string>
+    <string name="simple_emom_timer_next_exercise">You are starting round %1$d of %2$d.</string>
+    <string name="simple_tabata_timer_next_exercise_work">You are starting the exercise part for round %1$d of %2$d.</string>
+    <string name="simple_tabata_timer_next_exercise_rest">You are starting the rest part for round %1$d of %2$d.</string>
     <string name="workout_timer_next_exercise">Next, you have %1$d seconds to do %2$d reps of %3$s.</string>
     <string name="workout_timer_round_info">You are on round %1$d of %2$d.</string>
     <string name="workout_complete">Workout complete!</string>
     <string name="done">Done</string>
     <!-- endregion -->
 
-    <!-- region hints -->
+    <!-- region emom hints -->
     <string name="hint_one_minute">1</string>
     <string name="hint_ninety_seconds">90</string>
-    <string name="hint_forty_five_seconds">45</string>
-    <string name="hint_fifteen_seconds">15</string>
     <string name="hint_ten_reps">10</string>
     <string name="hint_three_rounds">3</string>
-    <string name="hint_twenty_rounds">20</string>
     <string name="hint_pushups">push-ups</string>
+    <!-- endregion -->
+
+    <!-- region tabata hints -->
+    <string name="hint_twenty_seconds">20</string>
+    <string name="hint_ten_seconds">10</string>
+    <string name="hint_eight_rounds">8</string>
     <!-- endregion -->
 
     <!-- region alert dialogs -->
@@ -56,8 +61,8 @@
 
     <!-- region settings -->
     <string name="title_settings">Settings</string>
+
     <string name="what_is_emom">What is EMOM?</string>
-    <string name="saved_exercises">Saved exercises</string>
     <string name="emom_explanation">
         An acronym for \"every minute on the minute\", EMOMs are HIIT-style workouts, in which you
         alternate between short, intense bursts of exercise with complete rest.
@@ -68,5 +73,13 @@
         \nThey are very versatile - you can focus on cardio or strength, use bodyweight or
         equipment, and are usually anywhere from 4 to 45 minutes long.
     </string>
+
+    <string name="what_is_tabata">What is Tabata?</string>
+    <string name="tabata_explanation">
+        In a Tabata workout, each round lasts four minutes. You alternate between 20 seconds of
+        all-out intensity, followed by 10 seconds of rest, repeated eight times.
+    </string>
+
+    <string name="saved_exercises">Saved exercises</string>
     <!-- endregion -->
 </resources>

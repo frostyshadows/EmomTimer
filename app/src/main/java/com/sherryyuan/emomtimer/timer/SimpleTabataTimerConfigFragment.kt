@@ -48,14 +48,16 @@ class SimpleTabataTimerConfigFragment : Fragment() {
 
     private fun setupStartButton() {
         binding.startButton.setOnClickListener {
-            val numWorkTime: Int = binding.workTimeText.text.toString().toIntOrNull() ?: 45
+            val numWorkTime: Int =
+                binding.workTimeText.text.toString().toIntOrNull() ?: DEFAULT_WORK_SECONDS
             val numWorkSeconds: Int =
                 if (binding.workTimeUnitSpinner.selectedItem == "minute(s)") {
                     numWorkTime * SECONDS_PER_MINUTE
                 } else {
                     numWorkTime
                 }
-            val numRestTime: Int = binding.restTimeText.text.toString().toIntOrNull() ?: 15
+            val numRestTime: Int =
+                binding.restTimeText.text.toString().toIntOrNull() ?: DEFAULT_REST_SECONDS
             val numRestSeconds: Int =
                 if (binding.restTimeUnitSpinner.selectedItem == "minute(s)") {
                     numRestTime * SECONDS_PER_MINUTE
@@ -63,7 +65,7 @@ class SimpleTabataTimerConfigFragment : Fragment() {
                     numRestTime
                 }
             val numRounds: Int =
-                binding.numRoundsText.text.toString().toIntOrNull() ?: 20
+                binding.numRoundsText.text.toString().toIntOrNull() ?: DEFAULT_NUM_ROUNDS
             findNavController().navigate(
                 SimpleTabataTimerConfigFragmentDirections.actionTabataTimerConfigToTimerCountdown(
                     SimpleTabataTimerViewModelType(
@@ -74,5 +76,11 @@ class SimpleTabataTimerConfigFragment : Fragment() {
                 )
             )
         }
+    }
+
+    companion object {
+        private const val DEFAULT_WORK_SECONDS =20
+        private const val DEFAULT_REST_SECONDS = 10
+        private const val DEFAULT_NUM_ROUNDS = 8
     }
 }

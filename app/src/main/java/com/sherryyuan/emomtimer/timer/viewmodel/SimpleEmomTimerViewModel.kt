@@ -65,7 +65,7 @@ class SimpleEmomTimerViewModel(
         _timerViewData.value?.let { timerViewData ->
             audioPlayer.speak(
                 resourcesProvider.getString(
-                    R.string.simple_timer_next_exercise,
+                    R.string.simple_emom_timer_next_exercise,
                     timerViewData.currentRound + 1,
                     timerViewData.totalRounds
                 )
@@ -78,7 +78,7 @@ class SimpleEmomTimerViewModel(
             if (timerViewData.currentRound + 1 < timerViewData.totalRounds) {
                 audioPlayer.speak(
                     resourcesProvider.getString(
-                        R.string.simple_timer_next_exercise,
+                        R.string.simple_emom_timer_next_exercise,
                         timerViewData.currentRound + 2,
                         timerViewData.totalRounds
                     )

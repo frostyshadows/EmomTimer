@@ -10,14 +10,36 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
-        setupAboutPreference()
+        setupAboutEmomPreference()
+        setupAboutTabataPreference()
+        setupSavedExercisesPreference()
     }
 
-    private fun setupAboutPreference() {
-        findPreference<Preference>("about")?.setOnPreferenceClickListener {
-            findNavController().navigate(SettingsFragmentDirections.actionSettingsToAbout())
+    private fun setupAboutEmomPreference() {
+        findPreference<Preference>("about_emom")?.setOnPreferenceClickListener {
+            findNavController().navigate(
+                SettingsFragmentDirections.actionSettingsToAboutWorkout(
+                    R.string.what_is_emom,
+                    R.string.emom_explanation
+                )
+            )
             true
         }
+    }
+
+    private fun setupAboutTabataPreference() {
+        findPreference<Preference>("about_tabata")?.setOnPreferenceClickListener {
+            findNavController().navigate(
+                SettingsFragmentDirections.actionSettingsToAboutWorkout(
+                    R.string.what_is_tabata,
+                    R.string.tabata_explanation
+                )
+            )
+            true
+        }
+    }
+
+    private fun setupSavedExercisesPreference() {
         findPreference<Preference>("saved_exercises")?.setOnPreferenceClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsToExerciseNames())
             true
