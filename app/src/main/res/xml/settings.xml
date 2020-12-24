@@ -1,7 +1,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference
-        android:key="about"
-        android:layout="@layout/preference_about" />
+        android:key="about_emom"
+        android:layout="@layout/preference_about_emom" />
+    <Preference
+        android:key="about_tabata"
+        android:layout="@layout/preference_about_tabata" />
 
 <!--    <Preference-->
 <!--        android:key="saved_exercises"-->

@@ -109,16 +109,23 @@
         android:name="com.sherryyuan.emomtimer.settings.SettingsFragment"
         android:label="@string/title_settings">
         <action
-            android:id="@+id/action_settings_to_about"
-            app:destination="@id/navigation_about_emom" />
+            android:id="@+id/action_settings_to_about_workout"
+            app:destination="@id/navigation_about_workout" />
         <action
             android:id="@+id/action_settings_to_exercise_names"
             app:destination="@id/navigation_exercise_names" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_about_emom"
-        android:name="com.sherryyuan.emomtimer.settings.AboutEmomFragment"
-        android:label="@string/title_settings" />
+        android:id="@+id/navigation_about_workout"
+        android:name="com.sherryyuan.emomtimer.settings.AboutWorkoutFragment"
+        android:label="@string/title_settings">
+        <argument
+            android:name="title_res"
+            app:argType="integer" />
+        <argument
+            android:name="explanation_res"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_exercise_names"
         android:name="com.sherryyuan.emomtimer.settings.ExerciseNamesFragment"

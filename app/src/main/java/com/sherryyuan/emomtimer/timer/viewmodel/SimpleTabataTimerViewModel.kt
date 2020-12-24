@@ -23,8 +23,8 @@ class SimpleTabataTimerViewModel(
         )
 
     override fun startNextExercise(startTimer: Boolean) {
-        val currentSet: Int = _timerViewData.value?.currentRound ?: 0
-        if (currentSet >= numRounds - 1) {
+        val currentRound: Int = _timerViewData.value?.currentRound ?: 0
+        if (currentRound >= numRounds - 1) {
             finish()
             return
         }
@@ -32,12 +32,16 @@ class SimpleTabataTimerViewModel(
             RoundType.WORK -> RoundType.REST
             RoundType.REST -> RoundType.WORK
         }
+        val nextRound: Int = when (roundType) {
+            RoundType.WORK -> currentRound + 1
+            RoundType.REST -> currentRound
+        }
         _timerViewData.value =
             TimerViewData(
                 timerName = null,
                 totalSecondsInRound = if (roundType == RoundType.WORK) numWorkSecondsPerRound else numRestSecondsPerRound,
                 secondsRemainingInRound = if (roundType == RoundType.WORK) numWorkSecondsPerRound else numRestSecondsPerRound,
-                currentRound = currentSet + 1,
+                currentRound = nextRound,
                 totalRounds = numRounds
             )
         super.startNextExercise(startTimer)
@@ -75,7 +79,7 @@ class SimpleTabataTimerViewModel(
         _timerViewData.value?.let { timerViewData ->
             audioPlayer.speak(
                 resourcesProvider.getString(
-                    R.string.simple_timer_next_exercise,
+                    R.string.simple_tabata_timer_next_exercise_work,
                     timerViewData.currentRound + 1,
                     timerViewData.totalRounds
                 )
@@ -86,14 +90,45 @@ class SimpleTabataTimerViewModel(
     override fun sayNextExercise() {
         _timerViewData.value?.let { timerViewData ->
             if (timerViewData.currentRound + 1 < timerViewData.totalRounds) {
-                audioPlayer.speak(
-                    resourcesProvider.getString(
-                        R.string.simple_timer_next_exercise,
-                        timerViewData.currentRound + 2,
-                        timerViewData.totalRounds
-                    )
-                )
+                when (roundType) {
+                    RoundType.WORK -> {
+                        sayNextExerciseForWorkRound(
+                            timerViewData.currentRound,
+                            timerViewData.totalRounds
+                        )
+                    }
+                    RoundType.REST -> {
+                        sayNextExerciseForRestRound(
+                            timerViewData.currentRound,
+                            timerViewData.totalRounds
+                        )
+                    }
+                }
             }
+        }
+    }
+
+    private fun sayNextExerciseForWorkRound(currentRound: Int, totalRounds: Int) {
+        audioPlayer.speak(
+            resourcesProvider.getString(
+                R.string.simple_tabata_timer_next_exercise_rest,
+                currentRound + 1,
+                totalRounds
+            )
+        )
+
+    }
+
+    private fun sayNextExerciseForRestRound(currentRound: Int, totalRounds: Int) {
+        if (currentRound + 1 < totalRounds) {
+            audioPlayer.speak(
+                resourcesProvider.getString(
+                    R.string.simple_tabata_timer_next_exercise_work,
+                    currentRound + 2,
+                    totalRounds
+                )
+            )
+
         }
     }
 }
