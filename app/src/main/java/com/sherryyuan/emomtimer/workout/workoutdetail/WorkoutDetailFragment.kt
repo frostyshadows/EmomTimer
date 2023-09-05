@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutDetailBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.WorkoutTimerViewModelType
+import com.sherryyuan.emomtimer.utils.safeNavigate
 import com.sherryyuan.emomtimer.utils.toFormattedString
 import com.sherryyuan.emomtimer.workout.WorkoutsViewModel
 
@@ -59,7 +60,7 @@ class WorkoutDetailFragment : Fragment() {
 
     private fun setupPlayButton() {
         binding.playButton.setOnClickListener {
-            navController.navigate(
+            navController.safeNavigate(
                 WorkoutDetailFragmentDirections.actionWorkoutDetailToTimerCountdown(
                     WorkoutTimerViewModelType(navArgs.workout)
                 )
@@ -69,7 +70,7 @@ class WorkoutDetailFragment : Fragment() {
 
     private fun setupEditButton() {
         binding.editButton.setOnClickListener {
-            navController.navigate(
+            navController.safeNavigate(
                 WorkoutDetailFragmentDirections.actionWorkoutDetailToAddOrEditWorkout(
                     navArgs.workout
                 )

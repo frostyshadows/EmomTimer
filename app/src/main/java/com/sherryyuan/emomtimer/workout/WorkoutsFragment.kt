@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutsBinding
+import com.sherryyuan.emomtimer.utils.safeNavigate
 
 class WorkoutsFragment : Fragment() {
 
@@ -25,7 +26,7 @@ class WorkoutsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewModel.workouts.observe(
             viewLifecycleOwner,
             Observer {
@@ -55,7 +56,7 @@ class WorkoutsFragment : Fragment() {
 
     private fun setupFab() {
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 WorkoutsFragmentDirections.actionWorkoutsToAddOrEditWorkout()
             )
         }

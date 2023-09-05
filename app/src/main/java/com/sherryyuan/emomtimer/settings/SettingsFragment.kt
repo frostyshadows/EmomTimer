@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.sherryyuan.emomtimer.R
+import com.sherryyuan.emomtimer.utils.safeNavigate
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -17,7 +18,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun setupAboutEmomPreference() {
         findPreference<Preference>("about_emom")?.setOnPreferenceClickListener {
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 SettingsFragmentDirections.actionSettingsToAboutWorkout(
                     R.string.what_is_emom,
                     R.string.emom_explanation
@@ -29,7 +30,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun setupAboutTabataPreference() {
         findPreference<Preference>("about_tabata")?.setOnPreferenceClickListener {
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 SettingsFragmentDirections.actionSettingsToAboutWorkout(
                     R.string.what_is_tabata,
                     R.string.tabata_explanation
@@ -41,7 +42,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun setupSavedExercisesPreference() {
         findPreference<Preference>("saved_exercises")?.setOnPreferenceClickListener {
-            findNavController().navigate(SettingsFragmentDirections.actionSettingsToExerciseNames())
+            findNavController().safeNavigate(SettingsFragmentDirections.actionSettingsToExerciseNames())
             true
         }
     }

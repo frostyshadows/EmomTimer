@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sherryyuan.emomtimer.databinding.FragmentSimpleTimerSelectionBinding
+import com.sherryyuan.emomtimer.utils.safeNavigate
 
 class SimpleTimerSelectionFragment : Fragment() {
 
@@ -26,7 +27,7 @@ class SimpleTimerSelectionFragment : Fragment() {
 
     private fun setupEmomButton() {
         binding.emomButton.setOnClickListener {
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 SimpleTimerSelectionFragmentDirections.actionTimerSelectionToEmomTimerConfig()
             )
         }
@@ -34,7 +35,7 @@ class SimpleTimerSelectionFragment : Fragment() {
 
     private fun setupTabataButton() {
         binding.tabataButton.setOnClickListener {
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 SimpleTimerSelectionFragmentDirections.actionTimerSelectionToTabataTimerConfig()
             )
         }

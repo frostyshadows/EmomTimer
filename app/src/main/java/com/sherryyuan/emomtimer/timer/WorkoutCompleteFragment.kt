@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sherryyuan.emomtimer.databinding.FragmentWorkoutCompleteBinding
+import com.sherryyuan.emomtimer.utils.safeNavigate
 
 class WorkoutCompleteFragment : Fragment() {
 
@@ -25,7 +26,7 @@ class WorkoutCompleteFragment : Fragment() {
 
     private fun setupDoneButton() {
         binding.doneButton.setOnClickListener {
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 WorkoutCompleteFragmentDirections.actionWorkoutCompleteBackToWorkouts()
             )
         }

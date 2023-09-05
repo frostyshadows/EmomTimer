@@ -11,6 +11,7 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentSimpleTabataTimerConfigBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.SimpleTabataTimerViewModelType
 import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
+import com.sherryyuan.emomtimer.utils.safeNavigate
 
 private const val SPINNER_SECONDS_POSITION = 1
 
@@ -66,7 +67,7 @@ class SimpleTabataTimerConfigFragment : Fragment() {
                 }
             val numRounds: Int =
                 binding.numRoundsText.text.toString().toIntOrNull() ?: DEFAULT_NUM_ROUNDS
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 SimpleTabataTimerConfigFragmentDirections.actionTabataTimerConfigToTimerCountdown(
                     SimpleTabataTimerViewModelType(
                         numWorkSecondsPerRound = numWorkSeconds,

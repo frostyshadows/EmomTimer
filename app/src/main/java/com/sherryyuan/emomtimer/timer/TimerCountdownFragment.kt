@@ -20,6 +20,7 @@ import com.sherryyuan.emomtimer.databinding.FragmentTimerCountdownBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModel
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelFactory
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewState
+import com.sherryyuan.emomtimer.utils.safeNavigate
 import com.sherryyuan.emomtimer.utils.toTimeString
 
 class TimerCountdownFragment : Fragment() {
@@ -42,7 +43,7 @@ class TimerCountdownFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Make sure screen stays on.
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         viewModel.timerViewData.observe(requireActivity(), Observer { updateViews(it) })
@@ -130,7 +131,7 @@ class TimerCountdownFragment : Fragment() {
 
     private fun checkIfComplete(timerViewState: TimerViewState) {
         if (timerViewState == TimerViewState.FINISHED) {
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 TimerCountdownFragmentDirections.actionTimerCountdownToWorkoutComplete()
             )
         }

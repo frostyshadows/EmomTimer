@@ -29,6 +29,7 @@ import com.sherryyuan.emomtimer.databinding.FragmentAddOrEditWorkoutBinding
 import com.sherryyuan.emomtimer.models.Exercise
 import com.sherryyuan.emomtimer.models.Workout
 import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
+import com.sherryyuan.emomtimer.utils.safeNavigate
 import com.sherryyuan.emomtimer.workout.WorkoutsViewModel
 import org.koin.core.KoinComponent
 
@@ -121,7 +122,7 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
                         isEnabled = false
                         val currentWorkout = getCurrentWorkoutOrNull()
                         if (currentWorkout == navArgs.workout || currentWorkout == null) {
-                            findNavController().navigate(
+                            findNavController().safeNavigate(
                                 AddOrEditWorkoutFragmentDirections.actionAddOrEditWorkoutBackToWorkouts()
                             )
                         } else {
@@ -154,7 +155,7 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
     private fun saveWorkout(workout: Workout) {
         viewModel.saveWorkout(newWorkout = workout, prevWorkout = navArgs.workout)
         hideSoftKeyboard()
-        findNavController().navigate(
+        findNavController().safeNavigate(
             AddOrEditWorkoutFragmentDirections.actionAddOrEditWorkoutBackToWorkouts()
         )
     }

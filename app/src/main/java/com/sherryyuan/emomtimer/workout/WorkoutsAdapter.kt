@@ -8,6 +8,7 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.ItemWorkoutBinding
 import com.sherryyuan.emomtimer.models.Workout
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType.WorkoutTimerViewModelType
+import com.sherryyuan.emomtimer.utils.safeNavigate
 import com.sherryyuan.emomtimer.utils.toFormattedString
 
 class WorkoutsAdapter(
@@ -39,12 +40,12 @@ class WorkoutsAdapter(
 
         fun create(navController: NavController) {
             binding.root.setOnClickListener {
-                navController.navigate(
+                navController.safeNavigate(
                     WorkoutsFragmentDirections.actionWorkoutsToWorkoutDetail(workout)
                 )
             }
             binding.playButton.setOnClickListener {
-                navController.navigate(
+                navController.safeNavigate(
                     WorkoutsFragmentDirections.actionWorkoutsToTimerCountdown(
                         WorkoutTimerViewModelType(workout)
                     )

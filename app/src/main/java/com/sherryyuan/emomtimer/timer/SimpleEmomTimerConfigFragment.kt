@@ -11,6 +11,7 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.databinding.FragmentSimpleEmomTimerConfigBinding
 import com.sherryyuan.emomtimer.timer.viewmodel.TimerViewModelType
 import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
+import com.sherryyuan.emomtimer.utils.safeNavigate
 
 
 class SimpleEmomTimerConfigFragment : Fragment() {
@@ -52,8 +53,8 @@ class SimpleEmomTimerConfigFragment : Fragment() {
                     numTime
                 }
             val numSets: Int =
-                binding.numRoundsText.text.toString().toIntOrNull() ?: 20
-            findNavController().navigate(
+                binding.numRoundsText.text.toString().toIntOrNull() ?: 8
+            findNavController().safeNavigate(
                 SimpleEmomTimerConfigFragmentDirections.actionEmomTimerConfigToTimerCountdown(
                     TimerViewModelType.SimpleEmomTimerViewModelType(numSeconds, numSets)
                 )
