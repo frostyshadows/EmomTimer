@@ -52,8 +52,7 @@ class SimpleEmomTimerConfigFragment : Fragment() {
                 } else {
                     numTime
                 }
-            val numSets: Int =
-                binding.numRoundsText.text.toString().toIntOrNull() ?: 8
+            val numSets: Int = binding.numRoundsText.text.toString().toIntOrNull() ?: 8
             findNavController().safeNavigate(
                 SimpleEmomTimerConfigFragmentDirections.actionEmomTimerConfigToTimerCountdown(
                     TimerViewModelType.SimpleEmomTimerViewModelType(numSeconds, numSets)
