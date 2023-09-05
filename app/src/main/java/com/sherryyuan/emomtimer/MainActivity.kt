@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_workouts,
-                R.id.navigation_timer_selection,
+                // TODO: update to timer selection once tabata support is finished
+                R.id.navigation_emom_timer_config, // R.id.navigation_timer_selection,
                 R.id.navigation_settings
             )
         )

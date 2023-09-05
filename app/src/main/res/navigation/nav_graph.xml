@@ -13,16 +13,16 @@
         <action
             android:id="@+id/action_workouts_to_workoutDetail"
             app:destination="@id/navigation_workout_detail"
-            app:enterAnim="@anim/fragment_open_enter" />
+            app:enterAnim="@animator/nav_default_enter_anim" />
         <action
             android:id="@+id/action_workouts_to_addOrEditWorkout"
             app:destination="@id/navigation_add_or_edit_workout"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit" />
+            app:enterAnim="@animator/nav_default_enter_anim"
+            app:exitAnim="@animator/nav_default_exit_anim" />
         <action
             android:id="@+id/action_workouts_to_timerCountdown"
             app:destination="@id/navigation_timer_countdown"
-            app:enterAnim="@anim/fragment_open_enter" />
+            app:enterAnim="@animator/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/navigation_workout_detail"
@@ -34,7 +34,7 @@
         <action
             android:id="@+id/action_workoutDetail_to_addOrEditWorkout"
             app:destination="@id/navigation_add_or_edit_workout"
-            app:enterAnim="@anim/fragment_open_enter" />
+            app:enterAnim="@animator/nav_default_enter_anim" />
         <action
             android:id="@+id/action_workoutDetail_to_timerCountdown"
             app:destination="@id/navigation_timer_countdown" />
@@ -51,8 +51,8 @@
         <action
             android:id="@+id/action_addOrEditWorkout_back_to_workouts"
             app:destination="@id/navigation_workouts"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
+            app:enterAnim="@animator/nav_default_enter_anim"
+            app:exitAnim="@animator/nav_default_exit_anim"
             app:popUpTo="@id/navigation_workouts"
             app:popUpToInclusive="true" />
     </fragment>

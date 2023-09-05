@@ -121,7 +121,9 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
                         isEnabled = false
                         val currentWorkout = getCurrentWorkoutOrNull()
                         if (currentWorkout == navArgs.workout || currentWorkout == null) {
-                            activity.onBackPressed()
+                            findNavController().navigate(
+                                AddOrEditWorkoutFragmentDirections.actionAddOrEditWorkoutBackToWorkouts()
+                            )
                         } else {
                             AlertDialog.Builder(activity)
                                 .setMessage(R.string.alert_save_workout_changes)

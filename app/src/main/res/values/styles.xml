@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textViewStyle">@style/TextAppearance.AppCompat.Medium</item>
         <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="android:textColorHint">@color/colorHintText</item>
     </style>
 
     <style name="TextAppearance.AppCompat.Title.Header1">
