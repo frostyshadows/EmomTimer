@@ -33,10 +33,10 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_workouts,
+                R.id.navigation_workouts_tab,
                 // TODO: update to timer selection once tabata support is finished
                 R.id.navigation_emom_timer_config, // R.id.navigation_timer_selection,
-                R.id.navigation_settings
+                R.id.navigation_settings_tab
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_workouts"
+        android:id="@+id/navigation_workouts_tab"
         android:icon="@drawable/icon_fitness_center"
         android:title="@string/title_workouts" />
 
@@ -12,7 +12,7 @@
         android:title="@string/title_timer" />
 
     <item
-        android:id="@+id/navigation_settings"
+        android:id="@+id/navigation_settings_tab"
         android:icon="@drawable/icon_settings"
         android:title="@string/title_settings" />
 
