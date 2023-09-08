@@ -104,8 +104,8 @@
         android:label="@string/title_timer">
         <action
             android:id="@+id/action_workoutComplete_back_to_workouts"
-            app:destination="@id/navigation_workout_list"
-            app:popUpTo="@id/navigation_workout_list"
+            app:destination="@id/navigation_workouts_tab"
+            app:popUpTo="@id/navigation_workouts_tab"
             app:popUpToInclusive="true" />
     </fragment>
     <navigation
