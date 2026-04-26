@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/current_exercise_text"
         tools:text="Set 1 of 4" />
 
-    <pl.pawelkleczkowski.customgauge.CustomGauge
+    <com.sherryyuan.emomtimer.timer.CustomGauge
         android:id="@+id/timer_progress_bar"
         android:layout_width="match_parent"
         android:layout_height="0dp"

@@ -9,8 +9,8 @@ android {
     defaultConfig {
         applicationId "com.sherryyuan.emomtimer"
         minSdkVersion 23
-        compileSdk 34
-        targetSdkVersion 34
+        compileSdk 36
+        targetSdkVersion 36
         versionCode 7
         versionName "1.3.3"
 
@@ -74,9 +74,9 @@ dependencies {
 
 
     // Koin
-    def koinVersion = "2.1.5"
-    implementation "org.koin:koin-android:$koinVersion"
-    testImplementation "org.koin:koin-test:$koinVersion"
+    def koinVersion = "4.1.1"
+    implementation "io.insert-koin:koin-core:$koinVersion"
+    testImplementation "io.insert-koin:koin-test:$koinVersion"
 
     // Coroutines
     def coroutinesVersion = "1.7.3"
@@ -87,9 +87,6 @@ dependencies {
     def lifecycleVersion = '2.8.3'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-
-    // Custom gauge for displaying timer progress
-    implementation "pl.pawelkleczkowski.customgauge:CustomGauge:1.0.4"
 
     // Settings screen
     implementation "androidx.preference:preference-ktx:1.2.1"
