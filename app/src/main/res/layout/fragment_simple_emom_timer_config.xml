@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/every_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/every"
@@ -30,7 +30,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/work_time_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
@@ -48,7 +48,7 @@
 
         <Spinner
             android:id="@+id/time_unit_spinner"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +69,7 @@
 
         <TextView
             android:id="@+id/repeat_for_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/repeat_for"
@@ -80,7 +80,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/num_rounds_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
@@ -97,7 +97,7 @@
 
         <TextView
             android:id="@+id/rounds_text"
-            style="@style/TextAppearance.AppCompat.Title.Header1"
+            style="@style/TextAppearance.AppCompat.Title.Header2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rounds"

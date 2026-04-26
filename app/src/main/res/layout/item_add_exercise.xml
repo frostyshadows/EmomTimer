@@ -15,7 +15,8 @@
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_8"
-        android:elevation="@dimen/size_4">
+        android:elevation="@dimen/size_4"
+        app:cardCornerRadius="@dimen/size_16">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -131,10 +132,10 @@
                 android:layout_gravity="end"
                 android:background="@color/transparent"
                 android:src="@drawable/icon_reorder"
-                android:tint="@color/colorBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorBackground" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

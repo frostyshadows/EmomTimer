@@ -2,8 +2,11 @@
 .gradle
 /local.properties
 /.idea/caches
+/.idea/deploymentTargetSelector.xml
+/.idea/deviceManager.xml
 .idea/compiler.xml
 /.idea/gradle.xml
+/.idea/migrations.xml
 /.idea/kotlinc.xml
 /.idea/libraries
 /.idea/modules.xml

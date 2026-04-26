@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sherryyuan.emomtimer.databinding.FragmentExerciseNamesBinding
 import com.sherryyuan.emomtimer.workout.repository.ExerciseNamesStorage
-import org.koin.core.KoinComponent
-import org.koin.core.get
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 
 class ExerciseNamesFragment : Fragment(), KoinComponent {
 

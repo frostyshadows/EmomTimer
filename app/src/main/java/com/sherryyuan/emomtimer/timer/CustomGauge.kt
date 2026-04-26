@@ -245,19 +245,6 @@ class CustomGauge : View {
             invalidate()
         }
 
-    fun setDividerStep(dividerStep: Int) {
-        if (dividerStep > 0) {
-            mDividersCount = 100 / dividerStep
-            mDividerStepAngle = this.sweepAngle / mDividersCount
-        }
-    }
-
-    fun setDividerSize(dividerSize: Int) {
-        if (dividerSize > 0) {
-            mDividerSize = this.sweepAngle / (abs(mEndValue - this.startValue) / dividerSize)
-        }
-    }
-
     companion object {
         private const val DEFAULT_LONG_POINTER_SIZE = 1
     }
