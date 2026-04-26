@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.sherryyuan.emomtimer.models.Workout
 import com.sherryyuan.emomtimer.workout.repository.WorkoutRepository
 import kotlinx.coroutines.launch
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class WorkoutsViewModel : ViewModel(), KoinComponent {
 

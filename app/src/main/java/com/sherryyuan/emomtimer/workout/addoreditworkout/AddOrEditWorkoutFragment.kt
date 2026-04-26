@@ -31,7 +31,8 @@ import com.sherryyuan.emomtimer.models.Workout
 import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.utils.safeNavigate
 import com.sherryyuan.emomtimer.workout.WorkoutsViewModel
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
+import androidx.core.graphics.drawable.toDrawable
 
 class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
 
@@ -191,7 +192,7 @@ class AddOrEditWorkoutFragment : Fragment(), KoinComponent {
         }
         val background = context?.let {
             ContextCompat.getDrawable(it, R.drawable.background_rounded_red_rectangle)
-        } ?: ColorDrawable(Color.RED)
+        } ?: Color.RED.toDrawable()
         val backgroundCornerOffset = 20
 
         val simpleItemTouchCallback =

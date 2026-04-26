@@ -2,9 +2,9 @@ package com.sherryyuan.emomtimer.workout.repository
 
 import androidx.lifecycle.LiveData
 import com.sherryyuan.emomtimer.models.Workout
-import org.koin.core.KoinComponent
-import org.koin.core.get
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
+import org.koin.core.component.inject
 
 class WorkoutRepository : KoinComponent {
 

@@ -9,8 +9,8 @@ android {
     defaultConfig {
         applicationId "com.sherryyuan.emomtimer"
         minSdkVersion 23
-        compileSdk 34
-        targetSdkVersion 34
+        compileSdk 36
+        targetSdkVersion 36
         versionCode 7
         versionName "1.3.3"
 
@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.media3:media3-common-ktx:1.10.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
@@ -62,7 +63,7 @@ dependencies {
     implementation "com.google.code.gson:gson:2.10.1"
 
     // Room
-    def roomVersion = "2.6.1"
+    def roomVersion = "2.7.0"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
@@ -74,9 +75,10 @@ dependencies {
 
 
     // Koin
-    def koinVersion = "2.1.5"
-    implementation "org.koin:koin-android:$koinVersion"
-    testImplementation "org.koin:koin-test:$koinVersion"
+    def koinVersion = "4.1.1"
+    implementation "io.insert-koin:koin-core:$koinVersion"
+    implementation "io.insert-koin:koin-android:$koinVersion"
+    testImplementation "io.insert-koin:koin-test:$koinVersion"
 
     // Coroutines
     def coroutinesVersion = "1.7.3"
@@ -87,9 +89,6 @@ dependencies {
     def lifecycleVersion = '2.8.3'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-
-    // Custom gauge for displaying timer progress
-    implementation "pl.pawelkleczkowski.customgauge:CustomGauge:1.0.4"
 
     // Settings screen
     implementation "androidx.preference:preference-ktx:1.2.1"

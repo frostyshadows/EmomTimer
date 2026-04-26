@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sherryyuan.emomtimer.databinding.ItemExerciseNameBinding
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
 
 
 class ExerciseNamesAdapter(private val exerciseNames: List<String>) :

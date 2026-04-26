@@ -10,9 +10,9 @@ import com.sherryyuan.emomtimer.R
 import com.sherryyuan.emomtimer.timer.TimerViewData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.koin.core.KoinComponent
-import org.koin.core.get
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
+import org.koin.core.component.inject
 
 private const val ONE_SECOND = 1000L
 private const val TWO_SECONDS = 2000L

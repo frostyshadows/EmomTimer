@@ -14,8 +14,8 @@ import com.sherryyuan.emomtimer.databinding.ItemAddExerciseBinding
 import com.sherryyuan.emomtimer.models.Exercise
 import com.sherryyuan.emomtimer.utils.SECONDS_PER_MINUTE
 import com.sherryyuan.emomtimer.workout.repository.ExerciseNamesStorage
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 
 class AddOrEditWorkoutExercisesAdapter(
